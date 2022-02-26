@@ -29,7 +29,6 @@ public class Formula {
 		
 	}
 	
-	
 	public UUID getIdFormula() {
 		return this.idFormula;
 	}
