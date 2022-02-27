@@ -2,20 +2,23 @@ package hospital;
 
 import java.util.Date;
 
+
 public class Cita {
 	private String CCPaciente;
 	private String CCMedico;
 	private Date fechaInicio;
 	private Date fechaFinal;
 	private Formula formula;
+	private String idCita;
 	
-	public Cita(String cCPaciente, String cCMedico, Date fechaInicio, Date fechaFinal) {
+	public Cita(String cCPaciente, String cCMedico, Date fechaInicio, Date fechaFinal, String idCita) {
 		super();
 		this.CCPaciente = cCPaciente;
 		this.CCMedico = cCMedico;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
 		this.formula = new Formula();
+		this.idCita = idCita;
 	}
 	
 	public void addFormulaMedicamentos(String[] medicamentos) throws MedicamentoInvalido {
@@ -66,6 +69,16 @@ public class Cita {
 
 	public Formula getFormula() {
 		return formula;
+	}
+
+	public String getIdCita() {
+		return idCita;
+	}
+
+	@Override
+	public String toString() {
+		return "Cita [CCPaciente=" + CCPaciente + ", CCMedico=" + CCMedico + ", fechaInicio=" + fechaInicio
+				+ ", fechaFinal=" + fechaFinal + "]\n";
 	}
 	
 	

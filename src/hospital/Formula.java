@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Formula {
-	private UUID idFormula;
+	private String idFormula;
 	private ArrayList<String> idMedicamentos; //Contiene tres letras que identifican el medicamento y 1 numero que identifica la cantidad, ejm : ACF4, 4 acetaminofen
 	private String incapacidad;
 	
 	
 	public Formula() {
 		super();
-		this.idFormula = UUID.randomUUID();
+		this.idFormula = UUID.randomUUID().toString();
 		this.idMedicamentos =  new ArrayList<String>();
 		this.incapacidad = "";
 	}
@@ -29,7 +29,7 @@ public class Formula {
 		
 	}
 	
-	public UUID getIdFormula() {
+	public String getIdFormula() {
 		return this.idFormula;
 	}
 	
