@@ -78,7 +78,7 @@ public class Cita {
 	@Override
 	public String toString() {
 		return "Cita [CCPaciente=" + CCPaciente + ", CCMedico=" + CCMedico + ", fechaInicio=" + fechaInicio
-				+ ", fechaFinal=" + fechaFinal + "]\n";
+				+ ", fechaFinal=" + fechaFinal + ", idCita=" +idCita + "]\n";
 	}
 	
 	
