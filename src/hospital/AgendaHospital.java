@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
 
+//Comentarios importantes
+// 27-02-22 Se ordenó las listas de los pacientes y medicos de tal manera que fuera posible encotrar huecos, lo que facilita el metodo disponibilidad extremos, cambiarlo
+
 public class AgendaHospital {
 	private ArrayList<Cita> citas = new ArrayList<Cita>();
 	private File agendaCitas = new File("cita.txt");
@@ -124,21 +127,75 @@ public class AgendaHospital {
         }
 	}
 	
+	private void editarCitaFicero(String idCita, String CCPaciente ,String CCMedico, Calendar fi, Calendar ff) {
+		File inputFile = new File("cita.txt");
+        File tempFile = new File("citaTemp.txt");
+        try {
+        	BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                if (currentLine.contains(idCita)) {
+                	StringBuilder modf = new StringBuilder();
+                	modf.append(CCPaciente+",");
+                	modf.append(CCMedico+",");
+                	modf.append(fi.get(1) +","+fi.get(2) + "," + fi.get(5) + "," +fi.get(11) + "," +fi.get(12) + ",");
+                	modf.append(ff.get(1) +","+ff.get(2) + "," + ff.get(5) + "," +ff.get(11) + "," +ff.get(12) + ",");
+                	modf.append(idCita);
+                	writer.write(modf.toString() + System.getProperty("line.separator"));
+                	continue;
+                }
+                writer.write(currentLine + System.getProperty("line.separator"));
+            }
+            writer.close();
+            reader.close();
+            inputFile.delete();
+            tempFile.renameTo(inputFile);
+        } catch (Exception e){
+        	System.out.println(e.getMessage());
+        }
+	}
 	
 	
-	public void modificarCita(String idCita ,Date fechaInicio, Date fechaFinal) throws FormatoFechaInvalida{
-		// 1. ¿La fecha inicio es despues de la fecha actual?
-		// 2. ¿La fecha inicio está antes de la fecha final?
-		// 3. Buscamos medico
-		// 4. Iterar sobre sus citas
-		// 5. Buscar hueco de a pares ¿La fecha final de la cita anterior está despues de la fecha de la inicio de la nueva cita? ¿La fecha final está antes de la fecha de inicio de la actual cita?, aquí hay que considerar si es la primera iteración y la final.
-		// 6. Modificamos la cita con los set, si es el mismo medico sobreescribimos al medico y actalizamos su 
-		
-		if(this.fechaDespuesActual(fechaInicio) && fechaFinal.after(fechaInicio)) {
-			
-		}else {
+	
+	//Con el mismo medico
+	public void modificarCita(String idCita ,Date fechaInicio, Date fechaFinal) throws FormatoFechaInvalida, CitaNoExiste, PersonaNoCitas { 
+		//1. Comprobar fechas ¿Son despues de la fecha actual y la inicio está despues de la final?
+		if(this.congruenciaFechas(fechaInicio, fechaFinal)) {
+			//2. Vamos a buscar la cita
+			try {
+				Cita ctModificar = this.buscarCitaId(idCita);
+				String CCMedico = ctModificar.getCCMedico();
+				if(this.disponibilidadCita(CCMedico, fechaInicio, fechaFinal)) {
+					//Modificamos la cita
+					int indexCita = this.buscarCitaIdIndex(idCita);
+					this.citas.get(indexCita).setFechaInicio(fechaInicio);
+					this.citas.get(indexCita).setFechaFinal(fechaFinal);
+					Calendar cfi = new GregorianCalendar();
+					Calendar cff = new GregorianCalendar();
+					cfi.setTime(fechaInicio);
+					cff.setTime(fechaFinal);
+					//Actualizamos fichero
+					this.editarCitaFicero(idCita, ctModificar.getCCPaciente(), CCMedico, cfi, cff);
+				}
+			} catch (CitaNoExiste e) {
+				throw new CitaNoExiste(idCita);
+			} catch (PersonaNoCitas e) {
+				//Si el medico no tiene citas quiere decir que no la podemos modificar
+				throw e;
+			} catch (FormatoFechaInvalida e) {
+				throw e;
+			}
+		} else {
 			throw new FormatoFechaInvalida();
 		}
+	}
+	
+	//Con el medico distinto
+	public void modificarCita(String idCita, String CCMedico ,Date fechaInicio, Date fechaFinal) {
+		
 	}
 	
 	public boolean fechaDespuesActual(Date fi) {
@@ -165,12 +222,31 @@ public class AgendaHospital {
 		}
 		throw new CitaNoExiste(idCita);	  
 	}
+	public int buscarCitaIdIndex(String idCita) throws CitaNoExiste {
+		for(int i = 0; i < this.citas.size() ; i++) {
+			if(this.citas.get(i).getIdCita().equals(idCita)) {
+				return i;
+			}
+		}
+		throw new CitaNoExiste(idCita);	  
+	}
 	
 	public Cita[] buscarCitaCedulaPaciente(String CC) throws PersonaNoCitas{
 		ArrayList<Cita> citasN = new ArrayList<Cita>();
 		for(Cita ct: this.citas) {
 			if(ct.getCCPaciente().equals(CC)) {
 				citasN.add(ct);
+			}
+		}
+		
+		for(int i = 0; i < citasN.size(); i++) {
+			for(int j = 0; j < citasN.size()-i-1; j++) {
+				Cita c1 = citasN.get(j);
+				Cita c2 = citasN.get(j+1);
+				if((c1.getFechaInicio().after(c2.getFechaFinal()) || c1.getFechaInicio().getTime()-c2.getFechaFinal().getTime() == 0) && c1.getFechaFinal().after(c2.getFechaFinal())) { //Si fecha inicio está despues de siguiente fecha final, intercambiamos posiciones
+					citasN.set(j+1, c1);
+					citasN.set(j, c2);
+				}
 			}
 		}
 		if(citasN.size() != 0) {
@@ -182,11 +258,25 @@ public class AgendaHospital {
 	
 	public Cita[] buscarCitaCedulaMedico(String CC) throws PersonaNoCitas{
 		ArrayList<Cita> citasN = new ArrayList<Cita>();
+		// 1. Obtengo el arreglo de citas
 		for(Cita ct: this.citas) {
 			if(ct.getCCMedico().equals(CC)) {
 				citasN.add(ct);
 			}
 		}
+		
+		// 2. Lo ordeno
+		for(int i = 0; i < citasN.size(); i++) {
+			for(int j = 0; j < citasN.size()-i-1; j++) {
+				Cita c1 = citasN.get(j);
+				Cita c2 = citasN.get(j+1);
+				if((c1.getFechaInicio().after(c2.getFechaFinal()) || c1.getFechaInicio().getTime()-c2.getFechaFinal().getTime() == 0) && c1.getFechaFinal().after(c2.getFechaFinal())) { //Si fecha inicio está despues de siguiente fecha final, intercambiamos posiciones
+					citasN.set(j+1, c1);
+					citasN.set(j, c2);
+				}
+			}
+		}
+		
 		if(citasN.size() != 0) {
 			return (Cita[]) citasN.toArray(new Cita[this.citas.size()]);
 		}else {
@@ -219,51 +309,29 @@ public class AgendaHospital {
 	}
 	
 	public boolean disponibilidadCitaHuecos(Cita[] citasN, Date fi, Date ff) {
-		long diffInicial = Long.MAX_VALUE; // El mayor valor para evitar problemas
-		long diffFinal = Long.MIN_VALUE; // El menor valor para evitar problemas
-		long diffActFinal, diffActInicial;
-		int indexFinalMasCercana, indexInicialMasCercana;
-		//1. Encontrar fecha final mas cercana a nuestra fecha inicial
-		for (int i = 0; i < citasN.length; i++) {
-			// ¿Cual es la fecha inicial mas cercana a una fecha final?
-			diffActInicial = fi.getTime() - citasN[i].getFechaFinal().getTime();
-			System.out.println(diffActInicial);
-			if(diffActInicial >= 0 && diffActInicial < diffInicial && fi.after(citasN[i].getFechaInicio())) { 
-				//Debemos comprobar tambien que esta no este antes de una final
-				diffInicial = diffActInicial;
-				indexInicialMasCercana = i;
-				
-			}
-			
-			// ¿Cual es la fecha final mas cercana a una fecha inicial?
-			diffActFinal = ff.getTime() - citasN[i].getFechaInicio().getTime() ;
-			
-			if(diffActFinal <= 0 && diffActFinal > diffFinal ) { 
-				//Condicion especial para saber si estamos en un tope
-				diffFinal = diffActFinal;
-				indexFinalMasCercana = i;
+		//Suponiendo que citasN está ordenado
+		boolean hayHueco = false;
+		for(int i = 0; i<citasN.length-1; i++) {
+			if((fi.after(citasN[i].getFechaFinal()) || fi.getTime()-citasN[i].getFechaFinal().getTime() == 0) && //Está despues o es justo la fecha final
+				(ff.before(citasN[i+1].getFechaInicio()) || ff.getTime()-citasN[i+1].getFechaInicio().getTime() == 0)) {
+				hayHueco = true;
+				break;
 			}
 		}
-		System.out.println("------------");
-		System.out.println(diffInicial);
-		System.out.println(diffFinal);
-		if(diffInicial == 0 && diffFinal == 0) { //En caso de instantes entre topes
-			return true;
-		}
-		else if(diffInicial == 0 && diffFinal > Long.MIN_VALUE) {
-			return true;
-		}
-		else if(diffInicial < Long.MAX_VALUE && diffFinal == 0) {
-			return true;
-		}
-		else if(diffInicial < Long.MAX_VALUE && diffFinal > Long.MIN_VALUE) { //Significa que los valores se sobrescribieron y nos indica que hay un hueco
+		return hayHueco;
+	}
+	
+	// Comparacion con fecha actual y fechas despues de otra y iguales
+	public boolean congruenciaFechas(Date fi, Date ff) {
+		if(this.fechaDespuesActual(fi) && fi.before(ff) ) {
 			return true;
 		}else {
 			return false;
 		}
 	}
+
 	
-	public boolean disponibilidadCita(String CCMedico ,Date fi, Date ff) throws PersonaNoCitas {
+	public boolean disponibilidadCita(String CCMedico ,Date fi, Date ff) throws PersonaNoCitas, FormatoFechaInvalida{
 		try {
 			Cita[] citasMedico = this.buscarCitaCedulaMedico(CCMedico);
 			// 1. Comparacion con fecha actual
@@ -271,8 +339,8 @@ public class AgendaHospital {
 			// 2. Comparacion con huecos
 			
 			// Comparacion con fecha actual y fechas despues de otra y iguales
-			if(!this.fechaDespuesActual(fi) || fi.after(ff) || fi.equals(ff) ) {
-				return false;
+			if(!this.congruenciaFechas(fi, ff) ){
+				throw new FormatoFechaInvalida();
 			}
 			// Comparación en minimos y maximos
 			if(this.disponibilidadCitaExtremos(citasMedico, fi, ff)) {
