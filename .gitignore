@@ -25,7 +25,6 @@ target/**
 *.jar
 *.war
 *.ear
-*.class
 
 # eclipse specific
 *.pydevproject
@@ -47,4 +46,3 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
-/bin/
