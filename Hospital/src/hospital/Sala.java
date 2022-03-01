@@ -20,15 +20,7 @@ public class Sala {
 //	  
 //	  
 //	  }
-	
-//	public boolean verificarPaciente(String cedula) { int i = 0; while( i <  ESTO NO SIRVE
-//	  pacientes.length) { if(cedula == pacientes[i].getCedula()) { return true;
-//	  //returns true porque si existe } } return false; //returns false porque no existe } // agregar exepcion si el paciente ya existe public void
-//
-//	addPaciente(Paciente paciente) { //traer cedula de paciente. //Verificarla en un metodo contra un arreglo de pacientes //En caso de que la cedula no exista, agregar el paciente
-//	  
-//	  
-//	  }
+
 
 	public boolean verificarEquipo(String codigo) {
 		int i = 0;
