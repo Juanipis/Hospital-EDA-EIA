@@ -77,7 +77,7 @@ public class Sala {
 	// agregar exepcion si el medicamento ya existe
 	public void addMedicamento(Medicamento medicamento, String nombre, String id, Date fechaVencimiento,
 			Date fechaCompra, boolean disponibilidad, double cantidad) {
-		if (verificarEquipo(medicamento.getId()) == false) {
+		if (verificarMedicamento(medicamento.getId()) == false) {
 			medicamentos = Arrays.copyOf(medicamentos, medicamentos.length + 1);
 			medicamentos[medicamentos.length - 1] = new Medicamento(nombre, id, fechaVencimiento, fechaCompra,
 					disponibilidad, cantidad);
