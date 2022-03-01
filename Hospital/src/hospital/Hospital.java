@@ -1,5 +1,6 @@
 package hospital;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -38,7 +39,7 @@ public class Hospital {
 			throw new FormatoFechaInvalida();
 		}
 	}
-	public boolean cancelarCita(String idCita) throws CitaNoExiste {
+	public boolean cancelarCita(String idCita) throws CitaNoExiste, FileNotFoundException, IOException {
 		this.agendaHospital.cancelarCita(idCita);
 		return true;
 		

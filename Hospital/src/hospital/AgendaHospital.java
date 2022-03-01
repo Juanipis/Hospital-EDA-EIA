@@ -3,13 +3,11 @@ package hospital;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -18,7 +16,6 @@ import java.util.UUID;
 
 public class AgendaHospital {
 	private ArrayList<Cita> citas = new ArrayList<Cita>();
-	private File agendaCitas = new File("cita.txt");
 
 	public AgendaHospital() throws IOException {
 		super();
@@ -26,8 +23,8 @@ public class AgendaHospital {
 		this.recuperarCitas();
 	}
 	
-	private void recuperarCitas() throws IOException {
-		BufferedReader fichero = new BufferedReader(new FileReader(agendaCitas));
+	private void recuperarCitas() throws IOException, FileNotFoundException {
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("cita.txt")));
 		String citaAct;
 		while( ( citaAct = fichero.readLine()) != null) {
 			String[] partesCita = citaAct.split(",");
@@ -52,62 +49,8 @@ public class AgendaHospital {
 		} 
 	
 	
-	private void generarCitaFichero(String datos) throws IOException {
-		FileWriter fichero = new FileWriter(agendaCitas.getAbsoluteFile(), true);
-		fichero.write(datos + "\n");
-		fichero.close();
-	}
 	
-	private void eliminarCitaFichero(String idCita) {
-		File inputFile = new File("cita.txt");
-        File tempFile = new File("citaTemp.txt");
-        try {
-        	BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-
-            String currentLine;
-
-            while ((currentLine = reader.readLine()) != null) {
-                if (currentLine.contains(idCita)) {
-                    continue;
-                }
-                writer.write(currentLine + System.getProperty("line.separator"));
-            }
-            writer.close();
-            reader.close();
-            inputFile.delete();
-            tempFile.renameTo(inputFile);
-        } catch (Exception e){
-        	System.out.println(e.getMessage());
-        }
-	}
-	
-	private void editarCitaFicero(String idCita, String CCPaciente ,String CCMedico, Calendar fi, Calendar ff) throws IOException {
-		File inputFile = new File("cita.txt");
-        File tempFile = new File("citaTemp.txt");
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-        String currentLine;
-        while ((currentLine = reader.readLine()) != null) {
-        	if (currentLine.contains(idCita)) {
-        		StringBuilder modf = new StringBuilder();
-        		modf.append(CCPaciente+",");
-        		modf.append(CCMedico+",");
-        		modf.append(fi.get(1) +","+fi.get(2) + "," + fi.get(5) + "," +fi.get(11) + "," +fi.get(12) + ",");
-        		modf.append(ff.get(1) +","+ff.get(2) + "," + ff.get(5) + "," +ff.get(11) + "," +ff.get(12) + ",");
-        		modf.append(idCita);
-        		writer.write(modf.toString() + System.getProperty("line.separator"));
-        		continue;
-        	}
-        	writer.write(currentLine + System.getProperty("line.separator"));
-        }
-        writer.close();
-        reader.close();
-        inputFile.delete();
-        tempFile.renameTo(inputFile);
-	}
-	
-	public boolean generarCita(String CCPaciente, String CCMedico, int [] fechaInicio, int [] fechaFinal ) throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {
+	public boolean generarCita(String CCPaciente, String CCMedico, int [] fechaInicio, int [] fechaFinal ) throws FormatoFechaInvalida, IOException, FileNotFoundException, NoHayDisponibilidadCita {
 		// Es necesario comprobar si el medico y el paciente existen en el hospital y devolver un true or false
 		// int[] fechaI :  int Iano, int Imes, int dia, int Ihora, int Iminuto
 		// Es neceario comprobar ademas que la fecha a agregar no tenga conflicto con las fechas del medico
@@ -131,7 +74,7 @@ public class AgendaHospital {
 			
 			try {
 				if(this.disponibilidadCita(CCMedico, fi.getTime(), ff.getTime())) {
-					this.generarCitaFichero(cita.toString()); //Se añade al fichero
+					Main.escrituraFicheroUltimaLinea("cita.txt", cita.toString());
 					citas.add(new Cita(CCPaciente, CCMedico, fi.getTime(), ff.getTime(), idCita));
 					return true;
 				}else {
@@ -140,7 +83,7 @@ public class AgendaHospital {
 			} catch (IOException e) {
 				throw e;
 			} catch (MedicoNoCitas e) {
-				this.generarCitaFichero(cita.toString()); //Se añade al fichero
+				Main.escrituraFicheroUltimaLinea("cita.txt", cita.toString());
 				citas.add(new Cita(CCPaciente, CCMedico, fi.getTime(), ff.getTime(), idCita));
 				return true;
 			} catch (FormatoFechaInvalida e) {
@@ -153,14 +96,14 @@ public class AgendaHospital {
 	
 	
 	
-	public void cancelarCita(String idCita) throws CitaNoExiste{
+	public void cancelarCita(String idCita) throws CitaNoExiste, FileNotFoundException, IOException{
 		int index = 0;
 		while(index < citas.size() && citas.get(index) != null && !citas.get(index).getIdCita().equals(idCita) ) {
 			index++;
 		}
 		if(index < citas.size() && citas.get(index) != null && citas.get(index).getIdCita().equals(idCita)) {
 			citas.remove(index);
-			this.eliminarCitaFichero(idCita);			
+			Main.eliminarAlgoFicheroId("cita.txt", idCita);
 		}else {
 			throw new CitaNoExiste(idCita);
 		}
@@ -171,7 +114,7 @@ public class AgendaHospital {
 	
 
 	//Con el mismo medico
-	public boolean modificarCita(String idCita ,Date fechaInicio, Date fechaFinal) throws FormatoFechaInvalida, CitaNoExiste, PersonaNoCitas, IOException, NoHayDisponibilidadCita, MedicoNoCitas { 
+	public boolean modificarCita(String idCita ,Date fechaInicio, Date fechaFinal) throws FormatoFechaInvalida, CitaNoExiste, PersonaNoCitas, IOException, FileNotFoundException, NoHayDisponibilidadCita, MedicoNoCitas { 
 		//1. Comprobar fechas ¿Son despues de la fecha actual y la inicio está despues de la final?
 		//2. Vamos a buscar la cita
 		
@@ -191,14 +134,20 @@ public class AgendaHospital {
 			cfi.setTime(fechaInicio);
 			cff.setTime(fechaFinal);
 			//Actualizamos fichero
-			this.editarCitaFicero(idCita, ctModificar.getCCPaciente(), CCMedico, cfi, cff);
+			StringBuilder modf = new StringBuilder();
+			modf.append(ctModificar.getCCPaciente()+",");
+    		modf.append(CCMedico+",");
+    		modf.append(cfi.get(1) +","+cfi.get(2) + "," + cfi.get(5) + "," +cfi.get(11) + "," +cfi.get(12) + ",");
+    		modf.append(cff.get(1) +","+cff.get(2) + "," + cff.get(5) + "," +cff.get(11) + "," +cff.get(12) + ",");
+    		modf.append(idCita);
+			Main.editarAlgoFicheroId("cita.txt",idCita, modf.toString());
 			return true;
 			}
 		return false;
 	}
 	
 	//Con el medico distinto
-	public boolean modificarCita(String idCita, String CCMedico ,Date fechaInicio, Date fechaFinal) throws IOException, FormatoFechaInvalida, NoHayDisponibilidadCita, CitaNoExiste {
+	public boolean modificarCita(String idCita, String CCMedico ,Date fechaInicio, Date fechaFinal) throws IOException, FileNotFoundException, FormatoFechaInvalida, NoHayDisponibilidadCita, CitaNoExiste {
 		Cita ctModificar = this.buscarCitaId(idCita);
 		
 		try {
@@ -212,7 +161,13 @@ public class AgendaHospital {
 				cfi.setTime(fechaInicio);
 				cff.setTime(fechaFinal);
 				//Actualizamos fichero
-				this.editarCitaFicero(idCita, ctModificar.getCCPaciente(), CCMedico, cfi, cff);
+				StringBuilder modf = new StringBuilder();
+				modf.append(ctModificar.getCCPaciente()+",");
+	    		modf.append(CCMedico+",");
+	    		modf.append(cfi.get(1) +","+cfi.get(2) + "," + cfi.get(5) + "," +cfi.get(11) + "," +cfi.get(12) + ",");
+	    		modf.append(cff.get(1) +","+cff.get(2) + "," + cff.get(5) + "," +cff.get(11) + "," +cff.get(12) + ",");
+	    		modf.append(idCita);
+				Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString());
 				return true;
 				}
 		} catch (MedicoNoCitas e) {
@@ -226,7 +181,13 @@ public class AgendaHospital {
 				cfi.setTime(fechaInicio);
 				cff.setTime(fechaFinal);
 				//Actualizamos fichero
-				this.editarCitaFicero(idCita, ctModificar.getCCPaciente(), CCMedico, cfi, cff);
+				StringBuilder modf = new StringBuilder();
+				modf.append(ctModificar.getCCPaciente()+",");
+	    		modf.append(CCMedico+",");
+	    		modf.append(cfi.get(1) +","+cfi.get(2) + "," + cfi.get(5) + "," +cfi.get(11) + "," +cfi.get(12) + ",");
+	    		modf.append(cff.get(1) +","+cff.get(2) + "," + cff.get(5) + "," +cff.get(11) + "," +cff.get(12) + ",");
+	    		modf.append(idCita);
+	    		Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString());
 				return true;
 			}
 			
@@ -331,27 +292,6 @@ public class AgendaHospital {
 			return false;
 		}
 		
-		/*
-		Date inicialMasCercana = citasN[0].getFechaInicio();
-		Date finalMasLejana = citasN[0].getFechaFinal();
-		for (int i = 1; i < citasN.length; i++) {
-			//Minima
-			if(inicialMasCercana.after(citasN[i].getFechaInicio())) {
-				inicialMasCercana = citasN[i].getFechaInicio();
-			}
-			//Maxima
-			if(finalMasLejana.before(citasN[i].getFechaFinal())) {
-				finalMasLejana = citasN[i].getFechaFinal();
-			}
-		}
-		//Comprobemos si la fecha estipulada está antes o despues de las maximas y minmas
-		if((fi.before(inicialMasCercana) ||fi.getTime()) && ff.before(finalMasLejana)) {
-			return true;
-		}else if(fi.after(inicialMasCercana) && fi.after(finalMasLejana)){
-			return true;
-		}else {
-			return false;
-		}*/
 	}
 	
 	public boolean disponibilidadCitaHuecos(Cita[] citasN, Date fi, Date ff) {
