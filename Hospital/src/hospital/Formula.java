@@ -11,7 +11,8 @@ public class Formula {
 	private ArrayList<String> idMedicamentos; //Contiene tres letras que identifican el medicamento y 1 numero que identifica la cantidad, ejm : ACF4, 4 acetaminofen
 	private String incapacidad;
 	
-	
+	//El id deberia de ser generado automaticamente, por lo tanto no deberia de pedirse como parametro en el constructos - Chica
+	//Tengo entendido que la incapacidad se pasa como parametro y se crea con este, pienso que podria ser un boolean - Chica (this.incapacidad = incapacidad)
 	public Formula(String idFormula, String[] idMedicamentos, String incapacidad) {
 		super();
 		this.idFormula = UUID.randomUUID().toString();

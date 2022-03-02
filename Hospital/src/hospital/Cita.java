@@ -11,6 +11,9 @@ public class Cita {
 	private Formula formula;
 	private String idCita;
 	
+	
+	//Si se le va a asignar una formula desde la creacion de la cita, tambien hay que pasarle los parametros necesarios para crearla desde el constructor
+	//pero como creo que se va a asignar despues de la cita, no deberia de estar en el constructor, si no que se le agrega despues con un set - Chica
 	public Cita(String cCPaciente, String cCMedico, Date fechaInicio, Date fechaFinal, String idCita) {
 		super();
 		this.CCPaciente = cCPaciente;
@@ -31,6 +34,7 @@ public class Cita {
 		}
 	}
 	
+	//Pinso que es mas facil trabajar la incapacidad como un boolean - Chica
 	public void setFormulaIncapacidad(String incapacidad) {
 		formula.setIncapacidad(incapacidad);
 	}

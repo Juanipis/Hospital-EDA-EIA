@@ -5,11 +5,12 @@ import java.util.Date;
 
 public class Sala {
 
+	//Cambie capacidad de un String a un int y descomente los pacientes. Creo que faltaria un constructor - Chica
 	private String tipo;
-	private String capacidad;
+	private int capacidad;
 	private Medicamento medicamentos[];
 	private Equipo equipos[];
-	// private Paciente pacientes[];
+	private Paciente pacientes[];
 	// private Enfermo enfermos[];
 
 //	public boolean verificarPaciente(String cedula) { int i = 0; while( i <
@@ -38,7 +39,7 @@ public class Sala {
 		return tipo;
 	}
 
-	public void setCapacidad(String capacidad) {
+	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
 
