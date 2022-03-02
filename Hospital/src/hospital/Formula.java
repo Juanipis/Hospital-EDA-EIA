@@ -1,7 +1,10 @@
 package hospital;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
+
+import hospital.Personal.EPersonal;
 
 public class Formula {
 	private String idFormula;
@@ -9,7 +12,7 @@ public class Formula {
 	private String incapacidad;
 	
 	
-	public Formula() {
+	public Formula(String idFormula, String[] idMedicamentos, String incapacidad) {
 		super();
 		this.idFormula = UUID.randomUUID().toString();
 		this.idMedicamentos =  new ArrayList<String>();
@@ -27,6 +30,18 @@ public class Formula {
 			throw new MedicamentoInvalido(idMedicamento);
 		}
 		
+	}
+	
+	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) {
+		Formula[] formula = new Formula[0];
+		for(int i = 0; i < formula.length; i++) {
+			if(formula[i].getIdFormula().equals(idFormula)) {	
+		
+			}else {
+				formula = Arrays.copyOf(formula, formula.length-1);
+				formula[formula.length-1] = new Formula(idFormula, idMedicamentos, incapacidad);
+			}
+		}
 	}
 	
 	public String getIdFormula() {
