@@ -47,16 +47,16 @@ public class Hospital {
 			String[] partesPaciente = lineaAct.split(",");
 			if(partesPaciente.length == 10) {
 				pacientes.add(new Paciente(
+						partesPaciente[0],
 						partesPaciente[1],
 						partesPaciente[2],
 						partesPaciente[3],
-						partesPaciente[4],
-						partesPaciente[5].split(";"),
-						Integer.valueOf(partesPaciente[6]),
-						partesPaciente[7].split(";"),
-						Integer.valueOf(partesPaciente[8]),
-						partesPaciente[9],
-						partesPaciente[10]));
+						partesPaciente[4].split(";"),
+						Integer.valueOf(partesPaciente[5]),
+						partesPaciente[6].split(";"),
+						Integer.valueOf(partesPaciente[7]),
+						partesPaciente[8],
+						partesPaciente[9]));
 			}
 		}
 		pacientesFich.close();

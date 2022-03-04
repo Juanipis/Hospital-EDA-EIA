@@ -99,9 +99,35 @@ public class Paciente extends Persona {
 	public Historial[] getHistorial() {
 		return historial.toArray(new Historial[historial.size()]);
 	}
-/*
-	public void setHistorial(Historial historial) {
-		this.historial = historial;
+
+	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, String citaId) throws FileNotFoundException, IOException {
+		historial.add(new Historial(enfermedades, operaciones, alergias, citaId));
+		StringBuilder bld = new StringBuilder();
+		for (int i = 0; i < enfermedades.length; i++) {
+			if(i != enfermedades.length-1) {
+				bld.append(enfermedades[i] + ";");
+			}else {
+				bld.append(enfermedades[i]);
+			}
+		}
+		bld.append(",");
+		for (int i = 0; i < operaciones.length; i++) {
+			if(i != operaciones.length-1) {
+				bld.append(operaciones[i] + ";");
+			}else {
+				bld.append(operaciones[i]);
+			}
+		}
+		bld.append(",");
+		for (int i = 0; i < alergias.length; i++) {
+			if(i != alergias.length-1) {
+				bld.append(alergias[i] + ";");
+			}else {
+				bld.append(alergias[i]);
+			}
+		}
+		bld.append("," + citaId);
+		Main.escrituraFicheroUltimaLinea(CC, bld.toString(), 1);
 	}
-*/
+
 }

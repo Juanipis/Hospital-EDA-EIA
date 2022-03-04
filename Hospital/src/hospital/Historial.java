@@ -12,22 +12,18 @@ public class Historial {
 		return citaId;
 	}
 	
-	public Historial(String[] enfermedades, String[] operaciones, String[] alergias, String cita) {
+	public Historial(String[] enfermedades, String[] operaciones, String[] alergias, String citaId) {
 		super();
 		this.enfermedades = enfermedades;
 		this.operaciones = operaciones;
 		this.alergias = alergias;
-		this.citaId = cita;
+		this.citaId = citaId;
 	}
 	
-	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, Cita cita){
-		Historial[] historial = new Historial[0];
-		for(int i = 0; i < historial.length; i++) {
-			if(historial[i].getCita().equals(cita)) {	
-			}else {
-				historial = Arrays.copyOf(historial, historial.length-1);
-				historial[historial.length-1] = new Historial(enfermedades, operaciones, alergias, cita);
-			}
-		}
+
+	@Override
+	public String toString() {
+		return "Historial [enfermedades=" + Arrays.toString(enfermedades) + ", operaciones="
+				+ Arrays.toString(operaciones) + ", alergias=" + Arrays.toString(alergias) + ", citaId=" + citaId + "]";
 	}
 }

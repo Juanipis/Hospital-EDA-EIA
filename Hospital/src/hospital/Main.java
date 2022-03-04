@@ -18,9 +18,10 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			Hospital hp = new Hospital();
-			hp.addPaciente("Juan", "Diaz", "100231858", "Sura", new String[]{"tos"}, 0, new String[]{"Carlos"}, 12, "M", "A+");
-			
-		} catch (IOException | ExistePersonal e) {
+			//hp.addPaciente("Juan", "Diaz", "100231858", "Sura", new String[]{"tos"}, 0, new String[]{"Carlos"}, 12, "M", "A+");
+			hp.getPaciente("100231858").addHistorial(new String[] {"Vomito", "OjosRojos"},new String[] {"Rodilla", "Pierna"} ,new String[] {"Mandarina", "almendra"}, "kasjefhiuh3");
+			;
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
