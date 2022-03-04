@@ -10,15 +10,16 @@ public class Medicamento {
 	private Date fechaCompra;
 	private boolean disponibilidad;
 	private double cantidad;
-	
-	public Medicamento(String nombre, String id, Date fechaVencimiento, Date fechaCompra, boolean disponibilidad, double cantidad) {
+
+	public Medicamento(String nombre, String id, Date fechaVencimiento, Date fechaCompra, boolean disponibilidad,
+			double cantidad) {
 		this.nombre = nombre;
 		this.id = id;
 		this.fechaVencimiento = fechaVencimiento;
 		this.fechaCompra = fechaCompra;
 		this.disponibilidad = disponibilidad;
 		this.cantidad = cantidad;
-		
+
 	}
 
 	public String getNombre() {
@@ -68,5 +69,5 @@ public class Medicamento {
 	public void setCantidad(double cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
 }

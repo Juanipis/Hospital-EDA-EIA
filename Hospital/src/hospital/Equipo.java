@@ -1,19 +1,18 @@
 package hospital;
 
-
 public class Equipo {
 
 	protected double inventario;
 	protected boolean disponibilidad;
 	protected String codigo;
 	protected boolean estado;
-	
+
 	public Equipo(double inv, boolean disp, String cod, boolean est) {
 		inventario = inv;
 		disponibilidad = disp;
 		codigo = cod;
 		estado = est;
-		
+
 	}
 
 	public double getInventario() {
@@ -47,5 +46,5 @@ public class Equipo {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
+
 }

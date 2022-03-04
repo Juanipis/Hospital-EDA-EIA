@@ -1,7 +1,7 @@
 package hospital;
 
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
+
 
 public class Sala {
 

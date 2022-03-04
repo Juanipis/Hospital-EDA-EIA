@@ -1,7 +1,6 @@
 package hospital;
 
-import java.util.Date;
-
+import java.util.*;
 
 public class Cita {
 	private String CCPaciente;
@@ -10,10 +9,11 @@ public class Cita {
 	private Date fechaFinal;
 	private Formula formula;
 	private String idCita;
-	
-	
-	//Si se le va a asignar una formula desde la creacion de la cita, tambien hay que pasarle los parametros necesarios para crearla desde el constructor
-	//pero como creo que se va a asignar despues de la cita, no deberia de estar en el constructor, si no que se le agrega despues con un set - Chica
+
+	// Si se le va a asignar una formula desde la creacion de la cita, tambien hay
+	// que pasarle los parametros necesarios para crearla desde el constructor
+	// pero como creo que se va a asignar despues de la cita, no deberia de estar en
+	// el constructor, si no que se le agrega despues con un set - Chica
 	public Cita(String cCPaciente, String cCMedico, Date fechaInicio, Date fechaFinal, String idCita) {
 		super();
 		this.CCPaciente = cCPaciente;
@@ -23,18 +23,18 @@ public class Cita {
 		this.formula = new Formula();
 		this.idCita = idCita;
 	}
-	
+
 	public void addFormulaMedicamentos(String[] medicamentos) throws MedicamentoInvalido {
 		try {
-			for(String med : medicamentos) {
+			for (String med : medicamentos) {
 				formula.addMedicamento(med);
 			}
 		} catch (MedicamentoInvalido e) {
 			throw e;
 		}
 	}
-	
-	//Pinso que es mas facil trabajar la incapacidad como un boolean - Chica
+
+	// Pinso que es mas facil trabajar la incapacidad como un boolean - Chica
 	public void setFormulaIncapacidad(String incapacidad) {
 		formula.setIncapacidad(incapacidad);
 	}
@@ -82,9 +82,7 @@ public class Cita {
 	@Override
 	public String toString() {
 		return "Cita [CCPaciente=" + CCPaciente + ", CCMedico=" + CCMedico + ", fechaInicio=" + fechaInicio
-				+ ", fechaFinal=" + fechaFinal + ", idCita=" +idCita + "]\n";
+				+ ", fechaFinal=" + fechaFinal + ", idCita=" + idCita + "]\n";
 	}
-	
-	
-	
+
 }
