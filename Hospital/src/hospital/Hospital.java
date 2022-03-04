@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 
 public class Hospital {
 	private AgendaHospital agendaHospital;
+	private Paciente pacientes[];
 	
 	public Hospital() throws IOException {
 		this.agendaHospital = new AgendaHospital();
@@ -58,6 +59,9 @@ public class Hospital {
 	public Cita buscarCitaId(String idFormula) throws CitaNoExiste {
 		return this.agendaHospital.buscarCitaId(idFormula);
 	}
+	
+	//Metodos relacionados con pacientes
+	//public void addPaciente(String nombre)
 	
 	
 }

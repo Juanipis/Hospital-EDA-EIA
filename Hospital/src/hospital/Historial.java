@@ -2,8 +2,6 @@ package hospital;
 
 import java.util.Arrays;
 
-import hospital.Personal.EPersonal;
-
 public class Historial {
 	private String[] enfermedades;
 	private String[] operaciones;
