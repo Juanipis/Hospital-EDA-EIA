@@ -5,19 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Hospital {
 	private AgendaHospital agendaHospital;
-	private ArrayList<Medico> medicos;
 	private ArrayList<Paciente> pacientes;
+	private ArrayList<Medico> medicos;
+	private ArrayList<Limpieza> personalLimpieza;
+	private ArrayList<Enfermero> enfermeros;
 	
 	public Hospital() throws IOException {
 		this.agendaHospital = new AgendaHospital();
 		this.medicos = new ArrayList<Medico>();
 		this.pacientes = new ArrayList<Paciente>();
+		this.personalLimpieza = new ArrayList<Limpieza>();
+		this.enfermeros = new ArrayList<Enfermero>();
 		
 		this.cargarDatos();
 	}
@@ -28,10 +31,16 @@ public class Hospital {
 		String citaAct;
 		while( ( citaAct = fichero.readLine()) != null) {
 			String[] partesPersonal = citaAct.split(",");
-			if(partesPersonal[0].equals("0")) { // Es medico
+			if(partesPersonal[0].equals("0") && partesPersonal.length == 8) { // Es medico
 				medicos.add(new Medico(partesPersonal[1], partesPersonal[2], partesPersonal[3], Boolean.getBoolean(partesPersonal[4]), partesPersonal[5], Boolean.getBoolean(partesPersonal[6])));
 			}
-		        
+			else if(partesPersonal[0].equals("1") && partesPersonal.length == 5) { // Es personal Limpieza
+				personalLimpieza.add(new Limpieza(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
+			}
+			else if(partesPersonal[0].equals("2") && partesPersonal.length == 5) { // Es enfermero
+				enfermeros.add(new Enfermero(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
+			}
+			
 			}
 		fichero.close();
 	}
@@ -83,6 +92,8 @@ public class Hospital {
 		return this.agendaHospital.buscarCitaId(idFormula);
 	}
 	
+	
+	//Metodos relacionados con medicos
 	public Medico getMedico(String CC){
 		int index = 0;
 		while(index < medicos.size() && medicos.get(index) != null && !medicos.get(index).getCC().equals(CC) ) {
@@ -94,6 +105,7 @@ public class Hospital {
 			return null;
 		}
 	}
+	
 	public int getMedicoIndex(String CC) throws NoExistePersonal {
 		int index = 0;
 		while(index < medicos.size() && medicos.get(index) != null && !medicos.get(index).getCC().equals(CC) ) {
@@ -106,9 +118,7 @@ public class Hospital {
 		}
 	}
 	
-	//Metodos relacionados con medicos
 	public void addMedico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) throws FileNotFoundException, IOException, ExistePersonal{
-		
 		if(this.getMedico(CC) == null) {
 			medicos.add(new Medico(nombre, apellido, CC, disponible, esp, pres));
 			//Para el fichero
@@ -123,11 +133,7 @@ public class Hospital {
 			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString());
 		}else {
 			throw new ExistePersonal(CC);
-		}
-			
-		
-			
-		
+		}		
 	}
 	
 	public void eliminarMedico(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
@@ -135,5 +141,98 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("personal.txt", CC);
 	}
 	
+	//Metodos relacionados con personal limpieza
+	public Limpieza getPersonalLimpieza(String CC){
+		int index = 0;
+		while(index < personalLimpieza.size() && personalLimpieza.get(index) != null && !personalLimpieza.get(index).getCC().equals(CC) ) {
+			index++;
+		}
+		if(index < personalLimpieza.size() && personalLimpieza.get(index) != null && personalLimpieza.get(index).getCC().equals(CC)) {
+			return personalLimpieza.get(index);
+		}else {
+			return null;
+		}
+	}
+	
+	public int getPersonalLimpiezaIndex(String CC) throws NoExistePersonal {
+		int index = 0;
+		while(index < personalLimpieza.size() && personalLimpieza.get(index) != null && !personalLimpieza.get(index).getCC().equals(CC) ) {
+			index++;
+		}
+		if(index < personalLimpieza.size() && personalLimpieza.get(index) != null && personalLimpieza.get(index).getCC().equals(CC)) {
+			return index;
+		}else {
+			throw new NoExistePersonal(CC);
+		}
+	}
+	
+	public void addPersonalLimpieza(String nombre, String apellido, String CC, boolean disponible) throws FileNotFoundException, IOException, ExistePersonal{
+		if(this.getPersonalLimpieza(CC) == null) {
+			personalLimpieza.add(new Limpieza(nombre, apellido, CC, disponible));
+			//Para el fichero
+			StringBuilder bld = new StringBuilder();
+			bld.append("1" + ",");
+			bld.append(nombre + ",");
+			bld.append(apellido + ",");
+			bld.append(CC + ",");
+			bld.append(disponible);
+			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString());
+		}else {
+			throw new ExistePersonal(CC);
+		}		
+	}
+	
+	public void eliminarPersonalLimpieza(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
+		personalLimpieza.remove(this.getPersonalLimpiezaIndex(CC));
+		Main.eliminarAlgoFicheroId("personal.txt", CC);
+	}
+	
+	//Metodos relacionados con efermeros
+	public Enfermero getEnfermero(String CC){
+		int index = 0;
+		while(index < enfermeros.size() && enfermeros.get(index) != null && !enfermeros.get(index).getCC().equals(CC) ) {
+			index++;
+		}
+		if(index < enfermeros.size() && enfermeros.get(index) != null && enfermeros.get(index).getCC().equals(CC)) {
+			return enfermeros.get(index);
+		}else {
+			return null;
+		}
+	}
+	
+	public int getEnfermerosIndex(String CC) throws NoExistePersonal {
+		int index = 0;
+		while(index < enfermeros.size() && enfermeros.get(index) != null && !enfermeros.get(index).getCC().equals(CC) ) {
+			index++;
+		}
+		if(index < enfermeros.size() && enfermeros.get(index) != null && enfermeros.get(index).getCC().equals(CC)) {
+			return index;
+		}else {
+			throw new NoExistePersonal(CC);
+		}
+	}
+	
+	public void addEnfermeros(String nombre, String apellido, String CC, boolean disponible) throws FileNotFoundException, IOException, ExistePersonal{
+		if(this.getEnfermero(CC) == null) {
+			enfermeros.add(new Enfermero(nombre, apellido, CC, disponible));
+			//Para el fichero
+			StringBuilder bld = new StringBuilder();
+			bld.append("2" + ",");
+			bld.append(nombre + ",");
+			bld.append(apellido + ",");
+			bld.append(CC + ",");
+			bld.append(disponible);
+			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString());
+		}else {
+			throw new ExistePersonal(CC);
+		}		
+	}
+	
+	public void eliminarEnfermero(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
+		enfermeros.remove(this.getEnfermerosIndex(CC));
+		Main.eliminarAlgoFicheroId("personal.txt", CC);
+	}
+	
+	//Metodos relacionados con salas
 	
 }

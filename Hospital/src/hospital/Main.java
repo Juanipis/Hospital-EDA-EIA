@@ -25,8 +25,11 @@ public class Main {
 		
 		try {
 			Hospital hp = new Hospital();
-			hp.addMedico("Juanito", "Perez", "2190120", true, "Medico general", true);
-		} catch (IOException | ExistePersonal  e) {
+			//hp.eliminarMedico("13144234");
+			//hp.addMedico("Jhon", "Neper", "534523", true, "Medico general", true);
+			//hp.addPersonalLimpieza("Jorge", "Ivan", "76876812", false);
+			hp.eliminarPersonalLimpieza("76876812");
+		} catch (IOException | NoExistePersonal  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

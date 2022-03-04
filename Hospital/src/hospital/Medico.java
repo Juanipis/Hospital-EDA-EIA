@@ -43,21 +43,4 @@ public class Medico extends Personal{
 			}
 		}
 	}
-	
-	
-	
-	public void eliminarMedico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) {
-		Medico[] medicos = new Medico[0];
-		for(int i = 0; i < medicos.length; i++) {
-			if(medicos[i].getNombre().equals(nombre)) {
-				medicos[medicos.length-1] = new Medico(nombre, apellido, CC, disponible, esp, pres);
-			}
-	}
-}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
