@@ -4,19 +4,19 @@ public class Paciente extends Persona {
 	private String poliza;
 	private String[] sintomas;
 	private int triaje;
-	private String[] acompañantes;
+	private String[] acompanantes;
 	protected int edad;
 	protected String sexo;
 	protected String tipoSangre;
 	protected Historial historial;
 
-	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompañantes,
+	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
 					int edad, String sexo, String tipoSangre, Historial historial) {
 		super(nombre, apellido, cc);
 		this.poliza = poliza;
 		this.sintomas = sintomas;
 		this.triaje = triaje;
-		this.acompañantes = acompañantes;
+		this.acompanantes = acompanantes;
 		this.edad = edad;
 		this.sexo = sexo;
 		this.tipoSangre = tipoSangre;
@@ -48,12 +48,12 @@ public class Paciente extends Persona {
 		this.triaje = triaje;
 	}
 
-	public String[] getAcompañantes() {
-		return acompañantes;
+	public String[] getAcompanantes() {
+		return acompanantes;
 	}
 
-	public void setAcompañantes(String[] acompañantes) {
-		this.acompañantes = acompañantes;
+	public void setAcompanantes(String[] acompanantes) {
+		this.acompanantes = acompanantes;
 	}
 
 	public int getEdad() {
