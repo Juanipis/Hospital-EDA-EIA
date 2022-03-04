@@ -60,6 +60,8 @@ public class Hospital {
 			}
 		}
 		pacientesFich.close();
+		
+		
 	}
 	
 	public boolean generarCita(String CCPaciente, String CCMedico,int[] fechaInicio, int[] fechaFinal) throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {

@@ -29,9 +29,14 @@ public class Paciente extends Persona {
 		this.sexo = sexo;
 		this.tipoSangre = tipoSangre;
 		this.historial = new ArrayList<Historial>();
-		this.recuperarHistorial();
+		try {
+			this.recuperarHistorial();
+		}catch(FileNotFoundException e) {
+			Main.crearFichero(cc, 1);
+		}
+		
 	}
-	private void recuperarHistorial() throws IOException {
+	private void recuperarHistorial() throws IOException, FileNotFoundException {
 		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero(this.CC, 1)));
 		String histActual;
 		while( ( histActual = fichero.readLine()) != null) {

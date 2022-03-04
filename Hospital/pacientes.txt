@@ -1,1 +1,2 @@
 Juan,Diaz,100231858,Sura,tos;,0,Carlos;,12,M,A+
+Pepito,Perez,123612,Sura,Covid;,0,Jhoan;,23,M,A+
