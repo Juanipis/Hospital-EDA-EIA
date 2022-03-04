@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class Sala {
 
-	//Cambie capacidad de un String a un int y descomente los pacientes. Creo que faltaria un constructor - Chica
+	// Cambie capacidad de un String a un int y descomente los pacientes. Creo que
+	// faltaria un constructor - Chica
 	private String tipo;
 	private int capacidad;
 	private Medicamento medicamentos[];
@@ -13,27 +14,30 @@ public class Sala {
 	private Paciente pacientes[];
 	private Enfermero enfermeros[];
 
-	public boolean verificarPaciente(String cedula) { 
-		int i = 0; 
-		while( i < pacientes.length) {
-			if(cedula == pacientes[i].getCC()) { 
+	public boolean verificarPaciente(String cedula) {
+		int i = 0;
+		while (i < pacientes.length) {
+			if (cedula == pacientes[i].getCC()) {
 				return true;
-				//porque si existe un paciente con esa cedula
+				// porque si existe un paciente con esa cedula
 			}
 		}
-			return false; //returns false porque no existe } // agregar exepcion si el paciente ya existe public void
-		
-		}
-		public void addPaciente(Paciente paciente,String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-				int edad, String sexo, String tipoSangre, Historial historial) {
-			//traer cedula de paciente. //Verificarla en un metodo contra un arreglo de pacientes //En caso de que la cedula no exista, agregar el paciente
-			if(verificarPaciente(paciente.getCC()) == false) {
-				pacientes = Arrays.copyOf(pacientes, pacientes.length+1);
-				pacientes[pacientes.length-1] = new Paciente(nombre,apellido,cc,poliza,sintomas,triaje,acompanantes,edad, sexo, tipoSangre, historial);
-			}
-		}	
-			 
+		return false; // returns false porque no existe } // agregar exepcion si el paciente ya existe
+						// public void
 
+	}
+
+	public void addPaciente(Paciente paciente, String nombre, String apellido, String cc, String poliza,
+			String[] sintomas, int triaje, String[] acompanantes, int edad, String sexo, String tipoSangre,
+			Historial historial) {
+		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
+		// pacientes //En caso de que la cedula no exista, agregar el paciente
+		if (verificarPaciente(paciente.getCC()) == false) {
+			pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
+			pacientes[pacientes.length - 1] = new Paciente(nombre, apellido, cc, poliza, sintomas, triaje, acompanantes,
+					edad, sexo, tipoSangre, historial);
+		}
+	}
 
 	public boolean verificarEquipo(String codigo) {
 		int i = 0;
