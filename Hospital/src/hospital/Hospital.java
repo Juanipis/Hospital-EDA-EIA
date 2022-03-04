@@ -2,6 +2,7 @@ package hospital;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -61,7 +62,32 @@ public class Hospital {
 	}
 	
 	//Metodos relacionados con pacientes
-	//public void addPaciente(String nombre)
+	public void addPaciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
+							int edad, String sexo, String tipoSangre) {
+		if(buscarPaciente(cc) == null) {
+			//throw new EEXceptionValorInvalido()
+		}else {
+			Paciente p = new Paciente(nombre, apellido, cc, poliza, sintomas, triaje, acompanantes, edad, sexo, tipoSangre);
+			pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
+			pacientes[pacientes.length-1] = p;
+		}
+	}
+	
+	public Paciente buscarPaciente(String cc){ //throws EExceptionInexistente, EExceptionValorInvalido
+		int indice = 0;
+		if(cc == null || cc.length() == 0) {
+			//throw new EExceptionValorInvalido();
+		}else {
+			while(indice < pacientes.length && pacientes[indice].getCC().equals(cc) != true) {
+				indice++;
+			}
+		}
+		return(indice < pacientes.length)? pacientes[indice] : null;
+	}
+	
+	public void eliminarPaciente(String cc) {
+		
+	}
 	
 	
 }

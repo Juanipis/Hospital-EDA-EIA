@@ -8,7 +8,7 @@ public abstract class Persona {
 	public Persona(String nombre, String apellido, String cC) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		CC = cC;
+		this.CC = cC;
 	}
 
 	public String getNombre() {

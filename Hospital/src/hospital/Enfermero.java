@@ -1,7 +1,6 @@
 package hospital;
 import java.util.Arrays;
 
-//push
 
 public class Enfermero extends Personal{
 

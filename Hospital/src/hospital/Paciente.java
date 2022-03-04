@@ -10,8 +10,9 @@ public class Paciente extends Persona {
 	protected String tipoSangre;
 	protected Historial historial;
 
+	//Historial no se le entrega al constructor ya que s epuede crear un paciente nuevo que no tenga un historial, todavia
 	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-					int edad, String sexo, String tipoSangre, Historial historial) {
+					int edad, String sexo, String tipoSangre) {
 		super(nombre, apellido, cc);
 		this.poliza = poliza;
 		this.sintomas = sintomas;
@@ -20,7 +21,6 @@ public class Paciente extends Persona {
 		this.edad = edad;
 		this.sexo = sexo;
 		this.tipoSangre = tipoSangre;
-		this.historial = historial;
 	}
 	
 	//Setters & Getters
