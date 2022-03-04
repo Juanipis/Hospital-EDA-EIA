@@ -21,16 +21,15 @@ public class Hospital {
 		this.pacientes = new ArrayList<Paciente>();
 		this.personalLimpieza = new ArrayList<Limpieza>();
 		this.enfermeros = new ArrayList<Enfermero>();
-		
 		this.cargarDatos();
 	}
 	
 	private void cargarDatos() throws IOException {
 		//Cargamos Personal
 		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("personal.txt", 0)));
-		String citaAct;
-		while( ( citaAct = fichero.readLine()) != null) {
-			String[] partesPersonal = citaAct.split(",");
+		String lineaAct;
+		while( ( lineaAct = fichero.readLine()) != null) {
+			String[] partesPersonal = lineaAct.split(",");
 			if(partesPersonal[0].equals("0") && partesPersonal.length == 8) { // Es medico
 				medicos.add(new Medico(partesPersonal[1], partesPersonal[2], partesPersonal[3], Boolean.getBoolean(partesPersonal[4]), partesPersonal[5], Boolean.getBoolean(partesPersonal[6])));
 			}
@@ -40,9 +39,27 @@ public class Hospital {
 			else if(partesPersonal[0].equals("2") && partesPersonal.length == 5) { // Es enfermero
 				enfermeros.add(new Enfermero(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
 			}
-			
 			}
 		fichero.close();
+		
+		BufferedReader pacientesFich = new BufferedReader(new FileReader(Main.recuperarFichero("pacientes.txt", 0)));
+		while((lineaAct = pacientesFich.readLine()) != null) {
+			String[] partesPaciente = lineaAct.split(",");
+			if(partesPaciente.length == 10) {
+				pacientes.add(new Paciente(
+						partesPaciente[1],
+						partesPaciente[2],
+						partesPaciente[3],
+						partesPaciente[4],
+						partesPaciente[5].split(";"),
+						Integer.valueOf(partesPaciente[6]),
+						partesPaciente[7].split(";"),
+						Integer.valueOf(partesPaciente[8]),
+						partesPaciente[9],
+						partesPaciente[10]));
+			}
+		}
+		pacientesFich.close();
 	}
 	
 	public boolean generarCita(String CCPaciente, String CCMedico,int[] fechaInicio, int[] fechaFinal) throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {
@@ -233,6 +250,58 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("personal.txt", CC, 0);
 	}
 	
-	//Metodos relacionados con salas
+	//Metodos relacionados con Pacientes
+	public Paciente getPaciente(String CC){
+		int index = 0;
+		while(index < pacientes.size() && pacientes.get(index) != null && !pacientes.get(index).getCC().equals(CC) ) {
+			index++;
+		}
+		if(index < pacientes.size() && pacientes.get(index) != null && pacientes.get(index).getCC().equals(CC)) {
+			return pacientes.get(index);
+		}else {
+			return null;
+		}
+	}
 	
+	public int getPacientesIndex(String CC) throws NoExistePersonal {
+		int index = 0;
+		while(index < pacientes.size() && pacientes.get(index) != null && !pacientes.get(index).getCC().equals(CC) ) {
+			index++;
+		}
+		if(index < pacientes.size() && pacientes.get(index) != null && pacientes.get(index).getCC().equals(CC)) {
+			return index;
+		}else {
+			throw new NoExistePersonal(CC);
+		}
+	}
+	
+	public void addPaciente(String nombre, String apellido, String CC, String poliza, String[] sintomas, int triaje, String[] acompanantes,
+			int edad, String sexo, String tipoSangre) throws FileNotFoundException, IOException, ExistePersonal{
+		if(this.getPaciente(CC) == null) {
+			pacientes.add(new Paciente(nombre,apellido, CC, poliza, sintomas, triaje, acompanantes,edad, sexo, tipoSangre));
+			//Para el fichero
+			StringBuilder bld = new StringBuilder();
+			bld.append(nombre + ",");
+			bld.append(apellido + ",");
+			bld.append(CC + ",");
+			bld.append(poliza + ",");
+			for (String st: sintomas) {
+				bld.append(st + ";");
+			}
+			bld.append("," + triaje + ",");
+			for(String acmp : acompanantes) {
+				bld.append(acmp + ";");
+			}
+			bld.append("," + edad + ",");
+			bld.append(sexo + ",");
+			bld.append(tipoSangre);
+			Main.escrituraFicheroUltimaLinea("pacientes.txt", bld.toString(), 0);
+		}else {
+			throw new ExistePersonal(CC);
+		}		
+	}
+	public void eliminarPaciente(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
+		pacientes.remove(this.getPacientesIndex(CC));
+		Main.eliminarAlgoFicheroId("pacientes.txt", CC, 0);
+	}
 }

@@ -6,18 +6,18 @@ public class Historial {
 	private String[] enfermedades;
 	private String[] operaciones;
 	private String[] alergias;
-	private Cita cita;
+	private String citaId;
 	
-	public Cita getCita() {
-		return cita;
+	public String getIdCita() {
+		return citaId;
 	}
 	
-	public Historial(String[] enfermedades, String[] operaciones, String[] alergias, Cita cita) {
+	public Historial(String[] enfermedades, String[] operaciones, String[] alergias, String cita) {
 		super();
 		this.enfermedades = enfermedades;
 		this.operaciones = operaciones;
 		this.alergias = alergias;
-		this.cita = cita;
+		this.citaId = cita;
 	}
 	
 	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, Cita cita){

@@ -1,6 +1,12 @@
 package hospital;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Paciente extends Persona {
 	private String poliza;
@@ -13,7 +19,7 @@ public class Paciente extends Persona {
 	protected ArrayList<Historial> historial;
 
 	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-					int edad, String sexo, String tipoSangre, Historial historial) {
+					int edad, String sexo, String tipoSangrel) throws IOException {
 		super(nombre, apellido, cc);
 		this.poliza = poliza;
 		this.sintomas = sintomas;
@@ -23,9 +29,22 @@ public class Paciente extends Persona {
 		this.sexo = sexo;
 		this.tipoSangre = tipoSangre;
 		this.historial = new ArrayList<Historial>();
+		this.recuperarHistorial();
 	}
-	public void inicializarHistorial() {
-		//File historial = new File();
+	private void recuperarHistorial() throws IOException {
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero(this.CC, 1)));
+		String histActual;
+		while( ( histActual = fichero.readLine()) != null) {
+			String[] partesCita = histActual.split(",");
+			if(partesCita.length == 4) {
+				String[] enfermedades = partesCita[0].split(";");
+				String[] operaciones = partesCita[1].split(";");
+				String[] alergias = partesCita[2].split(";");
+				String citaId = partesCita[3];
+				historial.add(new Historial(enfermedades,operaciones,alergias,citaId));
+			}        
+		}
+		fichero.close();
 	}
 	
 	//Setters & Getters

@@ -17,19 +17,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		try {
-			Main.inicializacionFicheros();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
 			Hospital hp = new Hospital();
-			//hp.eliminarMedico("13144234");
-			//hp.addMedico("Jhon", "Neper", "534523", true, "Medico general", true);
-			//hp.addPersonalLimpieza("Jorge", "Ivan", "76876812", false);
-			hp.eliminarPersonalLimpieza("76876812");
-		} catch (IOException | NoExistePersonal  e) {
+			hp.addPaciente("Juan", "Diaz", "100231858", "Sura", new String[]{"tos"}, 0, new String[]{"Carlos"}, 12, "M", "A+");
+			
+		} catch (IOException | ExistePersonal e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
