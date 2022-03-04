@@ -6,7 +6,6 @@ public class Medico extends Personal{
 
 	String esp;
 	boolean pres;
-	Paciente[] cita = new Paciente[0];
 	Paciente[] pacientes = new Paciente[0];
 	
 	public Medico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) {
@@ -14,6 +13,8 @@ public class Medico extends Personal{
 		this.esp = esp;
 		this.pres = pres;
 	}
+	
+	
 	
 	public void setPrescripciones(boolean pres) {
 		this.pres = pres;
@@ -43,17 +44,7 @@ public class Medico extends Personal{
 		}
 	}
 	
-	public void addMedico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) throws EPersonal{
-		Medico[] medicos = new Medico[0];
-		for(int i = 0; i < medicos.length; i++) {
-			if(medicos[i].getCC().equals(CC)) {	
-			throw new EPersonal("Esta persona ya se encuentra en el hospital");
-		}else {
-			medicos = Arrays.copyOf(medicos, medicos.length-1);
-			medicos[medicos.length-1] = new Medico(nombre, apellido, CC, disponible, esp, pres);
-		}
-	}
-}
+	
 	
 	public void eliminarMedico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) {
 		Medico[] medicos = new Medico[0];

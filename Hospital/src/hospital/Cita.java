@@ -20,7 +20,7 @@ public class Cita {
 		this.CCMedico = cCMedico;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
-		this.formula = new Formula();
+		//this.formula = new Formula();
 		this.idCita = idCita;
 	}
 	

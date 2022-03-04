@@ -12,16 +12,39 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Main {
-	private static File[] ficheros = {new File("cita.txt")}; //Agrega aquí los ficheros a usar
+	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt")}; //Agrega aquï¿½ los ficheros a usar
 	
 	
 	public static void main(String[] args) {
+		try {
+			Main.inicializacionFicheros();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			Hospital hp = new Hospital();
+			hp.addMedico("Juanito", "Perez", "2190120", true, "Medico general", true);
+		} catch (IOException | ExistePersonal  e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 	
 	
+	
 	//Metodos para la recuperacion,escritura,eliminacionId y edicionId de los ficheros
+	public static void inicializacionFicheros() throws IOException {
+		for(File fl: ficheros) {
+			if(!fl.exists()) {
+				fl.createNewFile();
+			}
+		}
+	}
+	
 	public static File recuperarFichero(String nombreFichero) throws FileNotFoundException {
 		int index = 0;
 		while(index < Main.ficheros.length && Main.ficheros[index] != null && !Main.ficheros[index].getName().equals(nombreFichero)) {
