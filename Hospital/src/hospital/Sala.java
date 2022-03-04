@@ -104,10 +104,10 @@ public class Sala {
 		}
 	}
 
-	public void addMedicamento(Medicamento medicamento, String nombre, String id, Date fechaVencimiento,
+	public void addMedicamento(String nombre, String id, Date fechaVencimiento,
 			Date fechaCompra, boolean disponibilidad, double cantidad) {
 		try {
-			if (verificarMedicamento(medicamento.getId()) != 0) {
+			if (verificarMedicamento(id) != 0) {
 				medicamentos = Arrays.copyOf(medicamentos, medicamentos.length + 1);
 				medicamentos[medicamentos.length - 1] = new Medicamento(nombre, id, fechaVencimiento, fechaCompra,
 						disponibilidad, cantidad);
