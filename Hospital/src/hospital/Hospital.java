@@ -27,7 +27,7 @@ public class Hospital {
 	
 	private void cargarDatos() throws IOException {
 		//Cargamos Personal
-		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("personal.txt")));
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("personal.txt", 0)));
 		String citaAct;
 		while( ( citaAct = fichero.readLine()) != null) {
 			String[] partesPersonal = citaAct.split(",");
@@ -130,7 +130,7 @@ public class Hospital {
 			bld.append(disponible+ ",");
 			bld.append(esp+ ",");
 			bld.append(pres);
-			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString());
+			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 		}else {
 			throw new ExistePersonal(CC);
 		}		
@@ -138,7 +138,7 @@ public class Hospital {
 	
 	public void eliminarMedico(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
 		medicos.remove(this.getMedicoIndex(CC));
-		Main.eliminarAlgoFicheroId("personal.txt", CC);
+		Main.eliminarAlgoFicheroId("personal.txt", CC, 0);
 	}
 	
 	//Metodos relacionados con personal limpieza
@@ -176,7 +176,7 @@ public class Hospital {
 			bld.append(apellido + ",");
 			bld.append(CC + ",");
 			bld.append(disponible);
-			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString());
+			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 		}else {
 			throw new ExistePersonal(CC);
 		}		
@@ -184,7 +184,7 @@ public class Hospital {
 	
 	public void eliminarPersonalLimpieza(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
 		personalLimpieza.remove(this.getPersonalLimpiezaIndex(CC));
-		Main.eliminarAlgoFicheroId("personal.txt", CC);
+		Main.eliminarAlgoFicheroId("personal.txt", CC, 0);
 	}
 	
 	//Metodos relacionados con efermeros
@@ -222,7 +222,7 @@ public class Hospital {
 			bld.append(apellido + ",");
 			bld.append(CC + ",");
 			bld.append(disponible);
-			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString());
+			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 		}else {
 			throw new ExistePersonal(CC);
 		}		
@@ -230,7 +230,7 @@ public class Hospital {
 	
 	public void eliminarEnfermero(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
 		enfermeros.remove(this.getEnfermerosIndex(CC));
-		Main.eliminarAlgoFicheroId("personal.txt", CC);
+		Main.eliminarAlgoFicheroId("personal.txt", CC, 0);
 	}
 	
 	//Metodos relacionados con salas

@@ -1,5 +1,7 @@
 package hospital;
 
+import java.util.ArrayList;
+
 public class Paciente extends Persona {
 	private String poliza;
 	private String[] sintomas;
@@ -8,7 +10,7 @@ public class Paciente extends Persona {
 	protected int edad;
 	protected String sexo;
 	protected String tipoSangre;
-	protected Historial historial;
+	protected ArrayList<Historial> historial;
 
 	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
 					int edad, String sexo, String tipoSangre, Historial historial) {
@@ -20,7 +22,10 @@ public class Paciente extends Persona {
 		this.edad = edad;
 		this.sexo = sexo;
 		this.tipoSangre = tipoSangre;
-		this.historial = historial;
+		this.historial = new ArrayList<Historial>();
+	}
+	public void inicializarHistorial() {
+		//File historial = new File();
 	}
 	
 	//Setters & Getters
@@ -72,12 +77,12 @@ public class Paciente extends Persona {
 		return tipoSangre;
 	}
 
-	public Historial getHistorial() {
-		return historial;
+	public Historial[] getHistorial() {
+		return historial.toArray(new Historial[historial.size()]);
 	}
-
+/*
 	public void setHistorial(Historial historial) {
 		this.historial = historial;
 	}
-	
+*/
 }

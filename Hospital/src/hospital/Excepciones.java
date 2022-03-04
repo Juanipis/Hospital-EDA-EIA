@@ -41,3 +41,8 @@ class NoExistePersonal extends Exception {
 		super("Esta " + CC+ " persona no existe en el hospital");
 	}
 }
+class EMedicamento extends Exception{
+	public EMedicamento(String info) {
+		super(info);
+	}
+}

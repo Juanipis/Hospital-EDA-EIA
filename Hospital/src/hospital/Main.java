@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 
 public class Main {
 	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt")}; //Agrega aqu� los ficheros a usar
-	
+	private static File[] historialMedico = new File("historialMedico").listFiles();
 	
 	public static void main(String[] args) {
 		try {
@@ -47,28 +47,46 @@ public class Main {
 			}
 		}
 	}
-	
-	public static File recuperarFichero(String nombreFichero) throws FileNotFoundException {
-		int index = 0;
-		while(index < Main.ficheros.length && Main.ficheros[index] != null && !Main.ficheros[index].getName().equals(nombreFichero)) {
-			index++;
-		}
-		
-		if(index < Main.ficheros.length && Main.ficheros[index] != null && Main.ficheros[index].getName().equals(nombreFichero)) {
-			return Main.ficheros[index];
+	/*
+	 * TypeList refiere a la lista de archivos a obtener, 0: ficheros, 1: historialMedico
+	 */
+	public static File recuperarFichero(String nombreFichero, int typeList) throws FileNotFoundException {
+		if(typeList == 0) {
+			int index = 0;
+			while(index < Main.ficheros.length && Main.ficheros[index] != null && !Main.ficheros[index].getName().equals(nombreFichero)) {
+				index++;
+			}
+			
+			if(index < Main.ficheros.length && Main.ficheros[index] != null && Main.ficheros[index].getName().equals(nombreFichero)) {
+				return Main.ficheros[index];
+			}else {
+				throw new FileNotFoundException();
+			}
+		}else if(typeList == 1) {
+			int index = 0;
+			while(index < Main.historialMedico.length && Main.historialMedico[index] != null && !Main.historialMedico[index].getName().equals(nombreFichero)) {
+				index++;
+			}
+			
+			if(index < Main.historialMedico.length && Main.historialMedico[index] != null && Main.historialMedico[index].getName().equals(nombreFichero)) {
+				return Main.historialMedico[index];
+			}else {
+				throw new FileNotFoundException();
+			}
 		}else {
 			throw new FileNotFoundException();
-		}	
+		}
+			
 	}
 	
-	public static void escrituraFicheroUltimaLinea(String nombreFichero, String datos) throws FileNotFoundException, IOException {
-		FileWriter fich = new FileWriter(Main.recuperarFichero(nombreFichero).getAbsoluteFile(), true);
+	public static void escrituraFicheroUltimaLinea(String nombreFichero, String datos, int typeList) throws FileNotFoundException, IOException {
+		FileWriter fich = new FileWriter(Main.recuperarFichero(nombreFichero, typeList).getAbsoluteFile(), true);
 		fich.write(datos + "\n");
 		fich.close();
 	}
 	
-	public static void eliminarAlgoFicheroId(String nombreFichero, String id) throws IOException, FileNotFoundException {
-		File inputFile = Main.recuperarFichero(nombreFichero);
+	public static void eliminarAlgoFicheroId(String nombreFichero, String id, int typeList) throws IOException, FileNotFoundException {
+		File inputFile = Main.recuperarFichero(nombreFichero, typeList);
         File tempFile = new File("fichTemp.txt");
         
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -88,8 +106,8 @@ public class Main {
         tempFile.renameTo(inputFile);
 	}
 	
-	public static void editarAlgoFicheroId(String nombreFichero, String id, String nuevosDatos) throws IOException, FileNotFoundException {
-		File inputFile = Main.recuperarFichero(nombreFichero);
+	public static void editarAlgoFicheroId(String nombreFichero, String id, String nuevosDatos, int typeList) throws IOException, FileNotFoundException {
+		File inputFile = Main.recuperarFichero(nombreFichero, typeList);
         File tempFile = new File("fichTemp.txt");
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));

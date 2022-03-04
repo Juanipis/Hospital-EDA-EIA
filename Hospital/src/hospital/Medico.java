@@ -20,11 +20,11 @@ public class Medico extends Personal{
 		this.pres = pres;
 	}
 	
-	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) throws EPersonal {
+	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) throws EMedicamento {
 		Formula[] formula = new Formula[0];
 		for(int i = 0; i < formula.length; i++) {
 			if(formula[i].getIdFormula().equals(idFormula)) {	
-				throw new EPersonal("Este medicamento ya se encuentra en el hospital");
+				throw new EMedicamento("Este medicamento ya se encuentra en el hospital");
 			}else {
 				formula = Arrays.copyOf(formula, formula.length-1);
 				formula[formula.length-1] = new Formula(idFormula, idMedicamentos, incapacidad);
@@ -32,11 +32,11 @@ public class Medico extends Personal{
 		}
 	}
 
-	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, Cita cita) throws EPersonal{
+	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, Cita cita) throws ExistePersonal{
 		Historial[] historial = new Historial[0];
 		for(int i = 0; i < historial.length; i++) {
 			if(historial[i].getCita().equals(cita)) {	
-				throw new EPersonal("El historial de este paciente ya esta registrado");
+				throw new ExistePersonal(CC);
 			}else {
 				historial = Arrays.copyOf(historial, historial.length-1);
 				historial[historial.length-1] = new Historial(enfermedades, operaciones, alergias, cita);
