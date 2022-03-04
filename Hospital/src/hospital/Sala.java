@@ -11,16 +11,28 @@ public class Sala {
 	private Medicamento medicamentos[];
 	private Equipo equipos[];
 	private Paciente pacientes[];
-	// private Enfermo enfermos[];
+	private Enfermero enfermeros[];
 
-//	public boolean verificarPaciente(String cedula) { int i = 0; while( i <
-//	  pacientes.length) { if(cedula == pacientes[i].getCedula()) { return true;
-//	  //returns true porque si existe } } return false; //returns false porque no existe } // agregar exepcion si el paciente ya existe public void
-//
-//	addPaciente(Paciente paciente) { //traer cedula de paciente. //Verificarla en un metodo contra un arreglo de pacientes //En caso de que la cedula no exista, agregar el paciente
-//	  
-//	  
-//	  }
+	public boolean verificarPaciente(String cedula) { 
+		int i = 0; 
+		while( i < pacientes.length) {
+			if(cedula == pacientes[i].getCC()) { 
+				return true;
+				//porque si existe un paciente con esa cedula
+			}
+		}
+			return false; //returns false porque no existe } // agregar exepcion si el paciente ya existe public void
+		
+		}
+		public void addPaciente(Paciente paciente,String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
+				int edad, String sexo, String tipoSangre, Historial historial) {
+			//traer cedula de paciente. //Verificarla en un metodo contra un arreglo de pacientes //En caso de que la cedula no exista, agregar el paciente
+			if(verificarPaciente(paciente.getCC()) == false) {
+				pacientes = Arrays.copyOf(pacientes, pacientes.length+1);
+				pacientes[pacientes.length-1] = new Paciente(nombre,apellido,cc,poliza,sintomas,triaje,acompanantes,edad, sexo, tipoSangre, historial);
+			}
+		}	
+			 
 
 
 	public boolean verificarEquipo(String codigo) {
