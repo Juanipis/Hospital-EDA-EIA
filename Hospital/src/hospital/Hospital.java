@@ -14,6 +14,7 @@ public class Hospital {
 	private ArrayList<Medico> medicos;
 	private ArrayList<Limpieza> personalLimpieza;
 	private ArrayList<Enfermero> enfermeros;
+	private ArrayList<Sala> salas;
 	
 	public Hospital() throws IOException {
 		this.agendaHospital = new AgendaHospital();
@@ -21,6 +22,7 @@ public class Hospital {
 		this.pacientes = new ArrayList<Paciente>();
 		this.personalLimpieza = new ArrayList<Limpieza>();
 		this.enfermeros = new ArrayList<Enfermero>();
+		this.salas = new ArrayList<Sala>();
 		this.cargarDatos();
 	}
 	
@@ -40,7 +42,7 @@ public class Hospital {
 				enfermeros.add(new Enfermero(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
 			}
 			}
-		fichero.close();
+		
 		
 		BufferedReader pacientesFich = new BufferedReader(new FileReader(Main.recuperarFichero("pacientes.txt", 0)));
 		while((lineaAct = pacientesFich.readLine()) != null) {
@@ -59,11 +61,90 @@ public class Hospital {
 						partesPaciente[9]));
 			}
 		}
-		pacientesFich.close();
 		
 		
+		
+		
+		BufferedReader ficheroSalas = new BufferedReader(new FileReader(Main.recuperarFichero("salas.txt", 0)));
+		while( ( lineaAct = ficheroSalas.readLine()) != null) {
+			String[] partesSala = lineaAct.split(",");
+			if(partesSala.length == 6) {
+				salas.add(new Sala(
+						partesSala[0],
+						Integer.valueOf(partesSala[1]),
+						partesSala[2].split(";"),
+						partesSala[3].split(";"),
+						partesSala[4].split(";"),
+						partesSala[5]));
+			}
+			
+		}
+		this.limpiezaArchivos(new BufferedReader [] {fichero,pacientesFich,ficheroSalas});
 	}
 	
+	private void limpiezaArchivos(BufferedReader [] archivos) throws IOException {
+		for(BufferedReader bf : archivos) {
+			bf.close();
+		}
+	}
+	
+	private void cargarPersonal() throws IOException {
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("personal.txt", 0)));
+		String lineaAct;
+		while( ( lineaAct = fichero.readLine()) != null) {
+			String[] partesPersonal = lineaAct.split(",");
+			if(partesPersonal[0].equals("0") && partesPersonal.length == 8) { // Es medico
+				medicos.add(new Medico(partesPersonal[1], partesPersonal[2], partesPersonal[3], Boolean.getBoolean(partesPersonal[4]), partesPersonal[5], Boolean.getBoolean(partesPersonal[6])));
+			}
+			else if(partesPersonal[0].equals("1") && partesPersonal.length == 5) { // Es personal Limpieza
+				personalLimpieza.add(new Limpieza(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
+			}
+			else if(partesPersonal[0].equals("2") && partesPersonal.length == 5) { // Es enfermero
+				enfermeros.add(new Enfermero(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
+			}
+			}
+		fichero.close();
+	}
+	
+	private void cargarPacientes() throws NumberFormatException, IOException {
+		BufferedReader pacientesFich = new BufferedReader(new FileReader(Main.recuperarFichero("pacientes.txt", 0)));
+		String lineaAct;
+		while((lineaAct = pacientesFich.readLine()) != null) {
+			String[] partesPaciente = lineaAct.split(",");
+			if(partesPaciente.length == 10) {
+				pacientes.add(new Paciente(
+						partesPaciente[0],
+						partesPaciente[1],
+						partesPaciente[2],
+						partesPaciente[3],
+						partesPaciente[4].split(";"),
+						Integer.valueOf(partesPaciente[5]),
+						partesPaciente[6].split(";"),
+						Integer.valueOf(partesPaciente[7]),
+						partesPaciente[8],
+						partesPaciente[9]));
+			}
+		}
+		pacientesFich.close();
+	}
+	
+	private void cargarSalas() throws IOException {
+		BufferedReader ficheroSalas = new BufferedReader(new FileReader(Main.recuperarFichero("salas.txt", 0)));
+		String lineaAct;
+		while( ( lineaAct = ficheroSalas.readLine()) != null) {
+			String[] partesSala = lineaAct.split(",");
+			if(partesSala.length == 6) {
+				salas.add(new Sala(
+						partesSala[0],
+						Integer.valueOf(partesSala[1]),
+						partesSala[2].split(";"),
+						partesSala[3].split(";"),
+						partesSala[4].split(";"),
+						partesSala[5]));
+			}
+			ficheroSalas.close();
+		}
+	}
 	public boolean generarCita(String CCPaciente, String CCMedico,int[] fechaInicio, int[] fechaFinal) throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {
 			return this.agendaHospital.generarCita(CCPaciente, CCMedico, fechaInicio, fechaFinal);
 	}
@@ -306,4 +387,54 @@ public class Hospital {
 		pacientes.remove(this.getPacientesIndex(CC));
 		Main.eliminarAlgoFicheroId("pacientes.txt", CC, 0);
 	}
+	
+	//Metodos relacionados con salas
+	public Sala getSala(String idSala){
+		int index = 0;
+		while(index < salas.size() && salas.get(index) != null && !salas.get(index).getIdSala().equals(idSala) ) {
+			index++;
+		}
+		if(index < salas.size() && salas.get(index) != null && salas.get(index).getIdSala().equals(idSala)) {
+			return salas.get(index);
+		}else {
+			return null;
+		}
+	}
+	public int getSalaIndex(String idSala) throws NoExistePersonal {
+		int index = 0;
+		while(index < salas.size() && salas.get(index) != null && !salas.get(index).getIdSala().equals(idSala) ) {
+			index++;
+		}
+		if(index < salas.size() && salas.get(index) != null && salas.get(index).getIdSala().equals(idSala)) {
+			return index;
+		}else {
+			throw new NoExistePersonal(idSala);
+		}
+	}
+	public void addSala(String tipo, int capacidad, String[] medicamentosId, String[] equiposId, String[] pacientes,
+			String idSala) throws FileNotFoundException, IOException, ExistePersonal{
+		if(this.getPaciente(idSala) == null) {
+			salas.add(new Sala(tipo, capacidad, medicamentosId, equiposId, pacientes, idSala));
+			//Para el fichero
+			StringBuilder bld = new StringBuilder();
+			bld.append(tipo + ",");
+			bld.append(capacidad + ",");
+			for(String medc : medicamentosId) {
+				bld.append(medc + ";");
+			}
+			bld.append(",");
+			for(String equip : equiposId) {
+				bld.append(equip + ";");
+			}
+			bld.append(",");
+			for(String paci : pacientes) {
+				bld.append(paci + ";");
+			}
+			bld.append("," + idSala);
+			Main.escrituraFicheroUltimaLinea("salas.txt", bld.toString(), 0);
+		}else {
+			throw new ExistePersonal(idSala);
+		}		
+	}
+	
 }

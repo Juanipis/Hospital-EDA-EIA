@@ -46,3 +46,8 @@ class EMedicamento extends Exception{
 		super(info);
 	}
 }
+class NoExisteSala extends Exception{
+	public NoExisteSala(String sala) {
+		super("La sala: " + sala + " no existe");
+	}
+}

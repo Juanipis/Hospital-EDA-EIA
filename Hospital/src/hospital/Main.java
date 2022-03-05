@@ -16,16 +16,22 @@ public class Main {
 	private static File[] historialMedico = new File("historialMedico").listFiles();
 	
 	public static void main(String[] args) {
+		
+		Hospital hp;
 		try {
-			Hospital hp = new Hospital();
-			hp.addPaciente("Pepito", "Perez", "123612", "Sura", new String[]{"Covid"}, 0, new String[]{"Jhoan"}, 23, "M", "A+");
-			hp.getPaciente("123612").addHistorial(new String[] {""}, new String[] {"Cabeza"}, new String[] {"Huevo"},"hsdb3b12");
-			System.out.println(Arrays.toString(hp.getPaciente("123612").getHistorial()));
-		} catch (IOException | ExistePersonal e) {
+			hp = new Hospital();
+			System.out.println(hp.getSala("SALA1"));
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//hp.addSala("Urgencias", 12, new String[]{"ACE1", "ACI2"},new String[] {"Cama12", "Cama88"} , new String[]{"123612"}, "SALA1");
 		
+		//hp.addPaciente("Pepito", "Perez", "123612", "Sura", new String[]{"Covid"}, 0, new String[]{"Jhoan"}, 23, "M", "A+");
+		//hp.getPaciente("123612").addHistorial(new String[] {""}, new String[] {"Cabeza"}, new String[] {"Huevo"},"hsdb3b12");
+		//System.out.println(Arrays.toString(hp.getPaciente("123612").getHistorial()));
+		
+	
 	}
 	
 	
@@ -42,8 +48,7 @@ public class Main {
 	public static void crearFichero(String nombreFichero, int TypeList) throws IOException {
 		if(TypeList == 0) { //Crear fichero en directorio
 			new File(nombreFichero).createNewFile();
-		}
-		else if(TypeList == 1) { //Crear fichero de historial
+		}else if(TypeList == 1) { //Crear fichero de historial
 			new File("historialMedico/" + nombreFichero).createNewFile();
 		}
 	}
