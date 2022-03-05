@@ -13,7 +13,7 @@ public class Formula {
 	
 	//El id deberia de ser generado automaticamente, por lo tanto no deberia de pedirse como parametro en el constructos - Chica
 	//Tengo entendido que la incapacidad se pasa como parametro y se crea con este, pienso que podria ser un boolean - Chica (this.incapacidad = incapacidad)
-	public Formula(String idFormula, String[] idMedicamentos, String incapacidad) {
+	public Formula(String[] idMedicamentos, String incapacidad) {
 		super();
 		this.idFormula = UUID.randomUUID().toString();
 		this.idMedicamentos =  new ArrayList<String>();
