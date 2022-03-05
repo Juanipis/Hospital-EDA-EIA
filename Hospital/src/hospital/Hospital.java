@@ -307,6 +307,11 @@ public class Hospital {
 		}
 	}
 	
+	public void setFormulaMedico(String idCita, String ccMedico, String[] idMedicamentos ,String Incapacidad) throws CitaNoExiste {
+		Cita ct = agendaHospital.buscarCitaId(idCita);
+		ct.setFormula(idMedicamentos, Incapacidad);
+	}
+	
 	//Metodos relacionados con personal limpieza
 	public Limpieza getPersonalLimpieza(String CC){
 		int index = 0;

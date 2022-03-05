@@ -35,16 +35,11 @@ public class Medico extends Personal {
 		this.pres = pres;
 	}
 	
-	
-	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) throws EMedicamento {
-		Formula[] formula = new Formula[0];
-		for(int i = 0; i < formula.length; i++) {
-			if(formula[i].getIdFormula().equals(idFormula)) {	
-				throw new EMedicamento("Este medicamento ya se encuentra en el hospital");
-			}else {
-				formula = Arrays.copyOf(formula, formula.length-1);
-				formula[formula.length-1] = new Formula(/*idFormula,*/ idMedicamentos, incapacidad);
-			}
+	//Le pasamos la formula al medico para que la pueda editar
+	public void addFormula(Formula fl, String[] idMedicamentos, String incapacidad) throws EMedicamento, MedicamentoInvalido {
+		fl.setIncapacidad(incapacidad);
+		for(String medc : idMedicamentos) {
+			fl.addMedicamento(medc);
 		}
 	}
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
-import hospital.Personal.EPersonal;
 
 public class Formula {
 	private String idFormula;
@@ -16,7 +15,7 @@ public class Formula {
 	public Formula( String[] idMedicamentos, String incapacidad) {
 		super();
 		this.idFormula = UUID.randomUUID().toString();
-		this.idMedicamentos =  new ArrayList<String>();
+		this.idMedicamentos =  (ArrayList<String>) Arrays.asList(idMedicamentos);
 		this.incapacidad = "";
 	}
 	
@@ -33,6 +32,7 @@ public class Formula {
 		
 	}
 	
+	/*
 	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) {
 		Formula[] formula = new Formula[0];
 		for(int i = 0; i < formula.length; i++) {
@@ -44,7 +44,7 @@ public class Formula {
 			}
 		}
 	}
-	
+	*/
 	public String getIdFormula() {
 		return this.idFormula;
 	}
