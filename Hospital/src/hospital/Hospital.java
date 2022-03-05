@@ -286,6 +286,14 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("personal.txt", CC, 0);
 	}
 	
+	public void hacerLimpieza(String CC, String idSala) throws SalaLimpia {
+		Limpieza perLimp = this.getPersonalLimpieza(CC);
+		if(perLimp != null && perLimp.getDisponible()) {
+			perLimp.hacerLimpieza(this.getSala(idSala));
+		}
+		
+	}
+	
 	//Metodos relacionados con efermeros
 	public Enfermero getEnfermero(String CC){
 		int index = 0;
