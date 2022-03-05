@@ -67,7 +67,6 @@ public class Sala {
 			}
 			return -1;
 		}
-
 	}
 
 	public int verificarMedicamento(String id) throws VectorNulo {
@@ -82,7 +81,6 @@ public class Sala {
 			}
 			return -1;
 		}
-
 	}
 
 	public int verificarEnfermero(String cedula) throws VectorNulo {
