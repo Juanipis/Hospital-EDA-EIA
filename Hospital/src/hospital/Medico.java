@@ -14,6 +14,12 @@ public class Medico extends Personal {
 		this.pres = pres;
 	}
 	
+	public void addPaciente(Paciente pc) {
+		//Verificar que el paciente no se repita
+		pacientes = Arrays.copyOf(pacientes, pacientes.length+1);
+		pacientes[pacientes.length-1] = pc;
+	}
+	
 	public boolean getPres() {
 		return this.pres;
 	}
@@ -21,6 +27,9 @@ public class Medico extends Personal {
 		return this.esp;
 	}
 	
+	public Paciente[] getPacientes() {
+		return pacientes;
+	}
 	
 	public void setPrescripciones(boolean pres) {
 		this.pres = pres;

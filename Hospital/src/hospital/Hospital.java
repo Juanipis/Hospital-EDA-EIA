@@ -30,24 +30,8 @@ public class Hospital {
 	}
 	
 	private void cargarDatos() throws IOException, NumberFormatException, ParseException {
-		//Cargamos Personal
-		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("personal.txt", 0)));
-		String lineaAct;
-		while( ( lineaAct = fichero.readLine()) != null) {
-			String[] partesPersonal = lineaAct.split(",");
-			if(partesPersonal[0].equals("0") && partesPersonal.length == 8) { // Es medico
-				medicos.add(new Medico(partesPersonal[1], partesPersonal[2], partesPersonal[3], Boolean.getBoolean(partesPersonal[4]), partesPersonal[5], Boolean.getBoolean(partesPersonal[6])));
-			}
-			else if(partesPersonal[0].equals("1") && partesPersonal.length == 5) { // Es personal Limpieza
-				personalLimpieza.add(new Limpieza(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
-			}
-			else if(partesPersonal[0].equals("2") && partesPersonal.length == 5) { // Es enfermero
-				enfermeros.add(new Enfermero(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
-			}
-			}
-		
-		
 		BufferedReader pacientesFich = new BufferedReader(new FileReader(Main.recuperarFichero("pacientes.txt", 0)));
+		String lineaAct;
 		while((lineaAct = pacientesFich.readLine()) != null) {
 			String[] partesPaciente = lineaAct.split(",");
 			if(partesPaciente.length == 10) {
@@ -64,6 +48,35 @@ public class Hospital {
 						partesPaciente[9]));
 			}
 		}
+		
+		//Cargamos Personal
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("personal.txt", 0)));
+		while( ( lineaAct = fichero.readLine()) != null) {
+			String[] partesPersonal = lineaAct.split(",");
+			if(partesPersonal[0].equals("0") && partesPersonal.length == 8) { // Es medico
+				medicos.add(new Medico(partesPersonal[1], partesPersonal[2], partesPersonal[3], Boolean.getBoolean(partesPersonal[4]), partesPersonal[5], Boolean.getBoolean(partesPersonal[6])));
+				//En caso de existir pacientes asignados al medico
+				String[] ccPacientes = partesPersonal[7].split(";");
+				if(ccPacientes.length > 0) {
+					Medico medc = this.getMedico(partesPersonal[3]);
+					for(String cc : ccPacientes) {
+						Paciente pc = this.getPaciente(cc);
+						if(pc != null) {
+							medc.addPaciente(pc);
+						}
+					}
+				}
+			}
+			else if(partesPersonal[0].equals("1") && partesPersonal.length == 5) { // Es personal Limpieza
+				personalLimpieza.add(new Limpieza(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
+			}
+			else if(partesPersonal[0].equals("2") && partesPersonal.length == 5) { // Es enfermero
+				enfermeros.add(new Enfermero(partesPersonal[1], partesPersonal[2],partesPersonal[3],Boolean.getBoolean(partesPersonal[4])));
+			}
+		}
+		
+		
+		
 		
 		
 		
@@ -144,7 +157,16 @@ public class Hospital {
 			this.addPacienteFichero(pc.getNombre(), pc.getApellido(), pc.getCC(), pc.getPoliza(), pc.getSintomas(), pc.getTriaje(), pc.getAcompanantes(), pc.getEdad(), pc.getSexo(), pc.getTipoSangre());
 		}
 		for(Medico mdc : medicos) {
-			this.addMedicoFichero(mdc.getNombre(), mdc.getApellido(), mdc.getCC(), mdc.getDisponible(), mdc.getEsp(), mdc.getPres());
+			Paciente[] pacientesMdc = mdc.getPacientes();
+			StringBuilder pacientesMedico = new StringBuilder();
+			if(pacientesMdc.length > 0) {
+				for(Paciente pc : pacientesMdc) {
+					if(pc != null) {
+						pacientesMedico.append(pc.getCC() +";");
+					}
+				}
+			}
+			this.addMedicoFichero(mdc.getNombre(), mdc.getApellido(), mdc.getCC(), mdc.getDisponible(), mdc.getEsp(), mdc.getPres(), pacientesMedico.toString());
 		}
 		for(Enfermero enf : enfermeros) {
 			this.addEnfermeroFichero(enf.getNombre(), enf.getApellido(), enf.getCC(), enf.getDisponible());
@@ -256,13 +278,33 @@ public class Hospital {
 		bld.append(CC + ",");
 		bld.append(disponible+ ",");
 		bld.append(esp+ ",");
-		bld.append(pres);
+		bld.append(pres + ",");
+		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
+	}
+	private void addMedicoFichero(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres, String ccPacientes) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append("0" + ",");
+		bld.append(nombre + ",");
+		bld.append(apellido + ",");
+		bld.append(CC + ",");
+		bld.append(disponible+ ",");
+		bld.append(esp+ ",");
+		bld.append(pres + ",");
+		bld.append(ccPacientes);
 		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
 	
 	public void eliminarMedico(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
 		medicos.remove(this.getMedicoIndex(CC));
 		Main.eliminarAlgoFicheroId("personal.txt", CC, 0);
+	}
+	
+	public void addPacienteAMedico(String CCMedico, String CCPaciente) {
+		Medico mdc = this.getMedico(CCMedico);
+		Paciente pc = this.getPaciente(CCPaciente);
+		if(mdc != null && pc !=  null) {
+			mdc.addPaciente(pc);
+		}
 	}
 	
 	//Metodos relacionados con personal limpieza

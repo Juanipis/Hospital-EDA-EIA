@@ -1,6 +1,5 @@
-0,Juanito,Perez,2190120,true,Medico general,true
-0,Jhon,Neper,534523,true,Medico general,true
-2,Juancho,Carnal,1292693,true
-2,Maria,Alela,1438404,true
-2,Sor Ines,Cruz,524977,true
-2,Ramiro,Bernal,58711268,true
+0,Juanito,Perez,2190120,false,Medico general,false,100231858;123612;887272;
+2,Juancho,Carnal,1292693,false
+2,Maria,Alela,1438404,false
+2,Sor Ines,Cruz,524977,false
+2,Ramiro,Bernal,58711268,false

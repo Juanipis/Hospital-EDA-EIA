@@ -13,8 +13,12 @@ public class Main {
 		Hospital hp;
 		try {
 			hp = new Hospital();
-			
-			System.out.println(hp.getSala("CIRUGIA1"));
+			//hp.addPaciente("Mariano", "Londoño", "887272", "Sura", new String[]{"Covid"}, 0, new String[]{"Jhoan"}, 29, "M", "A+");
+			//hp.getMedico("2190120").addPaciente(hp.getPaciente("887272"));
+			for(Paciente pc : hp.getMedico("2190120").getPacientes()) {
+				System.out.println(pc.getNombre());
+			}
+			//hp.guardarFicheros();
 		} catch (NumberFormatException | IOException | ParseException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
