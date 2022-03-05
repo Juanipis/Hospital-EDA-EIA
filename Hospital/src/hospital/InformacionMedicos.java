@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.Font;
+import javax.swing.JTextArea;
 
 public class InformacionMedicos {
 
@@ -54,6 +55,9 @@ public class InformacionMedicos {
 		txtMedicos.setBounds(10, 11, 894, 58);
 		medicosFrame.getContentPane().add(txtMedicos);
 		txtMedicos.setColumns(10);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 80, 894, 696);
+		medicosFrame.getContentPane().add(textArea);
 	}
-
 }

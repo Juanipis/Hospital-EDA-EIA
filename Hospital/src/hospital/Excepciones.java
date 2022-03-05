@@ -51,3 +51,8 @@ class NoExisteSala extends Exception{
 		super("La sala: " + sala + " no existe");
 	}
 }
+class SalaLimpia extends Exception{
+	public SalaLimpia(String idSala) {
+		super("La sala: " + idSala + "Esta sala ya se encuentra limpia");
+	}
+}

@@ -18,6 +18,10 @@ public class Sala {
 	private String equiposId[];
 	private String pacientes[];
 	private String idSala;
+	
+	//Aqui voy a introducir una nueva variable para sala, este va a ser un boolean limpia. CAPITAN RECORDAR AGREGARLO AL FICHERO! Tambien se creo el metodo getLimpia y setLimpia.
+	private boolean limpia;
+	
 	// private Enfermo enfermos[];
 
 	
@@ -41,6 +45,14 @@ public class Sala {
 
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
+	}
+	
+	public boolean getLimpia() {
+		return limpia;
+	}
+	
+	public void setLimpia(boolean limpia) {
+		this.limpia = limpia;
 	}
 
 	// Metodos de busqueda que devuelven la posicion-------------------------
