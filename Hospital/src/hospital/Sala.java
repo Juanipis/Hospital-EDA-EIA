@@ -131,6 +131,14 @@ public class Sala {
 			}
 		
 	}
+	public void addEnfermero(String nombre, String apellido, String CC, boolean disponible) throws VectorNulo {
+		if (verificarEnfermero(CC) != -1) {
+			enfermeros = Arrays.copyOf(enfermeros, enfermeros.length + 1);
+			enfermeros[enfermeros.length - 1] = new Enfermero(nombre, apellido, CC, disponible);
+		}else {
+			System.out.println("No se puede agregar Enfermero porque ya existe un Enfermero con esa cedula, en la sala");
+		}
+	}
 
 	public void addEquipo(double inventario, boolean disponibilidad, String codigo, boolean estado) throws VectorNulo{
 		
