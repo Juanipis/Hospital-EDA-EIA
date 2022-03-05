@@ -56,3 +56,4 @@ class SalaLimpia extends Exception{
 		super("La sala: " + idSala + "Esta sala ya se encuentra limpia");
 	}
 }
+

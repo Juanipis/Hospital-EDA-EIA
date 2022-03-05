@@ -1,2 +1,6 @@
 0,Juanito,Perez,2190120,true,Medico general,true
 0,Jhon,Neper,534523,true,Medico general,true
+2,Juancho,Carnal,1292693,true
+2,Maria,Alela,1438404,true
+2,Sor Ines,Cruz,524977,true
+2,Ramiro,Bernal,58711268,true
