@@ -1,13 +1,12 @@
 package hospital;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class Medico extends Personal {
 
-	String esp;
-	boolean pres;
-	Paciente[] pacientes = new Paciente[0];
+	private String esp;
+	private boolean pres;
+	private Paciente[] pacientes = new Paciente[0];
 
 	public Medico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) {
 		super(nombre, apellido, CC, disponible);
@@ -15,11 +14,18 @@ public class Medico extends Personal {
 		this.pres = pres;
 	}
 	
+	public boolean getPres() {
+		return this.pres;
+	}
+	public String getEsp() {
+		return this.esp;
+	}
 	
 	
 	public void setPrescripciones(boolean pres) {
 		this.pres = pres;
 	}
+	
 	
 	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) throws EMedicamento {
 		Formula[] formula = new Formula[0];

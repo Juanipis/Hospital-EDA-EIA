@@ -136,7 +136,28 @@ public class Hospital {
 		}
 	}
 	
+	public void guardarFicheros() throws FileNotFoundException, IOException, ExistePersonal {
+		Main.vaciarFichero("pacientes.txt", 0);
+		Main.vaciarFichero("personal.txt", 0);
+		Main.vaciarFichero("salas.txt", 0);
+		for(Paciente pc : pacientes) {
+			this.addPacienteFichero(pc.getNombre(), pc.getApellido(), pc.getCC(), pc.getPoliza(), pc.getSintomas(), pc.getTriaje(), pc.getAcompanantes(), pc.getEdad(), pc.getSexo(), pc.getTipoSangre());
+		}
+		for(Medico mdc : medicos) {
+			this.addMedicoFichero(mdc.getNombre(), mdc.getApellido(), mdc.getCC(), mdc.getDisponible(), mdc.getEsp(), mdc.getPres());
+		}
+		for(Enfermero enf : enfermeros) {
+			this.addEnfermeroFichero(enf.getNombre(), enf.getApellido(), enf.getCC(), enf.getDisponible());
+		}
+		for(Limpieza limp : personalLimpieza) {
+			this.addPersonalLimpieza(limp.getNombre(), limp.getApellido(), limp.getCC(), limp.getDisponible());
+		}
+		for(Sala sls : salas) {
+			this.addSalaFichero(sls.getTipo(), sls.getCapacidad(), sls.getMedicamentos(), sls.getEquipos(), sls.getPacientes(), sls.getEnfermeros(), sls.getLimpia());
+		}
+	}
 	
+	//Metodos relacionados con agenda de citas
 	public boolean generarCita(String CCPaciente, String CCMedico,int[] fechaInicio, int[] fechaFinal) throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {
 			return this.agendaHospital.generarCita(CCPaciente, CCMedico, fechaInicio, fechaFinal);
 	}
@@ -221,18 +242,22 @@ public class Hospital {
 		if(this.getMedico(CC) == null) {
 			medicos.add(new Medico(nombre, apellido, CC, disponible, esp, pres));
 			//Para el fichero
-			StringBuilder bld = new StringBuilder();
-			bld.append("0" + ",");
-			bld.append(nombre + ",");
-			bld.append(apellido + ",");
-			bld.append(CC + ",");
-			bld.append(disponible+ ",");
-			bld.append(esp+ ",");
-			bld.append(pres);
-			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
+			this.addMedicoFichero(nombre, apellido, CC, disponible, esp, pres);
+			
 		}else {
 			throw new ExistePersonal(CC);
 		}		
+	}
+	private void addMedicoFichero(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append("0" + ",");
+		bld.append(nombre + ",");
+		bld.append(apellido + ",");
+		bld.append(CC + ",");
+		bld.append(disponible+ ",");
+		bld.append(esp+ ",");
+		bld.append(pres);
+		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
 	
 	public void eliminarMedico(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
@@ -269,16 +294,20 @@ public class Hospital {
 		if(this.getPersonalLimpieza(CC) == null) {
 			personalLimpieza.add(new Limpieza(nombre, apellido, CC, disponible));
 			//Para el fichero
-			StringBuilder bld = new StringBuilder();
-			bld.append("1" + ",");
-			bld.append(nombre + ",");
-			bld.append(apellido + ",");
-			bld.append(CC + ",");
-			bld.append(disponible);
-			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
+			this.addPersonalLimpiezaFichero(nombre, apellido, CC, disponible);
 		}else {
 			throw new ExistePersonal(CC);
 		}		
+	}
+	
+	private void addPersonalLimpiezaFichero(String nombre, String apellido, String CC, boolean disponible) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append("1" + ",");
+		bld.append(nombre + ",");
+		bld.append(apellido + ",");
+		bld.append(CC + ",");
+		bld.append(disponible);
+		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
 	
 	public void eliminarPersonalLimpieza(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
@@ -323,16 +352,19 @@ public class Hospital {
 		if(this.getEnfermero(CC) == null) {
 			enfermeros.add(new Enfermero(nombre, apellido, CC, disponible));
 			//Para el fichero
-			StringBuilder bld = new StringBuilder();
-			bld.append("2" + ",");
-			bld.append(nombre + ",");
-			bld.append(apellido + ",");
-			bld.append(CC + ",");
-			bld.append(disponible);
-			Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
+			this.addEnfermeroFichero(nombre, apellido, CC, disponible);
 		}else {
 			throw new ExistePersonal(CC);
 		}		
+	}
+	private void addEnfermeroFichero(String nombre, String apellido, String CC, boolean disponible) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append("2" + ",");
+		bld.append(nombre + ",");
+		bld.append(apellido + ",");
+		bld.append(CC + ",");
+		bld.append(disponible);
+		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
 	
 	public void eliminarEnfermero(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
@@ -370,25 +402,29 @@ public class Hospital {
 		if(this.getPaciente(CC) == null) {
 			pacientes.add(new Paciente(nombre,apellido, CC, poliza, sintomas, triaje, acompanantes,edad, sexo, tipoSangre));
 			//Para el fichero
-			StringBuilder bld = new StringBuilder();
-			bld.append(nombre + ",");
-			bld.append(apellido + ",");
-			bld.append(CC + ",");
-			bld.append(poliza + ",");
-			for (String st: sintomas) {
-				bld.append(st + ";");
-			}
-			bld.append("," + triaje + ",");
-			for(String acmp : acompanantes) {
-				bld.append(acmp + ";");
-			}
-			bld.append("," + edad + ",");
-			bld.append(sexo + ",");
-			bld.append(tipoSangre);
-			Main.escrituraFicheroUltimaLinea("pacientes.txt", bld.toString(), 0);
+			this.addPacienteFichero(nombre, apellido, CC, poliza, sintomas, triaje, acompanantes, edad, sexo, tipoSangre);
 		}else {
 			throw new ExistePersonal(CC);
 		}		
+	}
+	private void addPacienteFichero(String nombre, String apellido, String CC, String poliza, String[] sintomas, int triaje, String[] acompanantes,
+			int edad, String sexo, String tipoSangre) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append(nombre + ",");
+		bld.append(apellido + ",");
+		bld.append(CC + ",");
+		bld.append(poliza + ",");
+		for (String st: sintomas) {
+			bld.append(st + ";");
+		}
+		bld.append("," + triaje + ",");
+		for(String acmp : acompanantes) {
+			bld.append(acmp + ";");
+		}
+		bld.append("," + edad + ",");
+		bld.append(sexo + ",");
+		bld.append(tipoSangre);
+		Main.escrituraFicheroUltimaLinea("pacientes.txt", bld.toString(), 0);
 	}
 	public void eliminarPaciente(String CC) throws NoExistePersonal, FileNotFoundException, IOException {
 		pacientes.remove(this.getPacientesIndex(CC));
@@ -438,46 +474,51 @@ public class Hospital {
 		if(this.getSala(tipo) == null) {
 			salas.add(new Sala(tipo, capacidad, medicamentos, equipos, pacientes, enfermeros, limpio));
 			//Para el fichero
-			StringBuilder bld = new StringBuilder();
-			bld.append(tipo +",");
-			bld.append(capacidad + ",");
-			for(Medicamento mdc : medicamentos) {
-				if(mdc != null) {
-					bld.append(mdc.getNombre() + "*");
-					bld.append(mdc.getId() + "*");
-					bld.append(new SimpleDateFormat("dd-MM-yyyy").format(mdc.getFechaVencimiento()) + "*");
-					bld.append(new SimpleDateFormat("dd-MM-yyyy").format(mdc.getFechaCompra()) + "*");
-					bld.append(mdc.isDisponibilidad() + "*");
-					bld.append(mdc.getCantidad() + ";");
-				}
-			}
-			bld.append(",");
-			for(Equipo equip : equipos) {
-				if(equip != null) {
-					bld.append(equip.getInventario() + "*");
-					bld.append(equip.isDisponibilidad() + "*");
-					bld.append(equip.getCodigo() + "*");
-					bld.append(equip.isEstado() + ";");
-				}
-			}
-			bld.append(",");
-			for(Paciente pci : pacientes) {
-				if(pci != null) {
-					bld.append(pci.getCC()+";");
-				}
-			}
-			bld.append(",");
-			for(Enfermero enf : enfermeros) {
-				if(enf != null) {
-					bld.append(enf.getCC()+";");
-				}
-			}
-			bld.append("," + limpio);
-			Main.escrituraFicheroUltimaLinea("salas.txt", bld.toString(), 0);
+			this.addSalaFichero(tipo, capacidad, medicamentos, equipos, pacientes, enfermeros, limpio);
 		}else {
 			throw new ExistePersonal(tipo);
 		}		
 	}
+	private void addSalaFichero(String tipo, int capacidad, Medicamento[] medicamentos, Equipo[] equipos, Paciente[] pacientes,
+			Enfermero[] enfermeros, boolean limpio) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append(tipo +",");
+		bld.append(capacidad + ",");
+		for(Medicamento mdc : medicamentos) {
+			if(mdc != null) {
+				bld.append(mdc.getNombre() + "*");
+				bld.append(mdc.getId() + "*");
+				bld.append(new SimpleDateFormat("dd-MM-yyyy").format(mdc.getFechaVencimiento()) + "*");
+				bld.append(new SimpleDateFormat("dd-MM-yyyy").format(mdc.getFechaCompra()) + "*");
+				bld.append(mdc.isDisponibilidad() + "*");
+				bld.append(mdc.getCantidad() + ";");
+			}
+		}
+		bld.append(",");
+		for(Equipo equip : equipos) {
+			if(equip != null) {
+				bld.append(equip.getInventario() + "*");
+				bld.append(equip.isDisponibilidad() + "*");
+				bld.append(equip.getCodigo() + "*");
+				bld.append(equip.isEstado() + ";");
+			}
+		}
+		bld.append(",");
+		for(Paciente pci : pacientes) {
+			if(pci != null) {
+				bld.append(pci.getCC()+";");
+			}
+		}
+		bld.append(",");
+		for(Enfermero enf : enfermeros) {
+			if(enf != null) {
+				bld.append(enf.getCC()+";");
+			}
+		}
+		bld.append("," + limpio);
+		Main.escrituraFicheroUltimaLinea("salas.txt", bld.toString(), 0);
+	}
+	
 	public void eliminarSala(String idSala) throws FileNotFoundException, IOException, NoExisteSala  {
 		salas.remove(this.getSalaIndex(idSala));
 		Main.eliminarAlgoFicheroId("salas.txt", idSala, 0);

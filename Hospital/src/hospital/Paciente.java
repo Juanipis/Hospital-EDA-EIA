@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import semana2.Trabajador;
-
 public class Paciente extends Persona {
 	private String poliza;
 	private String[] sintomas;
@@ -100,8 +98,9 @@ public class Paciente extends Persona {
 		this.acompanantes = Arrays.copyOf(this.acompanantes, this.acompanantes.length+1);
 		this.acompanantes[acompanantes.length-1] = acompanante;
 	}
-	public void eliminarAcompanante(String acompanante) { //Crear excepcion en caso de que no exista el acompanante
+	public void eliminarAcompanante(String acompanante) throws NoAcompanantesPaciente { //Crear excepcion en caso de que no exista el acompanante
 		String[] temp = new String[this.acompanantes.length-1];
+		int index = this.getIndexAcompanante(acompanante);
 		int arT = 0;
 		int arO = 0;
 		
@@ -109,11 +108,11 @@ public class Paciente extends Persona {
 			if(arT == index) {
 				arO++;
 			}
-			temp[arT] = this.getTrabajadores()[arO];
+			temp[arT] = this.acompanantes[arO];
 			arT++;
 			arO++;
 		}
-		this.trabajadores = temp;	
+		this.acompanantes = temp;	
 	}
 	
 	public int getEdad() {

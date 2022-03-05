@@ -90,7 +90,11 @@ public class Main {
 		fich.write(datos + "\n");
 		fich.close();
 	}
-	
+	public static void vaciarFichero(String nombreFichero, int typeList) throws FileNotFoundException, IOException {
+		FileWriter fich = new FileWriter(Main.recuperarFichero(nombreFichero, typeList).getAbsoluteFile(), false);
+		fich.write("");
+		fich.close();
+	}
 	public static void eliminarAlgoFicheroId(String nombreFichero, String id, int typeList) throws IOException, FileNotFoundException {
 		File inputFile = Main.recuperarFichero(nombreFichero, typeList);
         File tempFile = new File("fichTemp.txt");

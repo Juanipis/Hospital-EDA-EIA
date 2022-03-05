@@ -40,6 +40,31 @@ public class Sala {
 	}
 
 
+	public int getCapacidad() {
+		return capacidad;
+	}
+
+
+	public Medicamento[] getMedicamentos() {
+		return medicamentos;
+	}
+
+
+	public Equipo[] getEquipos() {
+		return equipos;
+	}
+
+
+	public Paciente[] getPacientes() {
+		return pacientes;
+	}
+
+
+	public Enfermero[] getEnfermeros() {
+		return enfermeros;
+	}
+
+
 	public String getTipo() {
 		return tipo;
 	}
