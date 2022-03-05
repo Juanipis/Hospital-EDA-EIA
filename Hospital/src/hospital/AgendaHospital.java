@@ -16,7 +16,7 @@ public class AgendaHospital {
 	}
 
 	private void recuperarCitas() throws IOException, FileNotFoundException {
-		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("cita.txt")));
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero("cita.txt", 0)));
 		String citaAct;
 		while ((citaAct = fichero.readLine()) != null) {
 			String[] partesCita = citaAct.split(",");
@@ -62,8 +62,8 @@ public class AgendaHospital {
 			cita.append(idCita);
 
 			try {
-				if (this.disponibilidadCita(CCMedico, fi.getTime(), ff.getTime())) {
-					Main.escrituraFicheroUltimaLinea("cita.txt", cita.toString());
+				if(this.disponibilidadCita(CCMedico, fi.getTime(), ff.getTime())) {
+					Main.escrituraFicheroUltimaLinea("cita.txt", cita.toString(), 0);
 					citas.add(new Cita(CCPaciente, CCMedico, fi.getTime(), ff.getTime(), idCita));
 					return true;
 				} else {
@@ -72,7 +72,7 @@ public class AgendaHospital {
 			} catch (IOException e) {
 				throw e;
 			} catch (MedicoNoCitas e) {
-				Main.escrituraFicheroUltimaLinea("cita.txt", cita.toString());
+				Main.escrituraFicheroUltimaLinea("cita.txt", cita.toString(), 0);
 				citas.add(new Cita(CCPaciente, CCMedico, fi.getTime(), ff.getTime(), idCita));
 				return true;
 			} catch (FormatoFechaInvalida e) {
@@ -90,8 +90,8 @@ public class AgendaHospital {
 		}
 		if (index < citas.size() && citas.get(index) != null && citas.get(index).getIdCita().equals(idCita)) {
 			citas.remove(index);
-			Main.eliminarAlgoFicheroId("cita.txt", idCita);
-		} else {
+			Main.eliminarAlgoFicheroId("cita.txt", idCita, 0);
+		}else {
 			throw new CitaNoExiste(idCita);
 		}
 	}
@@ -120,12 +120,12 @@ public class AgendaHospital {
 			cff.setTime(fechaFinal);
 			// Actualizamos fichero
 			StringBuilder modf = new StringBuilder();
-			modf.append(ctModificar.getCCPaciente() + ",");
-			modf.append(CCMedico + ",");
-			modf.append(cfi.get(1) + "," + cfi.get(2) + "," + cfi.get(5) + "," + cfi.get(11) + "," + cfi.get(12) + ",");
-			modf.append(cff.get(1) + "," + cff.get(2) + "," + cff.get(5) + "," + cff.get(11) + "," + cff.get(12) + ",");
-			modf.append(idCita);
-			Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString());
+			modf.append(ctModificar.getCCPaciente()+",");
+    		modf.append(CCMedico+",");
+    		modf.append(cfi.get(1) +","+cfi.get(2) + "," + cfi.get(5) + "," +cfi.get(11) + "," +cfi.get(12) + ",");
+    		modf.append(cff.get(1) +","+cff.get(2) + "," + cff.get(5) + "," +cff.get(11) + "," +cff.get(12) + ",");
+    		modf.append(idCita);
+			Main.editarAlgoFicheroId("cita.txt",idCita, modf.toString(), 0);
 			return true;
 		}
 		return false;
@@ -149,14 +149,12 @@ public class AgendaHospital {
 				cff.setTime(fechaFinal);
 				// Actualizamos fichero
 				StringBuilder modf = new StringBuilder();
-				modf.append(ctModificar.getCCPaciente() + ",");
-				modf.append(CCMedico + ",");
-				modf.append(
-						cfi.get(1) + "," + cfi.get(2) + "," + cfi.get(5) + "," + cfi.get(11) + "," + cfi.get(12) + ",");
-				modf.append(
-						cff.get(1) + "," + cff.get(2) + "," + cff.get(5) + "," + cff.get(11) + "," + cff.get(12) + ",");
-				modf.append(idCita);
-				Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString());
+				modf.append(ctModificar.getCCPaciente()+",");
+	    		modf.append(CCMedico+",");
+	    		modf.append(cfi.get(1) +","+cfi.get(2) + "," + cfi.get(5) + "," +cfi.get(11) + "," +cfi.get(12) + ",");
+	    		modf.append(cff.get(1) +","+cff.get(2) + "," + cff.get(5) + "," +cff.get(11) + "," +cff.get(12) + ",");
+	    		modf.append(idCita);
+				Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString(), 0);
 				return true;
 			}
 		} catch (MedicoNoCitas e) {
@@ -171,14 +169,12 @@ public class AgendaHospital {
 				cff.setTime(fechaFinal);
 				// Actualizamos fichero
 				StringBuilder modf = new StringBuilder();
-				modf.append(ctModificar.getCCPaciente() + ",");
-				modf.append(CCMedico + ",");
-				modf.append(
-						cfi.get(1) + "," + cfi.get(2) + "," + cfi.get(5) + "," + cfi.get(11) + "," + cfi.get(12) + ",");
-				modf.append(
-						cff.get(1) + "," + cff.get(2) + "," + cff.get(5) + "," + cff.get(11) + "," + cff.get(12) + ",");
-				modf.append(idCita);
-				Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString());
+				modf.append(ctModificar.getCCPaciente()+",");
+	    		modf.append(CCMedico+",");
+	    		modf.append(cfi.get(1) +","+cfi.get(2) + "," + cfi.get(5) + "," +cfi.get(11) + "," +cfi.get(12) + ",");
+	    		modf.append(cff.get(1) +","+cff.get(2) + "," + cff.get(5) + "," +cff.get(11) + "," +cff.get(12) + ",");
+	    		modf.append(idCita);
+	    		Main.editarAlgoFicheroId("cita.txt", idCita, modf.toString(), 0);
 				return true;
 			}
 
@@ -340,32 +336,4 @@ public class AgendaHospital {
 	}
 }
 
-class FormatoFechaInvalida extends Exception {
-	public FormatoFechaInvalida() {
-		super("Las fechas o fecha entregada tienen un formato incorrecto o no son congruentes entre si");
-	}
-}
 
-class CitaNoExiste extends Exception {
-	public CitaNoExiste(String idCita) {
-		super("La cita" + idCita + " no existe");
-	}
-}
-
-class PersonaNoCitas extends Exception {
-	public PersonaNoCitas(String nombreP) {
-		super("La persona " + nombreP + " no tiene citas");
-	}
-}
-
-class NoHayDisponibilidadCita extends Exception {
-	public NoHayDisponibilidadCita() {
-		super("No hay disponibilidad para la cita ingresada, intente otras fechas");
-	}
-}
-
-class MedicoNoCitas extends Exception {
-	public MedicoNoCitas(String CC) {
-		super("El medico con la " + CC + " no tiene citas");
-	}
-}

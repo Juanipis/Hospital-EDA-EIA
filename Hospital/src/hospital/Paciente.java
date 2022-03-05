@@ -1,5 +1,13 @@
 package hospital;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Paciente extends Persona {
 	private String poliza;
 	private String[] sintomas;
@@ -8,10 +16,10 @@ public class Paciente extends Persona {
 	protected int edad;
 	protected String sexo;
 	protected String tipoSangre;
-	protected Historial historial;
+	protected ArrayList<Historial> historial;
 
 	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-					int edad, String sexo, String tipoSangre, Historial historial) {
+					int edad, String sexo, String tipoSangrel) throws IOException {
 		super(nombre, apellido, cc);
 		this.poliza = poliza;
 		this.sintomas = sintomas;
@@ -20,7 +28,28 @@ public class Paciente extends Persona {
 		this.edad = edad;
 		this.sexo = sexo;
 		this.tipoSangre = tipoSangre;
-		this.historial = historial;
+		this.historial = new ArrayList<Historial>();
+		try {
+			this.recuperarHistorial();
+		}catch(FileNotFoundException e) {
+			Main.crearFichero(cc, 1);
+		}
+		
+	}
+	private void recuperarHistorial() throws IOException, FileNotFoundException {
+		BufferedReader fichero = new BufferedReader(new FileReader(Main.recuperarFichero(this.CC, 1)));
+		String histActual;
+		while( ( histActual = fichero.readLine()) != null) {
+			String[] partesCita = histActual.split(",");
+			if(partesCita.length == 4) {
+				String[] enfermedades = partesCita[0].split(";");
+				String[] operaciones = partesCita[1].split(";");
+				String[] alergias = partesCita[2].split(";");
+				String citaId = partesCita[3];
+				historial.add(new Historial(enfermedades,operaciones,alergias,citaId));
+			}        
+		}
+		fichero.close();
 	}
 	
 	//Setters & Getters
@@ -72,12 +101,38 @@ public class Paciente extends Persona {
 		return tipoSangre;
 	}
 
-	public Historial getHistorial() {
-		return historial;
+	public Historial[] getHistorial() {
+		return historial.toArray(new Historial[historial.size()]);
 	}
 
-	public void setHistorial(Historial historial) {
-		this.historial = historial;
+	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, String citaId) throws FileNotFoundException, IOException {
+		historial.add(new Historial(enfermedades, operaciones, alergias, citaId));
+		StringBuilder bld = new StringBuilder();
+		for (int i = 0; i < enfermedades.length; i++) {
+			if(i != enfermedades.length-1) {
+				bld.append(enfermedades[i] + ";");
+			}else {
+				bld.append(enfermedades[i]);
+			}
+		}
+		bld.append(",");
+		for (int i = 0; i < operaciones.length; i++) {
+			if(i != operaciones.length-1) {
+				bld.append(operaciones[i] + ";");
+			}else {
+				bld.append(operaciones[i]);
+			}
+		}
+		bld.append(",");
+		for (int i = 0; i < alergias.length; i++) {
+			if(i != alergias.length-1) {
+				bld.append(alergias[i] + ";");
+			}else {
+				bld.append(alergias[i]);
+			}
+		}
+		bld.append("," + citaId);
+		Main.escrituraFicheroUltimaLinea(CC, bld.toString(), 1);
 	}
-	
+
 }

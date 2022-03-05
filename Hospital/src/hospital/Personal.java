@@ -2,11 +2,7 @@ package hospital;
 
 public abstract class Personal extends Persona{
 
-	class EPersonal extends Exception {
-		public EPersonal(String s) {
-			super("Esta persona ya se encuentra en el hospital");
-		}
-	}
+	
 	
 	protected boolean disponible;
 	

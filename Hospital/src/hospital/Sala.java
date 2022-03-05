@@ -10,14 +10,15 @@ class VectorNulo extends Exception {
 
 public class Sala {
 
-	// Cambie capacidad de un String a un int y descomente los pacientes. Creo que
-	// faltaria un constructor - Chica
+	//Cambie capacidad de un String a un int y descomente los pacientes. Creo que faltaria un constructor - Chica
+	
 	private String tipo;
 	private int capacidad;
-	private Medicamento medicamentos[];
-	private Equipo equipos[];
-	private Paciente pacientes[];
-	private Enfermero enfermeros[];
+	private String medicamentosId[];
+	private String equiposId[];
+	private String pacientes[];
+	private String idSala;
+	// private Enfermo enfermos[];
 
 	public Sala(String tipo, int capacidad, Medicamento[] medicamentos, Equipo[] equipos, Paciente[] pacientes,
 			Enfermero[] enfermeros) {
@@ -29,7 +30,20 @@ public class Sala {
 		this.pacientes = pacientes;
 		this.enfermeros = enfermeros;
 	}
+	
+	public Sala(String tipo, int capacidad, String[] medicamentosId, String[] equiposId, String[] pacientes,String idSala) {
+		this.tipo = tipo;
+		this.capacidad = capacidad;
+		this.medicamentosId = medicamentosId;
+		this.equiposId = equiposId;
+		this.pacientes = pacientes;
+		this.idSala = idSala;
+	}
 
+	public String getIdSala() {
+		return idSala;
+	}
+	
 	public String getTipo() {
 		return tipo;
 	}
