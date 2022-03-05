@@ -19,6 +19,17 @@ public class Sala {
 	private Paciente pacientes[];
 	private Enfermero enfermeros[];
 
+	public Sala(String tipo, int capacidad, Medicamento[] medicamentos, Equipo[] equipos, Paciente[] pacientes,
+			Enfermero[] enfermeros) {
+		super();
+		this.tipo = tipo;
+		this.capacidad = capacidad;
+		this.medicamentos = medicamentos;
+		this.equipos = equipos;
+		this.pacientes = pacientes;
+		this.enfermeros = enfermeros;
+	}
+
 	public String getTipo() {
 		return tipo;
 	}
@@ -132,7 +143,7 @@ public class Sala {
 			System.out.println(e.getMessage());
 		}
 	}
-	// Mertodos eliminacion--------------------------------------
+	// Metodos de eliminacion--------------------------------------
 
 	public void eliminarEquipo(String codigoEquipo) throws VectorNulo {
 		if (verificarEquipo(codigoEquipo) != -1)
