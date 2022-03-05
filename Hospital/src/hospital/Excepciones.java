@@ -61,3 +61,8 @@ class PacienteEnSala extends Exception{
 		super("El paciente con la cedula" + CC + " ya se encuentra en la sala");
 	}
 }
+class NoPacienteEnSala extends Exception{
+	public NoPacienteEnSala(String CC) {
+		super("El paciente con la cedula" + CC + " no se encuentra en la sala");
+	}
+}

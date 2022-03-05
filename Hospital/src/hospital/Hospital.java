@@ -477,4 +477,14 @@ public class Hospital {
 		}
 	}
 	
+	public void salidaPacienteSala(String idSala, String CCPaciente) throws VectorNulo, NoPacienteEnSala {
+		Sala salaIngreso = this.getSala(idSala);
+		Paciente pc = this.getPaciente(CCPaciente);
+		if(salaIngreso != null && pc != null && salaIngreso.verificarPaciente(pc.getCC()) != -1) {
+			salaIngreso.eliminarPaciente(pc.getCC());
+		}else {
+			throw new NoPacienteEnSala(CCPaciente);
+		}
+	}
+	
 }
