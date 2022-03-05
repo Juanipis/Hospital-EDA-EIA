@@ -464,5 +464,17 @@ public class Hospital {
 			throw new ExistePersonal(tipo);
 		}		
 	}
+	public void eliminarSala(String idSala) throws FileNotFoundException, IOException, NoExisteSala  {
+		salas.remove(this.getSalaIndex(idSala));
+		Main.eliminarAlgoFicheroId("salas.txt", idSala, 0);
+	}
+	
+	public void ingresarPacienteSala(String idSala, String ccPaciente) throws IOException, VectorNulo, PacienteEnSala {
+		Sala salaIngreso = this.getSala(idSala);
+		Paciente pc = this.getPaciente(ccPaciente);
+		if(salaIngreso != null && pc != null && salaIngreso.getDisponibilidadSala()) {
+			salaIngreso.addPaciente(pc);
+		}
+	}
 	
 }

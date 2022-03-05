@@ -56,4 +56,8 @@ class SalaLimpia extends Exception{
 		super("La sala: " + idSala + "Esta sala ya se encuentra limpia");
 	}
 }
-
+class PacienteEnSala extends Exception{
+	public PacienteEnSala(String CC) {
+		super("El paciente con la cedula" + CC + " ya se encuentra en la sala");
+	}
+}

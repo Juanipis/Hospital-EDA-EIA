@@ -131,6 +131,18 @@ public class Sala {
 			}
 		
 	}
+	public void addPaciente(Paciente pc) throws IOException,VectorNulo, PacienteEnSala {
+		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
+		// pacientes //En caso de que la cedula no exista, agregar el paciente
+		
+			if (verificarPaciente(pc.getCC()) != -1) {
+				pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
+				pacientes[pacientes.length - 1] = pc;
+			}else {
+				throw new PacienteEnSala(pc.getCC());
+			}
+		
+	}
 	public void addEnfermero(String nombre, String apellido, String CC, boolean disponible) throws VectorNulo {
 		if (verificarEnfermero(CC) != -1) {
 			enfermeros = Arrays.copyOf(enfermeros, enfermeros.length + 1);
@@ -221,6 +233,10 @@ public class Sala {
 				//Mirar si esta bien hecho devovler el texto desde el mismo metodo, ya que no es una excepcion. Es una condicion del sistema
 				System.out.println("No existe un Enfermero con esa cedula");
 			}
+	}
+	
+	public boolean getDisponibilidadSala() {
+		return (this.capacidad-this.pacientes.length > 0) ? true:false;
 	}
 	
 	@Override
