@@ -41,7 +41,7 @@ public class Medico extends Personal {
 				//corregi un error de .getCita().equals(cita) -> .getIdCita().equals(cita)) -Rafael
 				throw new ExistePersonal(CC);
 			}else {
-				historial = Arrays.copyOf(historial, historial.length-1);
+				historial = Arrays.copyOf(historial, historial.length+1);
 				historial[historial.length-1] = new Historial(enfermedades, operaciones, alergias, citaId);
 			}
 		}
