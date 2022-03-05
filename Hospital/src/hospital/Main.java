@@ -89,21 +89,18 @@ public class Main {
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
-		BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+        String currentLine;
 
-		String currentLine;
-
-		while ((currentLine = reader.readLine()) != null) {
-			if (currentLine.contains(id)) {
-				continue;
-			}
-			writer.write(currentLine + System.getProperty("line.separator"));
-		}
-		writer.close();
-		reader.close();
-		inputFile.delete();
-		tempFile.renameTo(inputFile);
+        while ((currentLine = reader.readLine()) != null) {
+            if (currentLine.contains(id)) {
+                continue;
+            }
+            writer.write(currentLine + System.getProperty("line.separator"));
+        }
+        writer.close();
+        reader.close();
+        inputFile.delete();
+        tempFile.renameTo(inputFile);
 	}
 	
 	public static void editarAlgoFicheroId(String nombreFichero, String id, String nuevosDatos, int typeList) throws IOException, FileNotFoundException {
@@ -126,3 +123,4 @@ public class Main {
 	}
 
 }
+
