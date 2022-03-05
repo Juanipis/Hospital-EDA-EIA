@@ -118,45 +118,43 @@ public class Sala {
 	// Metodos------------------------------------
 
 	public void addPaciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-			int edad, String sexo, String tipoSangre) throws IOException {
+			int edad, String sexo, String tipoSangre) throws IOException,VectorNulo {
 		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
 		// pacientes //En caso de que la cedula no exista, agregar el paciente
-		try {
+		
 			if (verificarPaciente(cc) != -1) {
 				pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
 				pacientes[pacientes.length - 1] = new Paciente(nombre, apellido, cc, poliza, sintomas, triaje,
 						acompanantes, edad, sexo, tipoSangre);
+			}else {
+				System.out.println("No se puede agregar paciente porque ya existe un paciente con esa cedula");
 			}
-		} catch (VectorNulo e) {
-			// Momentaneo, luego cambiar para imprimir en ventana Porras
-			System.out.println(e.getMessage());
-		}
+		
 	}
 
-	public void addEquipo(double inventario, boolean disponibilidad, String codigo, boolean estado) {
-		try {
+	public void addEquipo(double inventario, boolean disponibilidad, String codigo, boolean estado) throws VectorNulo{
+		
 			if (verificarEquipo(codigo) != -1) {
 				equipos = Arrays.copyOf(equipos, equipos.length + 1);
 				equipos[equipos.length - 1] = new Equipo(inventario, disponibilidad, codigo, estado);
-			}
-		} catch (VectorNulo e) {
-			// Momentaneo, luego cambiar para imprimir en ventana Porras
-			System.out.println(e.getMessage());
-		}
+			
+		} else {
+			System.out.println("No se puede agregar equipo porque ya existe un equipo con ese codigo");
+		} 
+			
+		
 	}
 
 	public void addMedicamento(String nombre, String id, Date fechaVencimiento, Date fechaCompra,
-			boolean disponibilidad, double cantidad) {
-		try {
+			boolean disponibilidad, double cantidad) throws VectorNulo {
+
 			if (verificarMedicamento(id) != -1) {
 				medicamentos = Arrays.copyOf(medicamentos, medicamentos.length + 1);
 				medicamentos[medicamentos.length - 1] = new Medicamento(nombre, id, fechaVencimiento, fechaCompra,
 						disponibilidad, cantidad);
-			}
-		} catch (VectorNulo e) {
-			// Momentaneo, luego cambiar para imprimir en ventana Porras
-			System.out.println(e.getMessage());
-		}
+			}else {
+				System.out.println("No se puede agregar medicamento porque ya existe un medicamento con ese id");
+			} 
 	}
 	// Metodos de eliminacion--------------------------------------
 
