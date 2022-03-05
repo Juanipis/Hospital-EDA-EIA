@@ -122,7 +122,7 @@ public class Sala {
 		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
 		// pacientes //En caso de que la cedula no exista, agregar el paciente
 		try {
-			if (verificarPaciente(paciente.getCC()) != -1) {
+			if (verificarPaciente(cc) != -1) {
 				pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
 				pacientes[pacientes.length - 1] = new Paciente(nombre, apellido, cc, poliza, sintomas, triaje,
 						acompanantes, edad, sexo, tipoSangre);
@@ -160,33 +160,60 @@ public class Sala {
 	}
 	// Metodos de eliminacion--------------------------------------
 
+	
+	public void eliminarPaciente(String cedula) throws VectorNulo{
+		if(verificarPaciente(cedula) != -1) {
+			for(int i = verificarPaciente(cedula); i<pacientes.length ; i++) {
+				if(pacientes[i + 1] != null) {
+					pacientes[i] = pacientes[i+1];
+				}
+				if(i == pacientes.length-1) {
+					pacientes = Arrays.copyOf(pacientes, pacientes.length-1);
+				}
+			}
+		}else {
+			System.out.println("No existe un Paciente con esa cedula");
+		}
+	}
 	public void eliminarEquipo(String codigoEquipo) throws VectorNulo {
-		if (verificarEquipo(codigoEquipo) != -1)
+		if (verificarEquipo(codigoEquipo) != -1) {
 			for (int i = verificarEquipo(codigoEquipo); i < equipos.length; i++) {
 				if (equipos[i + 1] != null)
 					equipos[i] = equipos[i + 1];
 				if (i == equipos.length - 1)
 					equipos = Arrays.copyOf(equipos, equipos.length - 1);
 			}
+		}else {
+			//Mirar si esta bien hecho devovler el texto desde el mismo metodo, ya que no es una excepcion. Es una condicion del sistema
+			System.out.println("No existe un Equipo con ese codigo");
+		}
 	}
 
 	public void eliminarMedicamento(String idMedicamento) throws VectorNulo {
-		if (verificarMedicamento(idMedicamento) != -1)
+		if (verificarMedicamento(idMedicamento) != -1) {
 			for (int i = verificarMedicamento(idMedicamento); i < equipos.length; i++) {
 				if (medicamentos[i + 1] != null)
 					medicamentos[i] = medicamentos[i + 1];
 				if (i == medicamentos.length - 1)
 					medicamentos = Arrays.copyOf(medicamentos, medicamentos.length - 1);
 			}
+		}else {
+		//Mirar si esta bien hecho devovler el texto desde el mismo metodo, ya que no es una excepcion. Es una condicion del sistema
+		System.out.println("No existe un Medicamento con ese id");
+		}
 	}
 
 	public void eliminarEnfermero(String cedula) throws VectorNulo {
-		if (verificarEnfermero(cedula) != -1)
+		if (verificarEnfermero(cedula) != -1) {
 			for (int i = verificarEnfermero(cedula); i < equipos.length; i++) {
 				if (enfermeros[i + 1] != null)
 					enfermeros[i] = enfermeros[i + 1];
 				if (i == enfermeros.length - 1)
 					enfermeros = Arrays.copyOf(enfermeros, enfermeros.length - 1);
+			}
+		}else {
+				//Mirar si esta bien hecho devovler el texto desde el mismo metodo, ya que no es una excepcion. Es una condicion del sistema
+				System.out.println("No existe un Enfermero con esa cedula");
 			}
 	}
 	
