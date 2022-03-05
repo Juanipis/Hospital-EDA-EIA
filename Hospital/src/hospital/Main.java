@@ -1,31 +1,39 @@
 package hospital;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.*;
 
 public class Main {
 	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt")}; //Agrega aqu� los ficheros a usar
 	private static File[] historialMedico = new File("historialMedico").listFiles();
 	
-	public static void main(String[] args) {
-		
+	
+	public static void main(String[] args) {	
 		Hospital hp;
 		try {
 			hp = new Hospital();
-			System.out.println(hp.getSala("SALA1"));
-		} catch (IOException e) {
+			
+			System.out.println(hp.getSala("CIRUGIA1"));
+		} catch (NumberFormatException | IOException | ParseException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		/*
+		hp.addEnfermeros("Juancho", "Carnal", "1292693", true);
+		hp.addEnfermeros("Maria", "Alela", "1438404", true);
+		hp.addEnfermeros("Sor Ines", "Cruz", "524977", true);
+		hp.addEnfermeros("Ramiro", "Bernal", "58711268", true);
+		*/
+		
+		
 		//hp.addSala("Urgencias", 12, new String[]{"ACE1", "ACI2"},new String[] {"Cama12", "Cama88"} , new String[]{"123612"}, "SALA1");
 		
 		//hp.addPaciente("Pepito", "Perez", "123612", "Sura", new String[]{"Covid"}, 0, new String[]{"Jhoan"}, 23, "M", "A+");
 		//hp.getPaciente("123612").addHistorial(new String[] {""}, new String[] {"Cabeza"}, new String[] {"Huevo"},"hsdb3b12");
 		//System.out.println(Arrays.toString(hp.getPaciente("123612").getHistorial()));
 		
-	
-	}
-	
+}
 	
 	
 	

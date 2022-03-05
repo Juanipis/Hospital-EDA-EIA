@@ -1,5 +1,6 @@
 package hospital;
 
+import java.io.IOException;
 import java.util.*;
 
 class VectorNulo extends Exception {
@@ -14,10 +15,10 @@ public class Sala {
 	
 	private String tipo;
 	private int capacidad;
-	private String medicamentosId[];
-	private String equiposId[];
-	private String pacientes[];
-	private String idSala;
+	private Medicamento medicamentos[];
+	private Equipo equipos[];
+	private Paciente pacientes[];
+	private Enfermero enfermeros[];
 	
 	//Aqui voy a introducir una nueva variable para sala, este va a ser un boolean limpia. CAPITAN RECORDAR AGREGARLO AL FICHERO! Tambien se creo el metodo getLimpia y setLimpia.
 	private boolean limpia;
@@ -26,19 +27,19 @@ public class Sala {
 
 	
 	
-	public Sala(String tipo, int capacidad, String[] medicamentosId, String[] equiposId, String[] pacientes,String idSala) {
+	public Sala(String tipo, int capacidad, Medicamento[] medicamentos, Equipo[] equipos, Paciente[] pacientes,
+			Enfermero[] enfermeros, boolean limpio) {
+		super();
 		this.tipo = tipo;
 		this.capacidad = capacidad;
-		this.medicamentosId = medicamentosId;
-		this.equiposId = equiposId;
+		this.medicamentos = medicamentos;
+		this.equipos = equipos;
 		this.pacientes = pacientes;
-		this.idSala = idSala;
+		this.enfermeros = enfermeros;
+		this.limpia = limpio;
 	}
 
-	public String getIdSala() {
-		return idSala;
-	}
-	
+
 	public String getTipo() {
 		return tipo;
 	}
@@ -116,16 +117,15 @@ public class Sala {
 	}
 	// Metodos------------------------------------
 
-	public void addPaciente(Paciente paciente, String nombre, String apellido, String cc, String poliza,
-			String[] sintomas, int triaje, String[] acompanantes, int edad, String sexo, String tipoSangre,
-			Historial historial) {
+	public void addPaciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
+			int edad, String sexo, String tipoSangre) throws IOException {
 		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
 		// pacientes //En caso de que la cedula no exista, agregar el paciente
 		try {
 			if (verificarPaciente(paciente.getCC()) != -1) {
 				pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
 				pacientes[pacientes.length - 1] = new Paciente(nombre, apellido, cc, poliza, sintomas, triaje,
-						acompanantes, edad, sexo, tipoSangre, historial);
+						acompanantes, edad, sexo, tipoSangre);
 			}
 		} catch (VectorNulo e) {
 			// Momentaneo, luego cambiar para imprimir en ventana Porras
@@ -188,5 +188,12 @@ public class Sala {
 				if (i == enfermeros.length - 1)
 					enfermeros = Arrays.copyOf(enfermeros, enfermeros.length - 1);
 			}
+	}
+	
+	@Override
+	public String toString() {
+		return "Sala [tipo=" + tipo + ", capacidad=" + capacidad + ", medicamentos=" + Arrays.toString(medicamentos)
+				+ ", equipos=" + Arrays.toString(equipos) + ", pacientes=" + Arrays.toString(pacientes)
+				+ ", enfermeros=" + Arrays.toString(enfermeros) + ", limpia=" + limpia + "]";
 	}
 }

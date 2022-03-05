@@ -19,7 +19,7 @@ public class Paciente extends Persona {
 	protected ArrayList<Historial> historial;
 
 	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-					int edad, String sexo, String tipoSangrel) throws IOException {
+					int edad, String sexo, String tipoSangre) throws IOException {
 		super(nombre, apellido, cc);
 		this.poliza = poliza;
 		this.sintomas = sintomas;
