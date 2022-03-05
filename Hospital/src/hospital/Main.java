@@ -19,6 +19,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		/*
 		hp.addEnfermeros("Juancho", "Carnal", "1292693", true);
 		hp.addEnfermeros("Maria", "Alela", "1438404", true);
