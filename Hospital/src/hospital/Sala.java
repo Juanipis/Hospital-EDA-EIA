@@ -20,16 +20,7 @@ public class Sala {
 	private String idSala;
 	// private Enfermo enfermos[];
 
-	public Sala(String tipo, int capacidad, Medicamento[] medicamentos, Equipo[] equipos, Paciente[] pacientes,
-			Enfermero[] enfermeros) {
-		super();
-		this.tipo = tipo;
-		this.capacidad = capacidad;
-		this.medicamentos = medicamentos;
-		this.equipos = equipos;
-		this.pacientes = pacientes;
-		this.enfermeros = enfermeros;
-	}
+	
 	
 	public Sala(String tipo, int capacidad, String[] medicamentosId, String[] equiposId, String[] pacientes,String idSala) {
 		this.tipo = tipo;
