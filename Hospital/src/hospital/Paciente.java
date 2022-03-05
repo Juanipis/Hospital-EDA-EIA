@@ -5,8 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import semana2.Trabajador;
 
 public class Paciente extends Persona {
 	private String poliza;
@@ -80,11 +83,39 @@ public class Paciente extends Persona {
 	public String[] getAcompanantes() {
 		return acompanantes;
 	}
-
-	public void setAcompanantes(String[] acompanantes) {
-		this.acompanantes = acompanantes;
+	
+	public int getIndexAcompanante(String acompanante) throws NoAcompanantesPaciente {
+		int c = 0;
+		while((c< this.acompanantes.length) && this.acompanantes[c] != null && !(this.acompanantes[c].equals(nombre)) ) {
+			c++;
+		}
+		if(c!=this.acompanantes.length && this.acompanantes[c].equals(nombre)) {
+			return c;
+		}else {
+			throw new NoAcompanantesPaciente();
+		}
 	}
 
+	public void addAcompanantes(String acompanante) { //Modificar para no adicionar acompanantes repetidos
+		this.acompanantes = Arrays.copyOf(this.acompanantes, this.acompanantes.length+1);
+		this.acompanantes[acompanantes.length-1] = acompanante;
+	}
+	public void eliminarAcompanante(String acompanante) { //Crear excepcion en caso de que no exista el acompanante
+		String[] temp = new String[this.acompanantes.length-1];
+		int arT = 0;
+		int arO = 0;
+		
+		while(arT < temp.length) {
+			if(arT == index) {
+				arO++;
+			}
+			temp[arT] = this.getTrabajadores()[arO];
+			arT++;
+			arO++;
+		}
+		this.trabajadores = temp;	
+	}
+	
 	public int getEdad() {
 		return edad;
 	}

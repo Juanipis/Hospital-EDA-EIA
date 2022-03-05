@@ -395,6 +395,20 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("pacientes.txt", CC, 0);
 	}
 	
+	public void ingresoVisitantePaciente(String CCPaciente, String CCVisitante) {
+		Paciente pc = this.getPaciente(CCPaciente);
+		if(pc != null) {
+			pc.addAcompanantes(CCVisitante);
+		}
+	}
+	
+	public void salidaVisitantePaciente(String CCPaciente, String CCVisitante) throws NoAcompanantesPaciente {
+		Paciente pc = this.getPaciente(CCPaciente);
+		if(pc != null) {
+			pc.eliminarAcompanante(CCVisitante);
+		}
+	}
+	
 	//Metodos relacionados con salas
 	public Sala getSala(String idSala){
 		int index = 0;
@@ -486,5 +500,7 @@ public class Hospital {
 			throw new NoPacienteEnSala(CCPaciente);
 		}
 	}
+	
+	
 	
 }

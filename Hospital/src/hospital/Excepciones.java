@@ -66,3 +66,8 @@ class NoPacienteEnSala extends Exception{
 		super("El paciente con la cedula" + CC + " no se encuentra en la sala");
 	}
 }
+class NoAcompanantesPaciente extends Exception{
+	public NoAcompanantesPaciente() {
+		super("No existe el acompañante de la persona");
+	}
+}
