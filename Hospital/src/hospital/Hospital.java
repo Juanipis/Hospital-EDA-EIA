@@ -150,7 +150,6 @@ public class Hospital {
  		}
 		
 		
-		
 		this.limpiezaArchivos(new BufferedReader [] {fichero,pacientesFich,ficheroSalas,ficheroFormulas});
 	}
 	
@@ -190,7 +189,7 @@ public class Hospital {
 			this.addSalaFichero(sls.getTipo(), sls.getCapacidad(), sls.getMedicamentos(), sls.getEquipos(), sls.getPacientes(), sls.getEnfermeros(), sls.getLimpia());
 		}
 		for(Cita ct : agendaHospital.getCitas()) {
-			if(ct.getFormula() != null) {
+			if(ct!= null && ct.getFormula() != null) {
 				this.addFormulaFichero(ct.getFormula());
 			}
 		}
