@@ -38,8 +38,8 @@ public class Cita {
 	public void setFormulaIncapacidad(String incapacidad) {
 		formula.setIncapacidad(incapacidad);
 	}
-	public void setFormula( String[] idMedicamentos, String incapacidad) {
-		formula = new Formula(idMedicamentos, incapacidad);
+	public void setFormula(String[] idMedicamentos, String incapacidad) {
+		formula = new Formula(this.getIdCita(),idMedicamentos, incapacidad);
 	}
 
 	public String getCCPaciente() {

@@ -75,12 +75,7 @@ public class Hospital {
 			}
 		}
 		
-		
-		
-		
-		
-		
-		
+		//Cargamos salas
 		BufferedReader ficheroSalas = new BufferedReader(new FileReader(Main.recuperarFichero("salas.txt", 0)));
 		while( ( lineaAct = ficheroSalas.readLine()) != null) {
 			String[] partesSala = lineaAct.split(",");
@@ -140,7 +135,24 @@ public class Hospital {
 			}
 			
 		}
-		this.limpiezaArchivos(new BufferedReader [] {fichero,pacientesFich,ficheroSalas});
+		//Cargamos las formulas a las citas
+		BufferedReader ficheroFormulas = new BufferedReader(new FileReader(Main.recuperarFichero("formulas.txt", 0)));
+		while( ( lineaAct = ficheroFormulas.readLine()) != null) {
+			String[] partesFormula = lineaAct.split(",");
+			if(partesFormula.length == 3) {
+				try {
+					Cita ct = this.buscarCitaId(partesFormula[0]);
+					ct.setFormula(partesFormula[1].split(";"), partesFormula[2]);
+					System.out.println("Aqui");
+				} catch (CitaNoExiste e) {
+					continue;
+				}
+			}
+ 		}
+		
+		
+		
+		this.limpiezaArchivos(new BufferedReader [] {fichero,pacientesFich,ficheroSalas,ficheroFormulas});
 	}
 	
 	private void limpiezaArchivos(BufferedReader [] archivos) throws IOException {
@@ -153,6 +165,7 @@ public class Hospital {
 		Main.vaciarFichero("pacientes.txt", 0);
 		Main.vaciarFichero("personal.txt", 0);
 		Main.vaciarFichero("salas.txt", 0);
+		Main.vaciarFichero("formulas.txt", 0);
 		for(Paciente pc : pacientes) {
 			this.addPacienteFichero(pc.getNombre(), pc.getApellido(), pc.getCC(), pc.getPoliza(), pc.getSintomas(), pc.getTriaje(), pc.getAcompanantes(), pc.getEdad(), pc.getSexo(), pc.getTipoSangre());
 		}
@@ -177,11 +190,20 @@ public class Hospital {
 		for(Sala sls : salas) {
 			this.addSalaFichero(sls.getTipo(), sls.getCapacidad(), sls.getMedicamentos(), sls.getEquipos(), sls.getPacientes(), sls.getEnfermeros(), sls.getLimpia());
 		}
+		for(Cita ct : agendaHospital.getCitas()) {
+			if(ct.getFormula() != null) {
+				this.addFormulaFichero(ct.getFormula());
+			}
+		}
 	}
 	
 	//Metodos relacionados con agenda de citas
 	public boolean generarCita(String CCPaciente, String CCMedico,int[] fechaInicio, int[] fechaFinal) throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {
+		if(this.getMedico(CCMedico) != null) {
 			return this.agendaHospital.generarCita(CCPaciente, CCMedico, fechaInicio, fechaFinal);
+		}else {
+			return false;
+		}
 	}
 
 	// Con el mismo medico
@@ -278,7 +300,7 @@ public class Hospital {
 		bld.append(CC + ",");
 		bld.append(disponible+ ",");
 		bld.append(esp+ ",");
-		bld.append(pres + ",");
+		bld.append(pres + ",;");
 		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
 	private void addMedicoFichero(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres, String ccPacientes) throws FileNotFoundException, IOException {
@@ -290,7 +312,12 @@ public class Hospital {
 		bld.append(disponible+ ",");
 		bld.append(esp+ ",");
 		bld.append(pres + ",");
-		bld.append(ccPacientes);
+		if(ccPacientes.equals("")) {
+			bld.append(";");
+		}else {
+			bld.append(ccPacientes);
+		}
+		
 		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
 	
@@ -589,6 +616,15 @@ public class Hospital {
 		}
 	}
 	
-	
+	//Metodos relacionados con formulas
+	private void addFormulaFichero(Formula fl) throws FileNotFoundException, IOException {
+		StringBuilder bld = new StringBuilder();
+		bld.append(fl.getIdFormula()+",");
+		for(String medcId : fl.getMedicamentos()) {
+			bld.append(medcId +";");
+		}
+		bld.append(","+fl.getIncapacidad());
+		Main.escrituraFicheroUltimaLinea("formulas.txt", bld.toString(), 0);
+	}
 	
 }

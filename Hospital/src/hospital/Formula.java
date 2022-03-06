@@ -2,7 +2,6 @@ package hospital;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.UUID;
 
 
 public class Formula {
@@ -12,15 +11,20 @@ public class Formula {
 	
 	//El id deberia de ser generado automaticamente, por lo tanto no deberia de pedirse como parametro en el constructos - Chica
 	//Tengo entendido que la incapacidad se pasa como parametro y se crea con este, pienso que podria ser un boolean - Chica (this.incapacidad = incapacidad)
-	public Formula( String[] idMedicamentos, String incapacidad) {
+	public Formula(String idFormula, String[] idMedicamentos, String incapacidad) {
 		super();
-		this.idFormula = UUID.randomUUID().toString();
-		this.idMedicamentos =  (ArrayList<String>) Arrays.asList(idMedicamentos);
+		this.idFormula = idFormula;
+		this.idMedicamentos =  new ArrayList<String>(Arrays.asList(idMedicamentos));
+		this.incapacidad = incapacidad;
+	}
+	public Formula(String idFormula) {
+		this.idFormula = idFormula;
+		this.idMedicamentos = new ArrayList<>();
 		this.incapacidad = "";
 	}
 	
 	public String[] getMedicamentos() {
-		return this.idMedicamentos.toArray(new String[0]);
+		return this.idMedicamentos.toArray(new String[idMedicamentos.size()]);
 	}
 	
 	public void addMedicamento(String idMedicamento) throws MedicamentoInvalido{
@@ -31,6 +35,7 @@ public class Formula {
 		}
 		
 	}
+	
 	
 	/*
 	public void addFormula(String idFormula, String[] idMedicamentos, String incapacidad) {
@@ -49,6 +54,11 @@ public class Formula {
 		return this.idFormula;
 	}
 	
+	@Override
+	public String toString() {
+		return "Formula [idFormula=" + idFormula + ", idMedicamentos=" + idMedicamentos + ", incapacidad=" + incapacidad
+				+ "]";
+	}
 	public String getIncapacidad() {
 		return this.incapacidad;
 	}

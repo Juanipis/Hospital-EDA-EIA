@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.*;
 
 public class Main {
-	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt")}; //Agrega aqu� los ficheros a usar
+	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt"), new File("formulas.txt")}; //Agrega aqu� los ficheros a usar
 	private static File[] historialMedico = new File("historialMedico").listFiles();
 	
 	
@@ -13,13 +13,18 @@ public class Main {
 		Hospital hp;
 		try {
 			hp = new Hospital();
-			//hp.addPaciente("Mariano", "Londoño", "887272", "Sura", new String[]{"Covid"}, 0, new String[]{"Jhoan"}, 29, "M", "A+");
-			//hp.getMedico("2190120").addPaciente(hp.getPaciente("887272"));
-			for(Paciente pc : hp.getMedico("2190120").getPacientes()) {
-				System.out.println(pc.getNombre());
-			}
-			//hp.guardarFicheros();
+			//hp.addMedico("Jhon", "Connors", "91299267", true, "Cirujano", false);
+			//hp.addPaciente("Alicante", "Del sur", "65468266", "Comeva", new String[]{}, 5, new String[] {},66 , "M", "A+" );
+			hp.addPacienteAMedico("91299267", "65468266");
+			System.out.println(Arrays.toString(hp.getCitasMedico("91299267"))); 
+			hp.guardarFicheros();
 		} catch (NumberFormatException | IOException | ParseException  e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExistePersonal e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MedicoNoCitas e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
