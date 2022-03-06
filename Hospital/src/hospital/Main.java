@@ -1,5 +1,6 @@
 package hospital;
 
+import java.awt.EventQueue;
 import java.io.*;
 import java.text.ParseException;
 import java.util.*;
@@ -7,29 +8,28 @@ import java.util.*;
 public class Main {
 	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt"), new File("formulas.txt")}; //Agrega aqu� los ficheros a usar
 	private static File[] historialMedico = new File("historialMedico").listFiles();
-	
+	private static Hospital hp;
 	
 	public static void main(String[] args) {	
 		Hospital hp;
 		try {
 			hp = new Hospital();
-			System.out.println(Arrays.toString(hp.getCitasMedico("91299267"))); 
-			hp.addHistorialPaciente("91299267", "b181ec5f-dbae-45a6-9fd5-b7fdb7a30da7", new String[]{"Fiebre","Diarrea"}, new String[] {""}, new String[] {"Sandia"});
-			hp.guardarFicheros();
-			
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+
+						VentanaInicio ventanaInicio = new VentanaInicio(new Hospital());
+						ventanaInicio.setVisible(true);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		} catch (NumberFormatException | IOException | ParseException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ExistePersonal e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MedicoNoCitas e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CitaNoExiste e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		
 		/*
 		hp.addEnfermeros("Juancho", "Carnal", "1292693", true);
@@ -47,7 +47,9 @@ public class Main {
 		
 }
 	
-	
+	public static Hospital getHospital() {
+		return Main.hp;s
+	}
 	
 	//Metodos para la recuperacion,escritura,eliminacionId y edicionId de los ficheros
 	public static void inicializacionFicheros() throws IOException {
