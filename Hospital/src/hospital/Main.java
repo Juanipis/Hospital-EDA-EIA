@@ -11,14 +11,14 @@ public class Main {
 	private static Hospital hp;
 	
 	public static void main(String[] args) {	
-		Hospital hp;
+	
 		try {
 			hp = new Hospital();
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 
-						VentanaInicio ventanaInicio = new VentanaInicio(new Hospital());
+						VentanaInicio ventanaInicio = new VentanaInicio();
 						ventanaInicio.setVisible(true);
 
 					} catch (Exception e) {

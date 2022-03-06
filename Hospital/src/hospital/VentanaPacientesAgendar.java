@@ -56,6 +56,7 @@ public class VentanaPacientesAgendar extends JFrame {
 				inicio.setVisible(true);
 				dispose();
 				
+				
 			}
 		});
 		btnNewButton.setBounds(166, 345, 89, 23);
