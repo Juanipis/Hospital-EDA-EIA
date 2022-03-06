@@ -9,7 +9,7 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JTextArea;
 
-public class InformacionMedicos {
+public class VentanaPersonalMedicos {
 
 	public JFrame medicosFrame;
 	private JTextField txtMedicos;
@@ -21,7 +21,7 @@ public class InformacionMedicos {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InformacionMedicos window = new InformacionMedicos();
+					VentanaPersonalMedicos window = new VentanaPersonalMedicos();
 					window.medicosFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class InformacionMedicos {
 	/**
 	 * Create the application.
 	 */
-	public InformacionMedicos() {
+	public VentanaPersonalMedicos() {
 		initialize();
 	}
 

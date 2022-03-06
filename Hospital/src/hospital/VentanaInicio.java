@@ -148,6 +148,10 @@ public class VentanaInicio {
 		txtBuenosDiasComo.setColumns(10);
 		
 		JButton btnAgendarCita = new JButton("Agendar Cita");
+		btnAgendarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAgendarCita.setBounds(10, 42, 123, 23);
 		panel_2.add(btnAgendarCita);
 		
@@ -227,7 +231,7 @@ public class VentanaInicio {
 		JButton btnMedicos = new JButton("Medicos");
 		btnMedicos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InformacionMedicos window = new InformacionMedicos();
+				VentanaPersonalMedicos window = new VentanaPersonalMedicos();
 				window.medicosFrame.setVisible(true);
 				frame.dispose();
 			}
