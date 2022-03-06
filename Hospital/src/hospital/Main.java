@@ -16,6 +16,7 @@ public class Main {
 			System.out.println(Arrays.toString(hp.getCitasMedico("91299267"))); 
 			hp.addHistorialPaciente("91299267", "b181ec5f-dbae-45a6-9fd5-b7fdb7a30da7", new String[]{"Fiebre","Diarrea"}, new String[] {""}, new String[] {"Sandia"});
 			hp.guardarFicheros();
+			
 		} catch (NumberFormatException | IOException | ParseException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

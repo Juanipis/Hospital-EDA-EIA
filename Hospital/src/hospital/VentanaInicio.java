@@ -34,6 +34,7 @@ public class VentanaInicio extends JFrame {
 	private JTextField txtId;
 	private JTextField txtEstadoIncapacidadY;
 	private JTextField txtBuenasSiEstas;
+	public  Hospital a ;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,8 @@ public class VentanaInicio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaInicio ventanaInicio = new VentanaInicio();
+
+					VentanaInicio ventanaInicio = new VentanaInicio(new Hospital());
 					ventanaInicio.setVisible(true);
 
 				} catch (Exception e) {
@@ -54,18 +56,21 @@ public class VentanaInicio extends JFrame {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param a
 	 */
-	public VentanaInicio() {
-		
+	public VentanaInicio(Hospital a) {
+
 		setAlwaysOnTop(true);
 		setResizable(false);
-		initialize();
+		initialize(a);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param a2 
 	 */
-	private void initialize() {
+	private void initialize(Hospital a2) {
 
 		getContentPane().setForeground(SystemColor.desktop);
 		getContentPane().setLayout(null);
@@ -161,7 +166,7 @@ public class VentanaInicio extends JFrame {
 		JButton btnAgendarCita = new JButton("Agendar Cita");
 		btnAgendarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaPacientesAgendar a = new VentanaPacientesAgendar();
+				VentanaPacientesAgendar a = new VentanaPacientesAgendar(a2);
 				a.setVisible(true);
 				dispose();
 
