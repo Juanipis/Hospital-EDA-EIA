@@ -176,6 +176,18 @@ public class Sala {
 			System.out.println("No se puede agregar Enfermero porque ya existe un Enfermero con esa cedula, en la sala");
 		}
 	}
+	public void addEnfermero(Enfermero eo) throws IOException,VectorNulo, EnfermeroEnSala {
+		// traer cedula de enfermero. //Verificarla en un metodo contra un arreglo de
+		// enfermeros //En caso de que la cedula no exista, agregar el enfermero
+		
+			if (verificarEnfermero(eo.getCC()) != -1) {
+				enfermeros = Arrays.copyOf(enfermeros, enfermeros.length + 1);
+				enfermeros[enfermeros.length - 1] = eo;
+			}else {
+				throw new EnfermeroEnSala(eo.getCC());
+			}
+		
+	}
 
 	public void addEquipo(double inventario, boolean disponibilidad, String codigo, boolean estado) throws VectorNulo{
 		
@@ -189,6 +201,18 @@ public class Sala {
 			
 		
 	}
+	public void addEquipo(Equipo eq) throws IOException,VectorNulo, EquipoEnSala {
+		// traer codigo de equipo. //Verificarla en un metodo contra un arreglo de
+		// equipos //En caso de que el codigo no exista, agregar el equipo
+		
+			if (verificarEquipo(eq.getCodigo()) != -1) {
+				equipos = Arrays.copyOf(equipos, equipos.length + 1);
+				equipos[equipos.length - 1] = eq;
+			}else {
+				throw new EquipoEnSala(eq.getCodigo());
+			}
+		
+	}
 
 	public void addMedicamento(String nombre, String id, Date fechaVencimiento, Date fechaCompra,
 			boolean disponibilidad, double cantidad) throws VectorNulo {
@@ -200,6 +224,19 @@ public class Sala {
 			}else {
 				System.out.println("No se puede agregar medicamento porque ya existe un medicamento con ese id");
 			} 
+	}
+	
+	public void addMedicamento(Medicamento md) throws IOException,VectorNulo, MedicamentoEnSala {
+		// traer codigo de medicamento. //Verificarla en un metodo contra un arreglo de
+		// medicamentos //En caso de que el id no exista, agregar el medicamento
+		
+			if (verificarMedicamento(md.getId()) != -1) {
+				medicamentos = Arrays.copyOf(medicamentos, medicamentos.length + 1);
+				medicamentos[medicamentos.length - 1] = md;
+			}else {
+				throw new MedicamentoEnSala(md.getId());
+			}
+		
 	}
 	// Metodos de eliminacion--------------------------------------
 

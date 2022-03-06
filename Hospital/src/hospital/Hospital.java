@@ -254,6 +254,11 @@ public class Hospital {
 		return this.agendaHospital.buscarCitaId(idFormula);
 	}
 	
+//	//Metodos relacionados con Medicamentos
+//	public Medicamento getMedicamento(String idMedicamento) {
+//		int index = 0;
+//		while(index < medicamentos.size())
+//	}
 	
 	//Metodos relacionados con medicos
 	public Medico getMedico(String CC){
@@ -333,6 +338,29 @@ public class Hospital {
 			mdc.addPaciente(pc);
 		}
 	}
+	
+	//Me todo ponerle el throws con las excepciones
+	public void addEnfermeroASala(String CCEnfermero, String salaId) throws IOException, VectorNulo, EnfermeroEnSala {
+		Sala s = this.getSala(salaId);
+		Enfermero eo = this.getEnfermero(CCEnfermero);
+		if(eo != null && s != null ) {
+			s.addEnfermero(eo);
+		}
+	}
+	public void addPacienteASala(String CCPaciente, String salaId) throws IOException, VectorNulo, PacienteEnSala {
+		Sala s = this.getSala(salaId);
+		Paciente pc = this.getPaciente(CCPaciente);
+		if(s != null && pc != null){
+			s.addPaciente(pc);
+		}
+	}
+//	public void addMedicamentoASala(String idMed, String salaId) {
+//		Sala s = this.getSala(salaId);
+//		Medicamento md = this.getme
+//		if(s != null && md != null){
+//			s.addPaciente(md);
+//		}
+//	}
 	
 	public void setFormulaMedico(String idCita, String ccMedico, String[] idMedicamentos ,String Incapacidad) throws CitaNoExiste {
 		Cita ct = agendaHospital.buscarCitaId(idCita);

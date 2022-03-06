@@ -71,3 +71,18 @@ class NoAcompanantesPaciente extends Exception{
 		super("No existe el acompañante de la persona");
 	}
 }
+class EnfermeroEnSala extends Exception {
+	public EnfermeroEnSala(String CC) {
+		super("Enfermero con la cedula: "+CC+" ya se encuentra en la sala");
+	}
+}
+class EquipoEnSala extends Exception {
+	public EquipoEnSala(String codigoEquipo) {
+		super("El equipo con el codigo: "+codigoEquipo+" ya se encuentra en la sala");
+	}
+}
+class MedicamentoEnSala extends Exception {
+	public MedicamentoEnSala(String idMedicamento) {
+		super("El medicamento con el id: "+idMedicamento+" ya se encuentra en la sala");
+	}
+}
