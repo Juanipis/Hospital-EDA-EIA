@@ -143,7 +143,6 @@ public class Hospital {
 				try {
 					Cita ct = this.buscarCitaId(partesFormula[0]);
 					ct.setFormula(partesFormula[1].split(";"), partesFormula[2]);
-					System.out.println("Aqui");
 				} catch (CitaNoExiste e) {
 					continue;
 				}
