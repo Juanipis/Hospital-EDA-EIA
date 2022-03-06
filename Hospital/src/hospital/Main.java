@@ -13,10 +13,8 @@ public class Main {
 		Hospital hp;
 		try {
 			hp = new Hospital();
-			//hp.addMedico("Jhon", "Connors", "91299267", true, "Cirujano", false);
-			//hp.addPaciente("Alicante", "Del sur", "65468266", "Comeva", new String[]{}, 5, new String[] {},66 , "M", "A+" );
-			hp.addPacienteAMedico("91299267", "65468266");
 			System.out.println(Arrays.toString(hp.getCitasMedico("91299267"))); 
+			hp.addHistorialPaciente("91299267", "b181ec5f-dbae-45a6-9fd5-b7fdb7a30da7", new String[]{"Fiebre","Diarrea"}, new String[] {""}, new String[] {"Sandia"});
 			hp.guardarFicheros();
 		} catch (NumberFormatException | IOException | ParseException  e) {
 			// TODO Auto-generated catch block
@@ -25,6 +23,9 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MedicoNoCitas e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CitaNoExiste e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

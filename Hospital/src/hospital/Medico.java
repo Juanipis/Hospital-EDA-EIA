@@ -42,7 +42,8 @@ public class Medico extends Personal {
 			fl.addMedicamento(medc);
 		}
 	}
-
+	//El historial se genera desde una cita
+	/*
 	public void addHistorial(String[] enfermedades, String[] operaciones, String[] alergias, String citaId) throws ExistePersonal{
 		//Cambie un parametro de Cita cita -> String citaId para poder satisfacer el constructor y un condicional -Rafael
 		Historial[] historial = new Historial[0];
@@ -55,5 +56,5 @@ public class Medico extends Personal {
 				historial[historial.length-1] = new Historial(enfermedades, operaciones, alergias, citaId);
 			}
 		}
-	}
+	}*/
 }

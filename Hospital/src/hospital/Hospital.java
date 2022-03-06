@@ -292,6 +292,7 @@ public class Hospital {
 			throw new ExistePersonal(CC);
 		}		
 	}
+	//Si no tiene pacientes
 	private void addMedicoFichero(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres) throws FileNotFoundException, IOException {
 		StringBuilder bld = new StringBuilder();
 		bld.append("0" + ",");
@@ -303,6 +304,7 @@ public class Hospital {
 		bld.append(pres + ",;");
 		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
 	}
+	//Si tiene pacientes
 	private void addMedicoFichero(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres, String ccPacientes) throws FileNotFoundException, IOException {
 		StringBuilder bld = new StringBuilder();
 		bld.append("0" + ",");
@@ -338,6 +340,18 @@ public class Hospital {
 		Cita ct = agendaHospital.buscarCitaId(idCita);
 		ct.setFormula(idMedicamentos, Incapacidad);
 	}
+	
+	public void addHistorialPaciente(String CCMedico,String citaId,String[] enfermedades, String[] operaciones, String[] alergias) throws MedicoNoCitas, FileNotFoundException, IOException, CitaNoExiste {
+		Cita[] ct = this.getCitasMedico(CCMedico);
+		int index = 0;
+		while(index < ct.length && ct[index] != null && !ct[index].getIdCita().equals(citaId)){index++;}
+		if(index < ct.length && ct[index] != null && ct[index].getIdCita().equals(citaId)) {
+			this.getPaciente(ct[index].getCCPaciente()).addHistorial(enfermedades, operaciones, alergias, citaId);
+		}else {
+			throw new CitaNoExiste(citaId);
+		}
+	}
+	
 	
 	//Metodos relacionados con personal limpieza
 	public Limpieza getPersonalLimpieza(String CC){
