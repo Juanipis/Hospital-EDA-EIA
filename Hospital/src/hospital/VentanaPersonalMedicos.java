@@ -36,7 +36,6 @@ public class VentanaPersonalMedicos extends JFrame {
 	 * Create the application.
 	 */
 	public VentanaPersonalMedicos() {
-		setUndecorated(true);
 		initialize();
 	}
 
