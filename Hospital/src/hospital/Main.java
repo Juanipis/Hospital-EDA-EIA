@@ -48,7 +48,7 @@ public class Main {
 }
 	
 	public static Hospital getHospital() {
-		return Main.hp;s
+		return Main.hp;
 	}
 	
 	//Metodos para la recuperacion,escritura,eliminacionId y edicionId de los ficheros

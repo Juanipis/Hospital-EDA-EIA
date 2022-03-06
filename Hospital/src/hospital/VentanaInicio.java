@@ -45,21 +45,19 @@ public class VentanaInicio extends JFrame {
 
 	/**
 	 * Create the application.
-	 * 
-	 * @param a
 	 */
-	public VentanaInicio(Hospital a) {
+	public VentanaInicio() {
 
 		setAlwaysOnTop(true);
 		setResizable(false);
-		initialize(a);
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @param a2 
 	 */
-	private void initialize(Hospital a2) {
+	private void initialize() {
 
 		getContentPane().setForeground(SystemColor.desktop);
 		getContentPane().setLayout(null);
@@ -155,7 +153,7 @@ public class VentanaInicio extends JFrame {
 		JButton btnAgendarCita = new JButton("Agendar Cita");
 		btnAgendarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaPacientesAgendar a = new VentanaPacientesAgendar(a2);
+				VentanaPacientesAgendar a = new VentanaPacientesAgendar();
 				a.setVisible(true);
 				dispose();
 

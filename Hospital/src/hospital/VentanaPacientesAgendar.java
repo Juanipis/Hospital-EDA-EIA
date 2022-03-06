@@ -38,10 +38,9 @@ public class VentanaPacientesAgendar extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param a2 
 	 * @param a 
 	 */
-	public VentanaPacientesAgendar(Hospital a2) {
+	public VentanaPacientesAgendar() {
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 418);
@@ -53,7 +52,7 @@ public class VentanaPacientesAgendar extends JFrame {
 		JButton btnNewButton = new JButton("Volver");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaInicio inicio = new VentanaInicio(a2);
+				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
 				
