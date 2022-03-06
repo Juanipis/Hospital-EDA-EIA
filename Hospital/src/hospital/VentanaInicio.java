@@ -24,9 +24,7 @@ public class VentanaInicio extends JFrame {
 	private JTextField txtTodoDatoDe_3;
 	private JTextField txtBuenosDiasComo;
 	private JTextField txtUtiliceEsteBoton;
-	private JTextField txtUtiliceEsteBoton_1;
 	private JTextField txtEnCasoDe;
-	private JTextField txtSiPerdioUna;
 	private JTextField txtSiCambioDe;
 	private JTextField textField;
 	private JTextField txtEstadoCantidadY;
@@ -173,27 +171,7 @@ public class VentanaInicio extends JFrame {
 		btnCancelarCita.setBounds(10, 287, 123, 23);
 		panel_2.add(btnCancelarCita);
 
-		JButton btnRecuperarCita = new JButton("Recuperar Cita");
-		btnRecuperarCita.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VentanaPacientesRecuperar a = new VentanaPacientesRecuperar();
-				a.setVisible(true);
-				dispose();
-			}
-		});
-		btnRecuperarCita.setBounds(10, 229, 123, 23);
-		panel_2.add(btnRecuperarCita);
 
-		JButton btnGenerarCita = new JButton("Generar Cita");
-		btnGenerarCita.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VentanaPacientesGenerar a = new VentanaPacientesGenerar();
-				a.setVisible(true);
-				dispose();
-			}
-		});
-		btnGenerarCita.setBounds(10, 103, 123, 23);
-		panel_2.add(btnGenerarCita);
 
 		JButton btnModificarCita = new JButton("Modificar Cita");
 		btnModificarCita.addActionListener(new ActionListener() {
@@ -214,14 +192,6 @@ public class VentanaInicio extends JFrame {
 		panel_2.add(txtUtiliceEsteBoton);
 		txtUtiliceEsteBoton.setColumns(10);
 
-		txtUtiliceEsteBoton_1 = new JTextField();
-		txtUtiliceEsteBoton_1.setBorder(null);
-		txtUtiliceEsteBoton_1.setBackground(SystemColor.menu);
-		txtUtiliceEsteBoton_1.setText("Utilice este boton si necesita generar una cita.");
-		txtUtiliceEsteBoton_1.setColumns(10);
-		txtUtiliceEsteBoton_1.setBounds(143, 104, 631, 20);
-		panel_2.add(txtUtiliceEsteBoton_1);
-
 		txtEnCasoDe = new JTextField();
 		txtEnCasoDe.setBorder(null);
 		txtEnCasoDe.setBackground(SystemColor.menu);
@@ -229,15 +199,6 @@ public class VentanaInicio extends JFrame {
 		txtEnCasoDe.setColumns(10);
 		txtEnCasoDe.setBounds(143, 169, 631, 20);
 		panel_2.add(txtEnCasoDe);
-
-		txtSiPerdioUna = new JTextField();
-		txtSiPerdioUna.setBorder(null);
-		txtSiPerdioUna.setBackground(SystemColor.menu);
-		txtSiPerdioUna
-				.setText("Si perdio una cita y necesita recuperarla y saber las especificaciones utilice este boton.");
-		txtSiPerdioUna.setColumns(10);
-		txtSiPerdioUna.setBounds(143, 230, 631, 20);
-		panel_2.add(txtSiPerdioUna);
 
 		txtSiCambioDe = new JTextField();
 		txtSiCambioDe.setBorder(null);
