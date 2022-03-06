@@ -56,6 +56,9 @@ public class VentanaInicio extends JFrame {
 	 * Create the application.
 	 */
 	public VentanaInicio() {
+		setUndecorated(true);
+		setAlwaysOnTop(true);
+		setResizable(false);
 		initialize();
 	}
 
@@ -134,6 +137,15 @@ public class VentanaInicio extends JFrame {
 		btnVisitas.setBounds(547, 141, 142, 62);
 		panel.add(btnVisitas);
 
+		JButton btnNewButton = new JButton("Salir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton.setBounds(314, 260, 89, 23);
+		panel.add(btnNewButton);
+
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Pacientes", null, panel_2, null);
 		panel_2.setLayout(null);
@@ -149,28 +161,56 @@ public class VentanaInicio extends JFrame {
 		JButton btnAgendarCita = new JButton("Agendar Cita");
 		btnAgendarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VentanaPacientesAgendar a = new VentanaPacientesAgendar();
+				a.setVisible(true);
+				dispose();
+
 			}
 		});
 		btnAgendarCita.setBounds(10, 42, 123, 23);
 		panel_2.add(btnAgendarCita);
 
 		JButton btnCancelarCita = new JButton("Cancelar Cita");
+		btnCancelarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaPacientesCancelar a = new VentanaPacientesCancelar();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnCancelarCita.setBounds(10, 287, 123, 23);
 		panel_2.add(btnCancelarCita);
 
 		JButton btnRecuperarCita = new JButton("Recuperar Cita");
 		btnRecuperarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VentanaPacientesRecuperar a = new VentanaPacientesRecuperar();
+				a.setVisible(true);
+				dispose();
 			}
 		});
 		btnRecuperarCita.setBounds(10, 229, 123, 23);
 		panel_2.add(btnRecuperarCita);
 
 		JButton btnGenerarCita = new JButton("Generar Cita");
+		btnGenerarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaPacientesGenerar a = new VentanaPacientesGenerar();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnGenerarCita.setBounds(10, 103, 123, 23);
 		panel_2.add(btnGenerarCita);
 
 		JButton btnModificarCita = new JButton("Modificar Cita");
+		btnModificarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaPacientesModificar a = new VentanaPacientesModificar();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnModificarCita.setBounds(10, 166, 123, 23);
 		panel_2.add(btnModificarCita);
 
@@ -232,6 +272,7 @@ public class VentanaInicio extends JFrame {
 		JButton btnMedicos = new JButton("Medicos");
 		btnMedicos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				VentanaPersonalMedicos medico = new VentanaPersonalMedicos();
 				medico.setVisible(true);
 				dispose();
@@ -327,6 +368,13 @@ public class VentanaInicio extends JFrame {
 		panel_3.add(textField);
 
 		JButton btnEquipos = new JButton("Equipos");
+		btnEquipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInventarioEquipos a = new VentanaInventarioEquipos();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnEquipos.setBounds(20, 42, 89, 23);
 		panel_3.add(btnEquipos);
 
@@ -340,6 +388,13 @@ public class VentanaInicio extends JFrame {
 		panel_3.add(txtEstadoCantidadY);
 
 		JButton btnSalas = new JButton("Salas");
+		btnSalas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInventarioSalas a = new VentanaInventarioSalas();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnSalas.setBounds(20, 126, 89, 23);
 		panel_3.add(btnSalas);
 
@@ -353,6 +408,13 @@ public class VentanaInicio extends JFrame {
 		panel_3.add(txtEstadoCantidadY_1);
 
 		JButton btnFormula = new JButton("Formula");
+		btnFormula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInventarioFormula a = new VentanaInventarioFormula();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnFormula.setBounds(20, 213, 89, 23);
 		panel_3.add(btnFormula);
 
@@ -366,6 +428,13 @@ public class VentanaInicio extends JFrame {
 		panel_3.add(txtId);
 
 		JButton btnHistorial = new JButton("Historial");
+		btnHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInventarioHistorial a = new VentanaInventarioHistorial();
+				a.setVisible(true);
+				dispose();
+			}
+		});
 		btnHistorial.setBounds(20, 299, 89, 23);
 		panel_3.add(btnHistorial);
 

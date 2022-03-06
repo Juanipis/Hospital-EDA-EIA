@@ -8,6 +8,9 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPersonalMedicos extends JFrame {
 
@@ -33,6 +36,7 @@ public class VentanaPersonalMedicos extends JFrame {
 	 * Create the application.
 	 */
 	public VentanaPersonalMedicos() {
+		setUndecorated(true);
 		initialize();
 	}
 
@@ -56,7 +60,19 @@ public class VentanaPersonalMedicos extends JFrame {
 		txtMedicos.setColumns(10);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 80, 894, 696);
+		textArea.setBounds(10, 80, 894, 379);
 		getContentPane().add(textArea);
+
+		JButton btnNewButton = new JButton("Volver");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInicio inicio = new VentanaInicio();
+				inicio.setVisible(true);
+				dispose();
+
+			}
+		});
+		btnNewButton.setBounds(446, 479, 89, 23);
+		getContentPane().add(btnNewButton);
 	}
 }
