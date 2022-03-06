@@ -46,7 +46,7 @@ public class VentanaPersonalMedicos extends JFrame {
 	private void initialize() {
 
 		setBounds(100, 100, 930, 826);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		txtMedicos = new JTextField();

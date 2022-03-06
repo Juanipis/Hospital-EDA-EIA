@@ -459,7 +459,7 @@ public class VentanaInicio extends JFrame {
 		panel_4.add(txtBuenasSiEstas);
 		txtBuenasSiEstas.setColumns(10);
 		setBounds(100, 100, 805, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 	}
 }
