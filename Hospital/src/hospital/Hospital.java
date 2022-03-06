@@ -261,6 +261,11 @@ public class Hospital {
 //	}
 	
 	//Metodos relacionados con medicos
+	
+	public Medico[] getMedicos() {
+		return medicos.toArray(new Medico[medicos.size()]);
+	}
+	
 	public Medico getMedico(String CC){
 		int index = 0;
 		while(index < medicos.size() && medicos.get(index) != null && !medicos.get(index).getCC().equals(CC) ) {
@@ -338,6 +343,9 @@ public class Hospital {
 			mdc.addPaciente(pc);
 		}
 	}
+	public Paciente[] getPacientes() {
+		return pacientes.toArray(new Paciente[pacientes.size()]);
+	}
 	
 	//Me todo ponerle el throws con las excepciones
 	public void addEnfermeroASala(String CCEnfermero, String salaId) throws IOException, VectorNulo, EnfermeroEnSala {
@@ -380,6 +388,10 @@ public class Hospital {
 	
 	
 	//Metodos relacionados con personal limpieza
+	public Limpieza[] getLimpieza() {
+		return personalLimpieza.toArray(new Limpieza[personalLimpieza.size()]);
+	}
+	
 	public Limpieza getPersonalLimpieza(String CC){
 		int index = 0;
 		while(index < personalLimpieza.size() && personalLimpieza.get(index) != null && !personalLimpieza.get(index).getCC().equals(CC) ) {
@@ -438,6 +450,11 @@ public class Hospital {
 	}
 	
 	//Metodos relacionados con efermeros
+	
+	public Enfermero[] getEnfermeros() {
+		return enfermeros.toArray(new Enfermero[enfermeros.size()]);
+	}
+	
 	public Enfermero getEnfermero(String CC){
 		int index = 0;
 		while(index < enfermeros.size() && enfermeros.get(index) != null && !enfermeros.get(index).getCC().equals(CC) ) {
@@ -487,6 +504,7 @@ public class Hospital {
 	}
 	
 	//Metodos relacionados con Pacientes
+	
 	public Paciente getPaciente(String CC){
 		int index = 0;
 		while(index < pacientes.size() && pacientes.get(index) != null && !pacientes.get(index).getCC().equals(CC) ) {
@@ -558,6 +576,11 @@ public class Hospital {
 			pc.eliminarAcompanante(CCVisitante);
 		}
 	}
+	
+	public Sala[] getSalas() {
+		return salas.toArray(new Sala[salas.size()]);
+	}
+	
 	
 	//Metodos relacionados con salas
 	public Sala getSala(String idSala){
