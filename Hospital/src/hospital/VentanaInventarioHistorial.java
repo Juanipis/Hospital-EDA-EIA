@@ -11,13 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import java.awt.SystemColor;
 
 public class VentanaInventarioHistorial extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtPacientes;
-	private JScrollPane scrollPane;
 	private JTextField txtCedula;
 	private JTextField txtCedulaInput;
 
@@ -67,16 +67,6 @@ public class VentanaInventarioHistorial extends JFrame {
 		btnNewButton.setBounds(153, 215, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 33, 277, 171);
-		contentPane.add(scrollPane);
-		
-		txtPacientes = new JTextField();
-		txtPacientes.setEditable(false);
-		scrollPane.setViewportView(txtPacientes);
-		
-		txtPacientes.setText(texto);
-		
 		txtCedulaInput = new JTextField();
 		txtCedulaInput.setBounds(332, 99, 96, 20);
 		contentPane.add(txtCedulaInput);
@@ -92,6 +82,15 @@ public class VentanaInventarioHistorial extends JFrame {
 		txtCedula.setColumns(10);
 		txtCedula.setEditable(false);
 		txtCedula.setBorder(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 16, 281, 138);
+		contentPane.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		scrollPane.setViewportView(textArea);
+		textArea.setText(texto);
 		
 		JButton btnConsultarHistorial = new JButton("Consultar Historial");
 		btnConsultarHistorial.setBounds(332, 139, 89, 23);
