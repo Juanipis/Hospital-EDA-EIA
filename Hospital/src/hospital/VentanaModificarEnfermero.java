@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -68,7 +70,12 @@ public VentanaModificarEnfermero() {
 		JButton btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//mofificarEnfermero
+				try {
+					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+				} catch (IOException | ExistePersonal e1) {
+					// TODO Auto-generated catch block
+					
+				}
 			}
 		});
 		btnAgregar.setBounds(61, 121, 89, 23);
@@ -157,7 +164,12 @@ public VentanaModificarEnfermero() {
 		btnAgregar_1 = new JButton("Borrar");
 		btnAgregar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//borrarEnfermero
+				try {
+					Main.hp.eliminarEnfermero(textField_7.getText());
+				} catch (NoExistePersonal | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnAgregar_1.setBounds(61, 227, 89, 23);

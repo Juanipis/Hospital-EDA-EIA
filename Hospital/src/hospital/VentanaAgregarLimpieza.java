@@ -88,7 +88,6 @@ public VentanaAgregarLimpieza() {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		//addEnfermero
 			}
 		});
 		btnAgregar.setBounds(61, 119, 89, 23);
