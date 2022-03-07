@@ -8,8 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Spliterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class VentanaPacientesAgendar extends JFrame {
@@ -19,7 +24,6 @@ public class VentanaPacientesAgendar extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -43,7 +47,7 @@ public class VentanaPacientesAgendar extends JFrame {
 	public VentanaPacientesAgendar() {
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 450, 418);
+		setBounds(100, 100, 450, 368);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,17 +61,10 @@ public class VentanaPacientesAgendar extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(166, 345, 89, 23);
+		btnNewButton.setBounds(161, 301, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Agendar");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnNewButton_1.setBounds(166, 311, 89, 23);
-		contentPane.add(btnNewButton_1);
+	
 		
 		JLabel lblNewLabel = new JLabel("CcPaciente");
 		lblNewLabel.setBounds(31, 11, 136, 14);
@@ -105,13 +102,50 @@ public class VentanaPacientesAgendar extends JFrame {
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("Id cita");
-		lblNewLabel_4.setBounds(38, 271, 46, 14);
-		contentPane.add(lblNewLabel_4);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(223, 275, 156, 20);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		JButton btnNewButton_1 = new JButton("Agendar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ini=  textField_2.getText();
+				String[] a= ini.split(",");
+			
+				int [] x=new int [a.length];
+				for (int i = 0; i < a.length; i++) {
+					x[i]= Integer.parseInt(a[i]);
+				
+				}
+				
+				String fin=  textField_3.getText();
+				String[] b= fin.split(",");
+			
+				int [] c=new int [a.length];
+				for (int i = 0; i < a.length; i++) {
+					c[i]= Integer.parseInt(b[i]);
+				
+				}
+				// fechas x, c
+				String cc1 = textField.getText();
+				String cc2= textField_2.getText();
+				try {
+					Main.getHospital().generarCita(cc1, cc2, x, c);
+				} catch (FormatoFechaInvalida e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+					
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				
+				} catch (NoHayDisponibilidadCita e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+					
+				}
+				
+				
+				
+				
+				
+				
+			}
+		});
+		btnNewButton_1.setBounds(161, 267, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }

@@ -94,6 +94,7 @@ public class VentanaInicio extends JFrame {
 		btnPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				(tabbedPane).setSelectedIndex(1);
+			
 			}
 		});
 
