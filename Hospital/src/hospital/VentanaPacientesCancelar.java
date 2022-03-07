@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -53,6 +54,14 @@ public class VentanaPacientesCancelar extends JFrame {
 		});
 		btnNewButton.setBounds(156, 191, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
+		btnNewButton_1.setBounds(156, 157, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
-
 }
