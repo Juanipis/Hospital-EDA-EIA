@@ -5,5 +5,9 @@
 2,Maria,Alela,1438404,false
 2,Sor Ines,Cruz,524977,false
 2,Ramiro,Bernal,58711268,false
+<<<<<<< HEAD
 0,Juan,Pelaez,1001368956,true,Cirujano,true,;
 0,Pablo,Velez,1273467213,true,Medico general,true,;
+=======
+1,Walter,Miraflores,12312312,true
+>>>>>>> 089d97f25189029bce40accb869b6b57a4a5dad7
