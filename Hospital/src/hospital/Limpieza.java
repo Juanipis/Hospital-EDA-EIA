@@ -18,8 +18,8 @@ public class Limpieza extends Personal {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + ", Apellido: " + apellido + " CC: " + CC
-				+ "disponible: " + disponible;
+		return "Nombre: " + nombre + ", Apellido: " + apellido + ", CC: " + CC
+				+ ", Disponible: " + disponible;
 	}
 	
 	
