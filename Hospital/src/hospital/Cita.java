@@ -23,7 +23,7 @@ public class Cita {
 		//this.formula = new Formula();
 		this.idCita = idCita;
 	}
-
+	//Aquí pude haber una excepcion porque en caso de que no exista la formula
 	public void addFormulaMedicamentos(String[] medicamentos) throws MedicamentoInvalido {
 		try {
 			for (String med : medicamentos) {
