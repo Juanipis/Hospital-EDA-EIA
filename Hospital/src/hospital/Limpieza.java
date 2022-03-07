@@ -14,6 +14,13 @@ public class Limpieza extends Personal {
 			throw new SalaLimpia(sala.getTipo());
 		}
 	}
-	
 
+
+	@Override
+	public String toString() {
+		return "Nombre: " + nombre + ", Apellido: " + apellido + " CC: " + CC
+				+ "disponible: " + disponible;
+	}
+	
+	
 }

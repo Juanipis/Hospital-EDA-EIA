@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -34,6 +36,12 @@ public class VentanaPersonalLimpieza extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPersonalLimpieza() {
+		String texto = "";
+		
+		Limpieza[] limpieza = Main.getHospital().getLimpieza();
+		for(int x = 0; x < limpieza.length; x++) {
+			texto = texto + limpieza[x].toString() + "\n";
+		}
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -53,6 +61,15 @@ public class VentanaPersonalLimpieza extends JFrame {
 		});
 		btnNewButton.setBounds(161, 172, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 16, 398, 138);
+		contentPane.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		scrollPane.setViewportView(textArea);
+		textArea.setText(texto);
 	}
 
 }

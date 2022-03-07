@@ -9,6 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.ScrollPane;
+import java.awt.Point;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
 
 public class VentanaPersonalPacientes extends JFrame {
 
@@ -34,6 +42,13 @@ public class VentanaPersonalPacientes extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPersonalPacientes() {
+		String texto = "";
+		
+		Paciente[] pacientes = Main.getHospital().getPacientes();
+		for(int x = 0; x < pacientes.length; x++) {
+			texto = texto + pacientes[x].toString() + "\n";
+		}
+		System.out.print(texto);
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -54,6 +69,15 @@ public class VentanaPersonalPacientes extends JFrame {
 		});
 		btnNewButton.setBounds(167, 157, 89, 23);
 		contentPane.add(btnNewButton);
-	}
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 16, 398, 138);
+		contentPane.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		scrollPane.setViewportView(textArea);
+		textArea.setText(texto);
 
+	}
 }
