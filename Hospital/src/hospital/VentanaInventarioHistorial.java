@@ -95,6 +95,12 @@ public class VentanaInventarioHistorial extends JFrame {
 		
 		JButton btnConsultarHistorial = new JButton("Consultar Historial");
 		btnConsultarHistorial.setBounds(332, 139, 89, 23);
+		btnConsultarHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInventarioHistorialPacientes historialPaciente = new VentanaInventarioHistorialPacientes();
+				dispose();
+			}
+		});
 		contentPane.add(btnConsultarHistorial);
 		
 	}
