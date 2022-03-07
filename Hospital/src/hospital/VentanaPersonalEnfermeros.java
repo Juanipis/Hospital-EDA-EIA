@@ -48,7 +48,6 @@ public VentanaPersonalEnfermeros() {
 	 * Initialize the contents of the medicosFrame.
 	 */
 	private void initialize() {
-
 		String texto = "";
 		
 		Medico[] medicos = Main.getHospital().getMedicos();
@@ -63,8 +62,7 @@ public VentanaPersonalEnfermeros() {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
+
 		JButton btnNewButton = new JButton("Volver");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

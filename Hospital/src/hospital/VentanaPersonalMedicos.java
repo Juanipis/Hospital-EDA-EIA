@@ -51,9 +51,9 @@ public class VentanaPersonalMedicos extends JFrame {
 	 * Initialize the contents of the medicosFrame.
 	 */
 	private void initialize() {
-
 		String texto = "";
-		
+
+	
 		Medico[] medicos = Main.getHospital().getMedicos();
 		for(int x = 0; x < medicos.length; x++) {
 			texto = texto + medicos[x].toString() + "\n";
