@@ -251,6 +251,10 @@ public class Hospital {
 //		while(index < medicamentos.size())
 //	}
 
+	//Metodos relacionados con Equipos
+//	public Equipo[] getEquipos() {
+//		return partesEquip.get
+//				}
 	// Metodos relacionados con medicos
 
 	public Medico[] getMedicos() {
