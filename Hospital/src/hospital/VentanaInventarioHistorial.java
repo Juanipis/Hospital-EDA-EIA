@@ -11,12 +11,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
+import java.awt.SystemColor;
 
 public class VentanaInventarioHistorial extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtPacientes;
 	private JScrollPane scrollPane;
+	private JTextField txtCedula;
+	private JTextField txtCedulaInput;
 
 	/**
 	 * Launch the application.
@@ -74,6 +77,25 @@ public class VentanaInventarioHistorial extends JFrame {
 		
 		txtPacientes.setText(texto);
 		
+		txtCedulaInput = new JTextField();
+		txtCedulaInput.setBounds(332, 99, 96, 20);
+		contentPane.add(txtCedulaInput);
+		txtCedulaInput.setColumns(10);
+		txtCedulaInput.setEditable(true);
+		
+		
+		txtCedula = new JTextField();
+		txtCedula.setBackground(SystemColor.menu);
+		txtCedula.setBounds(332, 68, 96, 20);
+		contentPane.add(txtCedula);
+		txtCedula.setText("Ingrese Cedula");
+		txtCedula.setColumns(10);
+		txtCedula.setEditable(false);
+		txtCedula.setBorder(null);
+		
+		JButton btnConsultarHistorial = new JButton("Consultar Historial");
+		btnConsultarHistorial.setBounds(332, 139, 89, 23);
+		contentPane.add(btnConsultarHistorial);
 		
 	}
 }
