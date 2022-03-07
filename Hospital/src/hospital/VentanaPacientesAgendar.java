@@ -138,11 +138,6 @@ public class VentanaPacientesAgendar extends JFrame {
 					
 				}
 				
-				
-				
-				
-				
-				
 			}
 		});
 		btnNewButton_1.setBounds(161, 267, 89, 23);
