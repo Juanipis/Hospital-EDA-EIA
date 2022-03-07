@@ -14,10 +14,10 @@ public class Paciente extends Persona {
 	private String[] sintomas;
 	private int triaje;
 	private String[] acompanantes;
-	protected int edad;
-	protected String sexo;
-	protected String tipoSangre;
-	protected ArrayList<Historial> historial;
+	private int edad;
+	private String sexo;
+	private String tipoSangre;
+	private ArrayList<Historial> historial;
 
 	public Paciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
 					int edad, String sexo, String tipoSangre) throws IOException {
