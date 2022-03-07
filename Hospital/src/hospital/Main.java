@@ -8,7 +8,7 @@ import java.util.*;
 public class Main {
 	private static File[] ficheros = {new File("cita.txt"), new File("pacientes.txt"), new File("personal.txt"), new File("salas.txt"), new File("formulas.txt")}; //Agrega aqu� los ficheros a usar
 	private static File[] historialMedico = new File("historialMedico").listFiles();
-	private static Hospital hp;
+	public static Hospital hp;
 	
 	public static void main(String[] args) {	
 	

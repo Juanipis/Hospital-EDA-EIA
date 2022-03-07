@@ -10,4 +10,7 @@ public class Enfermero extends Personal {
 		super(nombre, apellido, CC, disponible);
 	}
 	
+	public String toString() {
+		return (this.getNombre() + " : " + this.getApellido() + " : " + this.getCC() + " : " + this.getDisponible() + "\n");
+	}
 }

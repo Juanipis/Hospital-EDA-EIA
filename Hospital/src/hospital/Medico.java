@@ -35,6 +35,10 @@ public class Medico extends Personal {
 		this.pres = pres;
 	}
 	
+	public String toString() {
+		return (this.getNombre() + " : " + this.getApellido() + " : " + this.getCC() + " : " + this.getDisponible() + " : " + this.getEsp() + " : " + this.getPres() + "\n");
+	}
+	
 	//Le pasamos la formula al medico para que la pueda editar
 	public void addFormula(Formula fl, String[] idMedicamentos, String incapacidad) throws EMedicamento, MedicamentoInvalido {
 		fl.setIncapacidad(incapacidad);
