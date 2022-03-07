@@ -112,7 +112,7 @@ public VentanaAgregarMedico() {
 		txtPorfavorIngreseLos.setBackground(SystemColor.menu);
 		txtPorfavorIngreseLos.setBorder(null);
 		txtPorfavorIngreseLos.setHorizontalAlignment(SwingConstants.CENTER);
-		txtPorfavorIngreseLos.setText("Porfavor ingrese los siguientes datos");
+		txtPorfavorIngreseLos.setText("Porfavor ingrese los siguientes datos del medico");
 		txtPorfavorIngreseLos.setBounds(15, 11, 662, 20);
 		contentPane.add(txtPorfavorIngreseLos);
 		txtPorfavorIngreseLos.setColumns(10);

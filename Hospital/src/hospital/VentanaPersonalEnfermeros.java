@@ -42,9 +42,9 @@ public VentanaPersonalEnfermeros() {
 	
 		String texto = "";
 		
-		Medico[] medicos = Main.getHospital().getMedicos();
-		for(int x = 0; x < medicos.length; x++) {
-			texto = texto + medicos[x].toString() + "\n";
+		Enfermero[] enfermeros = Main.getHospital().getEnfermeros();
+		for(int x = 0; x < enfermeros.length; x++) {
+			texto = texto + enfermeros[x].toString() + "\n";
 		}
 		System.out.print(texto);
 	

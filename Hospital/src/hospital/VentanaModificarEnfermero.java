@@ -19,15 +19,11 @@ public class VentanaModificarEnfermero extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTextField txtPorfavorIngreseLos;
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtCedula;
 	private JTextField txtDisponibilidad;
-	private JTextField txtEspecializacion;
-	private JTextField txtPrescripciones;
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JButton btnAgregar_1;
@@ -98,16 +94,6 @@ public VentanaModificarEnfermero() {
 		textField_3.setBounds(349, 77, 86, 20);
 		contentPane.add(textField_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(445, 77, 86, 20);
-		contentPane.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(541, 77, 86, 20);
-		contentPane.add(textField_5);
-		
 		txtPorfavorIngreseLos = new JTextField();
 		txtPorfavorIngreseLos.setEditable(false);
 		txtPorfavorIngreseLos.setBackground(SystemColor.menu);
@@ -153,24 +139,6 @@ public VentanaModificarEnfermero() {
 		txtDisponibilidad.setColumns(10);
 		txtDisponibilidad.setBounds(349, 52, 86, 20);
 		contentPane.add(txtDisponibilidad);
-		
-		txtEspecializacion = new JTextField();
-		txtEspecializacion.setEditable(false);
-		txtEspecializacion.setBorder(null);
-		txtEspecializacion.setBackground(SystemColor.menu);
-		txtEspecializacion.setText("Especializacion");
-		txtEspecializacion.setColumns(10);
-		txtEspecializacion.setBounds(445, 52, 94, 20);
-		contentPane.add(txtEspecializacion);
-		
-		txtPrescripciones = new JTextField();
-		txtPrescripciones.setEditable(false);
-		txtPrescripciones.setBorder(null);
-		txtPrescripciones.setBackground(SystemColor.menu);
-		txtPrescripciones.setText("Prescripciones");
-		txtPrescripciones.setColumns(10);
-		txtPrescripciones.setBounds(541, 52, 86, 20);
-		contentPane.add(txtPrescripciones);
 		
 		textField_6 = new JTextField();
 		textField_6.setText("Cedula");
