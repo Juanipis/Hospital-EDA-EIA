@@ -71,7 +71,7 @@ public VentanaAgregarMedico() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//addEnfermero
+				
 			}
 		});
 		btnAgregar.setBounds(58, 119, 89, 23);

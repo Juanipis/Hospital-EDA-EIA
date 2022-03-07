@@ -87,11 +87,7 @@ public VentanaAgregarLimpieza() {
 		textField_2.setColumns(10);
 		textField_2.setBounds(253, 77, 86, 20);
 		contentPane.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(349, 77, 86, 20);
-		contentPane.add(textField_3);
+
 		
 		txtPorfavorIngreseLos = new JTextField();
 		txtPorfavorIngreseLos.setEditable(false);
@@ -129,15 +125,6 @@ public VentanaAgregarLimpieza() {
 		txtCedula.setColumns(10);
 		txtCedula.setBounds(253, 52, 86, 20);
 		contentPane.add(txtCedula);
-		
-		txtDisponibilidad = new JTextField();
-		txtDisponibilidad.setEditable(false);
-		txtDisponibilidad.setBorder(null);
-		txtDisponibilidad.setBackground(SystemColor.menu);
-		txtDisponibilidad.setText("Disponibilidad");
-		txtDisponibilidad.setColumns(10);
-		txtDisponibilidad.setBounds(349, 52, 86, 20);
-		contentPane.add(txtDisponibilidad);
 
 	}
 }
