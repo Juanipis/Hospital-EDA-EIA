@@ -8,13 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaAgregarLimpieza extends JFrame {
+public class VentanaModificarMedico extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -30,6 +28,9 @@ public class VentanaAgregarLimpieza extends JFrame {
 	private JTextField txtDisponibilidad;
 	private JTextField txtEspecializacion;
 	private JTextField txtPrescripciones;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JButton btnAgregar_1;
 	
 	/**
 	 * Launch the application.
@@ -38,7 +39,7 @@ public class VentanaAgregarLimpieza extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaAgregarLimpieza frame = new VentanaAgregarLimpieza();
+					VentanaModificarMedico frame = new VentanaModificarMedico();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class VentanaAgregarLimpieza extends JFrame {
 		});
 	}
 
-public VentanaAgregarLimpieza() {
+public VentanaModificarMedico() {
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 720, 300);
@@ -56,7 +57,7 @@ public VentanaAgregarLimpieza() {
 		setContentPane(contentPane);
 
 		JButton btnNewButton = new JButton("Volver");
-		btnNewButton.setBounds(300, 119, 89, 23);
+		btnNewButton.setBounds(588, 227, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaInicio inicio = new VentanaInicio();
@@ -68,13 +69,13 @@ public VentanaAgregarLimpieza() {
 		contentPane.setLayout(null);
 		contentPane.add(btnNewButton);
 		
-		JButton btnAgregar = new JButton("Agregar");
+		JButton btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//addEnfermero
+		//mofificarMedico
 			}
 		});
-		btnAgregar.setBounds(58, 119, 89, 23);
+		btnAgregar.setBounds(61, 121, 89, 23);
 		contentPane.add(btnAgregar);
 		
 		textField = new JTextField();
@@ -112,7 +113,7 @@ public VentanaAgregarLimpieza() {
 		txtPorfavorIngreseLos.setBackground(SystemColor.menu);
 		txtPorfavorIngreseLos.setBorder(null);
 		txtPorfavorIngreseLos.setHorizontalAlignment(SwingConstants.CENTER);
-		txtPorfavorIngreseLos.setText("Porfavor ingrese los siguientes datos");
+		txtPorfavorIngreseLos.setText("Porfavor ingrese los siguientes datos del medico");
 		txtPorfavorIngreseLos.setBounds(15, 11, 662, 20);
 		contentPane.add(txtPorfavorIngreseLos);
 		txtPorfavorIngreseLos.setColumns(10);
@@ -170,6 +171,29 @@ public VentanaAgregarLimpieza() {
 		txtPrescripciones.setColumns(10);
 		txtPrescripciones.setBounds(541, 52, 86, 20);
 		contentPane.add(txtPrescripciones);
+		
+		textField_6 = new JTextField();
+		textField_6.setText("Cedula");
+		textField_6.setEditable(false);
+		textField_6.setColumns(10);
+		textField_6.setBorder(null);
+		textField_6.setBackground(SystemColor.menu);
+		textField_6.setBounds(61, 171, 86, 20);
+		contentPane.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(61, 196, 86, 20);
+		contentPane.add(textField_7);
+		
+		btnAgregar_1 = new JButton("Borrar");
+		btnAgregar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//borrarMedico
+			}
+		});
+		btnAgregar_1.setBounds(61, 227, 89, 23);
+		contentPane.add(btnAgregar_1);
 
 	}
 }

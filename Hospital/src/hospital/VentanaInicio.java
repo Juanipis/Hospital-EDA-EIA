@@ -290,7 +290,7 @@ public class VentanaInicio extends JFrame {
 		txtTodoDatoDe_1.setBackground(SystemColor.menu);
 		txtTodoDatoDe_1.setEditable(false);
 		txtTodoDatoDe_1.setText("Todo dato de los enfermeros");
-		txtTodoDatoDe_1.setBounds(146, 127, 160, 20);
+		txtTodoDatoDe_1.setBounds(146, 127, 166, 20);
 		panel_1.add(txtTodoDatoDe_1);
 		txtTodoDatoDe_1.setColumns(10);
 
@@ -357,21 +357,49 @@ public class VentanaInicio extends JFrame {
 		btnA4.setBounds(325, 299, 89, 23);
 		panel_1.add(btnA4);
 		
-		JButton btnM5 = new JButton("Modificar");
-		btnM5.setBounds(473, 42, 89, 23);
-		panel_1.add(btnM5);
+		JButton btnM1 = new JButton("Modificar");
+		btnM1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaModificarMedico window = new VentanaModificarMedico();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnM1.setBounds(473, 42, 89, 23);
+		panel_1.add(btnM1);
 		
-		JButton btnM6 = new JButton("Modificar");
-		btnM6.setBounds(473, 126, 89, 23);
-		panel_1.add(btnM6);
+		JButton btnM2 = new JButton("Modificar");
+		btnM2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaModificarEnfermero window = new VentanaModificarEnfermero();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnM2.setBounds(473, 126, 89, 23);
+		panel_1.add(btnM2);
 		
-		JButton btnM7 = new JButton("Modificar");
-		btnM7.setBounds(473, 215, 89, 23);
-		panel_1.add(btnM7);
+		JButton btnM3 = new JButton("Modificar");
+		btnM3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaModificarLimpieza window = new VentanaModificarLimpieza();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnM3.setBounds(473, 215, 89, 23);
+		panel_1.add(btnM3);
 		
-		JButton btnM8 = new JButton("Modificar");
-		btnM8.setBounds(473, 299, 89, 23);
-		panel_1.add(btnM8);
+		JButton btnM4 = new JButton("Modificar");
+		btnM4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaModificarPaciente window = new VentanaModificarPaciente();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnM4.setBounds(473, 299, 89, 23);
+		panel_1.add(btnM4);
 
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Inventario", null, panel_3, null);
