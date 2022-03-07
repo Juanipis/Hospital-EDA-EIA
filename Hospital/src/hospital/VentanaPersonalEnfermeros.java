@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
 public class VentanaPersonalEnfermeros extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtEnfermeros;
 	
 	/**
 	 * Launch the application.
@@ -40,14 +39,7 @@ public class VentanaPersonalEnfermeros extends JFrame {
 	}
 
 public VentanaPersonalEnfermeros() {
-		
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the medicosFrame.
-	 */
-	private void initialize() {
+	
 		String texto = "";
 		
 		Medico[] medicos = Main.getHospital().getMedicos();

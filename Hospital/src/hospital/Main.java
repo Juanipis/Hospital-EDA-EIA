@@ -32,7 +32,7 @@ public class Main {
 		} 
 		
 		/*
-		hp.addEnfermeros("Juancho", "Carnal", "1292693", true);
+		hp.addEnfermeros("Juancho", "Carnal",  "1292693", true);
 		hp.addEnfermeros("Maria", "Alela", "1438404", true);
 		hp.addEnfermeros("Sor Ines", "Cruz", "524977", true);
 		hp.addEnfermeros("Ramiro", "Bernal", "58711268", true);

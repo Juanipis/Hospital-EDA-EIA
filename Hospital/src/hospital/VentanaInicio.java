@@ -249,7 +249,7 @@ public class VentanaInicio extends JFrame {
 
 			}
 		});
-		btnEnfermeros.setBounds(20, 126, 89, 23);
+		btnEnfermeros.setBounds(20, 126, 116, 23);
 		panel_1.add(btnEnfermeros);
 
 		JButton btnLimpieza = new JButton("Limpieza");
@@ -273,7 +273,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnPacientes.setBounds(20, 299, 89, 23);
+		btnPacientes.setBounds(20, 299, 99, 23);
 		panel_1.add(btnPacientes);
 
 		txtTodoDatoDe = new JTextField();
@@ -290,7 +290,7 @@ public class VentanaInicio extends JFrame {
 		txtTodoDatoDe_1.setBackground(SystemColor.menu);
 		txtTodoDatoDe_1.setEditable(false);
 		txtTodoDatoDe_1.setText("Todo dato de los enfermeros");
-		txtTodoDatoDe_1.setBounds(119, 127, 196, 20);
+		txtTodoDatoDe_1.setBounds(146, 127, 160, 20);
 		panel_1.add(txtTodoDatoDe_1);
 		txtTodoDatoDe_1.setColumns(10);
 
@@ -308,9 +308,70 @@ public class VentanaInicio extends JFrame {
 		txtTodoDatoDe_3.setBackground(SystemColor.menu);
 		txtTodoDatoDe_3.setEditable(false);
 		txtTodoDatoDe_3.setText("Todo dato de los pacientes");
-		txtTodoDatoDe_3.setBounds(119, 300, 152, 20);
+		txtTodoDatoDe_3.setBounds(129, 300, 152, 20);
 		panel_1.add(txtTodoDatoDe_3);
 		txtTodoDatoDe_3.setColumns(10);
+		
+		JButton btnA1 = new JButton("Agregar");
+		btnA1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaAgregarMedico window = new VentanaAgregarMedico();
+				window.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnA1.setBounds(325, 42, 89, 23);
+		panel_1.add(btnA1);
+		
+		JButton btnA2 = new JButton("Agregar");
+		btnA2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaAgregarEnfermero window = new VentanaAgregarEnfermero();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnA2.setBounds(325, 126, 89, 23);
+		panel_1.add(btnA2);
+		
+		JButton btnA3 = new JButton("Agregar");
+		btnA3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaAgregarLimpieza window = new VentanaAgregarLimpieza();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnA3.setBounds(325, 215, 89, 23);
+		panel_1.add(btnA3);
+		
+		JButton btnA4 = new JButton("Agregar");
+		btnA4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaAgregarPaciente window = new VentanaAgregarPaciente();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnA4.setBounds(325, 299, 89, 23);
+		panel_1.add(btnA4);
+		
+		JButton btnM5 = new JButton("Modificar");
+		btnM5.setBounds(473, 42, 89, 23);
+		panel_1.add(btnM5);
+		
+		JButton btnM6 = new JButton("Modificar");
+		btnM6.setBounds(473, 126, 89, 23);
+		panel_1.add(btnM6);
+		
+		JButton btnM7 = new JButton("Modificar");
+		btnM7.setBounds(473, 215, 89, 23);
+		panel_1.add(btnM7);
+		
+		JButton btnM8 = new JButton("Modificar");
+		btnM8.setBounds(473, 299, 89, 23);
+		panel_1.add(btnM8);
 
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Inventario", null, panel_3, null);
