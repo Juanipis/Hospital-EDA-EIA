@@ -38,7 +38,7 @@ public class VentanaAgregarEnfermero extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaAgregarMedico frame = new VentanaAgregarMedico();
+					VentanaAgregarEnfermero frame = new VentanaAgregarEnfermero();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
