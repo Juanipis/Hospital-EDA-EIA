@@ -36,6 +36,14 @@ public class VentanaInventarioSalas extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInventarioSalas() {
+		
+		String texto = "";
+		
+		Sala[] salas = Main.getHospital().getSalas();
+		for(int x = 0; x < salas.length; x++) {
+			texto = texto + salas[x].getTipo().toString() + "\n";
+		}
+		System.out.print(texto);
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 657, 426);
@@ -61,6 +69,8 @@ public class VentanaInventarioSalas extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JTextArea txtSalas = new JTextArea();
+		txtSalas.setEditable(false);
 		scrollPane.setViewportView(txtSalas);
+		txtSalas.setText(texto);
 	}
 }
