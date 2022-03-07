@@ -92,20 +92,20 @@ public VentanaAgregarLimpieza() {
 		textField_2.setBounds(253, 77, 86, 20);
 		contentPane.add(textField_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(349, 77, 86, 20);
-		contentPane.add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(445, 77, 86, 20);
-		contentPane.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(541, 77, 86, 20);
-		contentPane.add(textField_5);
+//		textField_3 = new JTextField();
+//		textField_3.setColumns(10);
+//		textField_3.setBounds(349, 77, 86, 20);
+//		contentPane.add(textField_3);
+//		
+//		textField_4 = new JTextField();
+//		textField_4.setColumns(10);
+//		textField_4.setBounds(445, 77, 86, 20);
+//		contentPane.add(textField_4);
+//		
+//		textField_5 = new JTextField();
+//		textField_5.setColumns(10);
+//		textField_5.setBounds(541, 77, 86, 20);
+//		contentPane.add(textField_5);
 		
 		txtPorfavorIngreseLos = new JTextField();
 		txtPorfavorIngreseLos.setEditable(false);
@@ -144,32 +144,34 @@ public VentanaAgregarLimpieza() {
 		txtCedula.setBounds(253, 52, 86, 20);
 		contentPane.add(txtCedula);
 		
-		txtDisponibilidad = new JTextField();
-		txtDisponibilidad.setEditable(false);
-		txtDisponibilidad.setBorder(null);
-		txtDisponibilidad.setBackground(SystemColor.menu);
-		txtDisponibilidad.setText("Disponibilidad");
-		txtDisponibilidad.setColumns(10);
-		txtDisponibilidad.setBounds(349, 52, 86, 20);
-		contentPane.add(txtDisponibilidad);
 		
-		txtEspecializacion = new JTextField();
-		txtEspecializacion.setEditable(false);
-		txtEspecializacion.setBorder(null);
-		txtEspecializacion.setBackground(SystemColor.menu);
-		txtEspecializacion.setText("Especializacion");
-		txtEspecializacion.setColumns(10);
-		txtEspecializacion.setBounds(445, 52, 94, 20);
-		contentPane.add(txtEspecializacion);
 		
-		txtPrescripciones = new JTextField();
-		txtPrescripciones.setEditable(false);
-		txtPrescripciones.setBorder(null);
-		txtPrescripciones.setBackground(SystemColor.menu);
-		txtPrescripciones.setText("Prescripciones");
-		txtPrescripciones.setColumns(10);
-		txtPrescripciones.setBounds(541, 52, 86, 20);
-		contentPane.add(txtPrescripciones);
+//		txtDisponibilidad = new JTextField();
+//		txtDisponibilidad.setEditable(false);
+//		txtDisponibilidad.setBorder(null);
+//		txtDisponibilidad.setBackground(SystemColor.menu);
+//		txtDisponibilidad.setText("Disponibilidad");
+//		txtDisponibilidad.setColumns(10);
+//		txtDisponibilidad.setBounds(349, 52, 86, 20);
+//		contentPane.add(txtDisponibilidad);
+//		
+//		txtEspecializacion = new JTextField();
+//		txtEspecializacion.setEditable(false);
+//		txtEspecializacion.setBorder(null);
+//		txtEspecializacion.setBackground(SystemColor.menu);
+//		txtEspecializacion.setText("Especializacion");
+//		txtEspecializacion.setColumns(10);
+//		txtEspecializacion.setBounds(445, 52, 94, 20);
+//		contentPane.add(txtEspecializacion);
+//		
+//		txtPrescripciones = new JTextField();
+//		txtPrescripciones.setEditable(false);
+//		txtPrescripciones.setBorder(null);
+//		txtPrescripciones.setBackground(SystemColor.menu);
+//		txtPrescripciones.setText("Prescripciones");
+//		txtPrescripciones.setColumns(10);
+//		txtPrescripciones.setBounds(541, 52, 86, 20);
+//		contentPane.add(txtPrescripciones);
 
 	}
 }
