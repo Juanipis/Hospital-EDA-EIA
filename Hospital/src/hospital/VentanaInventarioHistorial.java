@@ -9,10 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
 
 public class VentanaInventarioHistorial extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtPacientes;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -34,7 +38,13 @@ public class VentanaInventarioHistorial extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInventarioHistorial() {
-	
+		
+		String texto = "";
+		
+		Paciente[] pacientes = Main.getHospital().getPacientes();
+		for(int x = 0; x < pacientes.length; x++) {
+			texto = texto + pacientes[x].getNombre() +" CC: "+pacientes[x].getCC() + " "+"\n";
+		}
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,6 +63,17 @@ public class VentanaInventarioHistorial extends JFrame {
 		});
 		btnNewButton.setBounds(153, 215, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(28, 33, 277, 171);
+		contentPane.add(scrollPane);
+		
+		txtPacientes = new JTextField();
+		txtPacientes.setEditable(false);
+		scrollPane.setViewportView(txtPacientes);
+		
+		txtPacientes.setText(texto);
+		
+		
 	}
-
 }
