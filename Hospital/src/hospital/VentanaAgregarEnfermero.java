@@ -3,6 +3,7 @@ package hospital;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -67,7 +68,12 @@ public VentanaAgregarEnfermero() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//addEnfermero
+				try {
+					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+				} catch (IOException | ExistePersonal e1) {
+					// TODO Auto-generated catch block
+					
+				}
 			}
 		});
 		btnAgregar.setBounds(61, 119, 89, 23);

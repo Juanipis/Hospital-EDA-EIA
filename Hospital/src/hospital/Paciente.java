@@ -82,6 +82,10 @@ public class Paciente extends Persona {
 		return acompanantes;
 	}
 	
+	public String toStrings() {
+		return (this.getNombre() + " : " + this.getApellido() + " : " + this.getCC() + " : " + this.getPoliza() + " : " + this.getSintomas() + " : " + this.getTriaje() + this.getAcompanantes() + " : " + this.getEdad() + this.getSexo() + " : " + this.getTipoSangre() + "\n");
+	}
+	
 	public int getIndexAcompanante(String acompanante) throws NoAcompanantesPaciente {
 		int c = 0;
 		while((c< this.acompanantes.length) && this.acompanantes[c] != null && !(this.acompanantes[c].equals(nombre)) ) {
