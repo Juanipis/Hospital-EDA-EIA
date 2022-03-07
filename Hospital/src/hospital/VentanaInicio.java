@@ -46,7 +46,7 @@ public class VentanaInicio extends JFrame {
 	 */
 	public VentanaInicio() {
 
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setResizable(false);
 		initialize();
 	}
