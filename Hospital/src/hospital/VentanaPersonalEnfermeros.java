@@ -84,15 +84,15 @@ public VentanaPersonalEnfermeros() {
 		getContentPane().add(datosEnfermero);
 		datosEnfermero.setEditable(true);
 		
-		JButton btnAñadirEnfermero = new JButton("Añadir");
-		btnAñadirEnfermero.addActionListener(new ActionListener() {
+		JButton btnAddEnfermero = new JButton("Agregar");
+		btnAddEnfermero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.hp.addMedico(datosMedico.getText());
 				listaEnfermeros.setText(Arrays.toString(Main.hp.getEnfermeros()) + datosEnfermero.getText());
 			}
 		});
-		btnAñadirEnfermero.setBounds(415, 150, 89, 30);
-		getContentPane().add(btnAñadirEnfermero);
+		btnAddEnfermero.setBounds(415, 150, 89, 30);
+		getContentPane().add(btnAddEnfermero);
 		
 		JButton btnBorrarEnfermero = new JButton("Eliminar");
 		btnBorrarEnfermero.addActionListener(new ActionListener() {

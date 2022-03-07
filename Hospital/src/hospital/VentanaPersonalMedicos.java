@@ -4,8 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -49,67 +52,20 @@ public class VentanaPersonalMedicos extends JFrame {
 	 */
 	private void initialize() {
 
-		setBounds(100, 100, 930, 826);
+		String texto = "";
+		
+		Medico[] medicos = Main.getHospital().getMedicos();
+		for(int x = 0; x < medicos.length; x++) {
+			texto = texto + medicos[x].toString() + "\n";
+		}
+		System.out.print(texto);
+	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		getContentPane().setLayout(null);
-		setResizable(false);
-
-		txtMedicos = new JTextField();
-		txtMedicos.setFont(new Font("Verdana", Font.BOLD, 34));
-		txtMedicos.setBackground(SystemColor.menu);
-		txtMedicos.setBorder(null);
-		txtMedicos.setText("Medicos");
-		txtMedicos.setHorizontalAlignment(SwingConstants.CENTER);
-		txtMedicos.setBounds(10, 11, 894, 58);
-		getContentPane().add(txtMedicos);
-		txtMedicos.setColumns(10);
-		txtMedicos.setEditable(false);
-
-		JTextField ins = new JTextField();
-		ins.setBorder(null);
-		ins.setBackground(SystemColor.menu);
-		getContentPane().add(ins);
-		ins.setBounds(415, 80, 400, 23);
-		ins.setVisible(true);
-		ins.setEditable(false);
-		ins.setText("Porfavor ingrese los datos correctos y escoja que desea hacer con ellos");
-		
-		JTextArea listaMedicos = new JTextArea();
-		listaMedicos.setBounds(10, 80, 400, 379);
-		getContentPane().add(listaMedicos);
-		listaMedicos.setEditable(false);
-		listaMedicos.setText(Arrays.toString(Main.hp.getMedicos()));
-		
-		JTextArea datosMedico = new JTextArea();
-		datosMedico.setBounds(415, 115, 400, 23);
-		getContentPane().add(datosMedico);
-		datosMedico.setEditable(true);
-		
-		JButton btnAñadirMedico = new JButton("Añadir");
-		btnAñadirMedico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Main.hp.addMedico(datosMedico.getText());
-				listaMedicos.setText(Arrays.toString(Main.hp.getMedicos()) + datosMedico.getText());
-			}
-		});
-		btnAñadirMedico.setBounds(415, 150, 89, 30);
-		getContentPane().add(btnAñadirMedico);
-		
-		JButton btnBorrarMedico = new JButton("Eliminar");
-		btnBorrarMedico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					Main.hp.eliminarMedico(datosMedico.getText());
-				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				datosMedico.getText();
-				listaMedicos.setText(Arrays.toString(Main.hp.getMedicos()));
-			}
-		});
-		btnBorrarMedico.setBounds(415, 180, 89, 30);
-		getContentPane().add(btnBorrarMedico);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		
 		JButton btnNewButton = new JButton("Volver");
@@ -118,9 +74,20 @@ public class VentanaPersonalMedicos extends JFrame {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
+				
 			}
 		});
-		btnNewButton.setBounds(446, 600, 89, 23);
-		getContentPane().add(btnNewButton);
+		btnNewButton.setBounds(167, 157, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 16, 398, 138);
+		contentPane.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		scrollPane.setViewportView(textArea);
+		textArea.setText(texto);
+
 	}
 }
