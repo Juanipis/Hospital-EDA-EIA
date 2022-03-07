@@ -85,15 +85,15 @@ public class VentanaPersonalMedicos extends JFrame {
 		getContentPane().add(datosMedico);
 		datosMedico.setEditable(true);
 		
-		JButton btnAñadirMedico = new JButton("Añadir");
-		btnAñadirMedico.addActionListener(new ActionListener() {
+		JButton btnAnadirMedico = new JButton("Aï¿½adir");
+		btnAnadirMedico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.hp.addMedico(datosMedico.getText());
 				listaMedicos.setText(Arrays.toString(Main.hp.getMedicos()) + datosMedico.getText());
 			}
 		});
-		btnAñadirMedico.setBounds(415, 150, 89, 30);
-		getContentPane().add(btnAñadirMedico);
+		btnAnadirMedico.setBounds(415, 150, 89, 30);
+		getContentPane().add(btnAnadirMedico);
 		
 		JButton btnBorrarMedico = new JButton("Eliminar");
 		btnBorrarMedico.addActionListener(new ActionListener() {

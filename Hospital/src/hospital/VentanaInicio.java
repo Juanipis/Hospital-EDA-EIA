@@ -142,6 +142,7 @@ public class VentanaInicio extends JFrame {
 		panel_2.setLayout(null);
 
 		txtBuenosDiasComo = new JTextField();
+		txtBuenosDiasComo.setEditable(false);
 		txtBuenosDiasComo.setBackground(SystemColor.menu);
 		txtBuenosDiasComo.setBorder(null);
 		txtBuenosDiasComo.setText("Buenos dias, como podemos servirle");
@@ -186,6 +187,7 @@ public class VentanaInicio extends JFrame {
 		panel_2.add(btnModificarCita);
 
 		txtUtiliceEsteBoton = new JTextField();
+		txtUtiliceEsteBoton.setEditable(false);
 		txtUtiliceEsteBoton.setBorder(null);
 		txtUtiliceEsteBoton.setBackground(SystemColor.menu);
 		txtUtiliceEsteBoton.setText("Utilice este boton para agendar una cita si necesita de ayuda.");
@@ -194,6 +196,7 @@ public class VentanaInicio extends JFrame {
 		txtUtiliceEsteBoton.setColumns(10);
 
 		txtEnCasoDe = new JTextField();
+		txtEnCasoDe.setEditable(false);
 		txtEnCasoDe.setBorder(null);
 		txtEnCasoDe.setBackground(SystemColor.menu);
 		txtEnCasoDe.setText("En caso de que necesite cambiar o modificar una cita utilice este boton.");
@@ -202,6 +205,7 @@ public class VentanaInicio extends JFrame {
 		panel_2.add(txtEnCasoDe);
 
 		txtSiCambioDe = new JTextField();
+		txtSiCambioDe.setEditable(false);
 		txtSiCambioDe.setBorder(null);
 		txtSiCambioDe.setBackground(SystemColor.menu);
 		txtSiCambioDe.setText(
@@ -406,6 +410,7 @@ public class VentanaInicio extends JFrame {
 		panel_4.setLayout(null);
 
 		txtBuenasSiEstas = new JTextField();
+		txtBuenasSiEstas.setEditable(false);
 		txtBuenasSiEstas.setBorder(null);
 		txtBuenasSiEstas.setBackground(SystemColor.menu);
 		txtBuenasSiEstas.setText("Buenas, si estas buscando a algun paciente porfavor ingresa los siguientes datos.");
