@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,7 +46,14 @@ public class VentanaAgregarLimpieza extends JFrame {
 	}
 
 public VentanaAgregarLimpieza() {
-	
+//		boolean dispo = false;
+//		if(textField_3.equals("1")) {
+//			dispo =true;
+//		}else if(textField_3.equals("2")) {
+//			dispo = false;
+//		}else {
+//			
+//		}
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 720, 300);
 		contentPane = new JPanel();
@@ -67,6 +76,18 @@ public VentanaAgregarLimpieza() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					Main.hp.addPersonalLimpieza(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ExistePersonal e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		//addEnfermero
 			}
 		});
