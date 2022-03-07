@@ -2,10 +2,10 @@ package hospital;
 
 public class Equipo {
 
-	protected double inventario;
-	protected boolean disponibilidad;
-	protected String codigo;
-	protected boolean estado;
+	private double inventario;
+	private boolean disponibilidad;
+	private String codigo;
+	private boolean estado;
 
 	public Equipo(double inv, boolean disp, String cod, boolean est) {
 		inventario = inv;
