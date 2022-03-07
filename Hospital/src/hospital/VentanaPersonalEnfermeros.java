@@ -61,7 +61,6 @@ public VentanaPersonalEnfermeros() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		btnNewButton.setBounds(167, 157, 89, 23);

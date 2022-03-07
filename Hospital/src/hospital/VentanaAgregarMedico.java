@@ -58,7 +58,7 @@ public VentanaAgregarMedico() {
 		contentPane.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
+		textArea.setEditable(true);
 		scrollPane.setViewportView(textArea);
 		
 		JButton btnAgregar = new JButton("Agregar");
