@@ -86,3 +86,8 @@ class MedicamentoEnSala extends Exception {
 		super("El medicamento con el id: "+idMedicamento+" ya se encuentra en la sala");
 	}
 }
+class FechaInvalida extends Exception{
+	public FechaInvalida() {
+		super("La fecha ingresada tiene un formato incorrecto");
+	}
+}

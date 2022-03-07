@@ -343,7 +343,22 @@ public class Hospital {
 	public Paciente[] getPacientes() {
 		return pacientes.toArray(new Paciente[pacientes.size()]);
 	}
-
+	
+	public String getIdCitaPacienteFecha(String CCPaciente, int[] fechaInicio) throws PersonaNoCitas, FechaInvalida, CitaNoExiste {
+		Cita[] cts = this.getCitasPaciente(CCPaciente);
+		if(cts != null && cts.length>0 && fechaInicio.length == 5) {
+			Date fi = new GregorianCalendar(fechaInicio[0], fechaInicio[1], fechaInicio[2], fechaInicio[3], fechaInicio[4]).getTime();
+			for(Cita ct : cts) {
+				if(ct != null && ct.getFechaInicio().equals(fi)) {
+					return ct.getIdCita();
+				}
+			}
+			throw new CitaNoExiste(CCPaciente);
+		}else {
+			throw new FechaInvalida();
+		}
+		
+	}
 	// Me todo ponerle el throws con las excepciones
 	public void addEnfermeroASala(String CCEnfermero, String salaId) throws IOException, VectorNulo, EnfermeroEnSala {
 		Sala s = this.getSala(salaId);
