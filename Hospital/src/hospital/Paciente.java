@@ -164,6 +164,14 @@ public class Paciente extends Persona {
 		bld.append("," + citaId);
 		Main.escrituraFicheroUltimaLinea(CC, bld.toString(), 1);
 	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 	@Override
 	public String toString() {
 		return "Nombre: " + nombre + ", Apellido: " + apellido + ", CC: " + CC;
