@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -79,7 +81,12 @@ public VentanaAgregarPaciente() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//addEnfermero
+				try {
+					Main.hp.addPaciente(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), null, Integer.valueOf(textField_5.getText()), null, Integer.valueOf(textField_7.getText()), textField_8.getText(), textField_9.getText());
+				} catch (IOException | ExistePersonal e1) {
+					// TODO Auto-generated catch block
+					
+				}
 			}
 		});
 		btnAgregar.setBounds(12, 119, 89, 23);
