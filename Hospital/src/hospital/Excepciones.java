@@ -124,3 +124,20 @@ class CampoLleno extends Exception{
 		super("No se pueden agregar mas");
 	}
 }
+class NoEquipoEnSala extends Exception{
+	public NoEquipoEnSala() {
+		super("El equipo no se encuentra en la sala");
+	}
+}
+
+class NoMedicamentoEnSala extends Exception{
+	public NoMedicamentoEnSala() {
+		super("El medicamento no se encuentra en la sala");
+	}
+}
+
+class NoEnfermeroEnSala extends Exception{
+	public NoEnfermeroEnSala() {
+		super("El enfermero no se encuentra en la sala");
+	}
+}

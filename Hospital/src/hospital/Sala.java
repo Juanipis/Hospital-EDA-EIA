@@ -106,10 +106,10 @@ public class Sala {
 			throw new VectorNulo();
 		} else {
 			int index = 0;
-			while(index < pacientes.length && pacientes[index] != null&& !pacientes[index].equals(cedula)) {
+			while(index < pacientes.length && pacientes[index] != null && !pacientes[index].getCC().equals(cedula)) {
 				index++;
 			}
-			if(index < pacientes.length && pacientes[index] != null&& pacientes[index].equals(cedula)) {
+			if(index < pacientes.length && pacientes[index] != null&& pacientes[index].getCC().equals(cedula)) {
 				return index;
 			}else {
 				return -1;
@@ -121,14 +121,11 @@ public class Sala {
 		if (equipos == null) {
 			throw new VectorNulo();
 		} else {
-
 			int i = 0;
-			while (i < equipos.length) {
-				if (codigo == equipos[i].getCodigo()) {
-					return i;
-				}
+			while (i < equipos.length && equipos[i] != null && !equipos[i].getCodigo().equals(codigo)) {
+				i++;
 			}
-			return -1;
+			return (i < equipos.length && equipos[i] != null && equipos[i].getCodigo().equals(codigo)) ? i:-1;
 		}
 	}
 
@@ -137,12 +134,10 @@ public class Sala {
 			throw new VectorNulo();
 		} else {
 			int i = 0;
-			while (i < medicamentos.length) {
-				if (id == medicamentos[i].getId()) {
-					return i;
-				}
+			while (i < medicamentos.length && medicamentos[i] != null && !medicamentos[i].getId().equals(id)) {
+				i++;
 			}
-			return -1;
+			return (i < medicamentos.length && medicamentos[i] != null && medicamentos[i].getId().equals(id)) ? i:-1;
 		}
 	}
 
@@ -151,28 +146,26 @@ public class Sala {
 			throw new VectorNulo();
 		} else {
 			int i = 0;
-			while (i < enfermeros.length) {
-				if (cedula == enfermeros[i].getCC()) {
-					return i;
-				}
+			while (i < enfermeros.length && enfermeros[i] != null && !enfermeros[i].getCC().equals(cedula)) {
+				i++;
 			}
-			return -1;
+			return (i < enfermeros.length && enfermeros[i] != null && enfermeros[i].getCC().equals(cedula)) ? i:-1;
 		}
 
 	}
 	// Metodos------------------------------------
 
 	public void addPaciente(String nombre, String apellido, String cc, String poliza, String[] sintomas, int triaje, String[] acompanantes,
-			int edad, String sexo, String tipoSangre) throws IOException,VectorNulo {
+			int edad, String sexo, String tipoSangre) throws IOException,VectorNulo, PacienteEnSala {
 		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
 		// pacientes //En caso de que la cedula no exista, agregar el paciente
 		
-			if (verificarPaciente(cc) != -1) {
+			if (verificarPaciente(cc) == -1) {
 				pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
 				pacientes[pacientes.length - 1] = new Paciente(nombre, apellido, cc, poliza, sintomas, triaje,
 						acompanantes, edad, sexo, tipoSangre);
 			}else {
-				System.out.println("No se puede agregar paciente porque ya existe un paciente con esa cedula");
+				throw new PacienteEnSala(cc);
 			}
 		
 	}
@@ -188,19 +181,19 @@ public class Sala {
 			}
 		
 	}
-	public void addEnfermero(String nombre, String apellido, String CC, boolean disponible) throws VectorNulo {
-		if (verificarEnfermero(CC) != -1) {
+	public void addEnfermero(String nombre, String apellido, String CC, boolean disponible) throws VectorNulo, EnfermeroEnSala {
+		if (verificarEnfermero(CC) == -1) {
 			enfermeros = Arrays.copyOf(enfermeros, enfermeros.length + 1);
 			enfermeros[enfermeros.length - 1] = new Enfermero(nombre, apellido, CC, disponible);
 		}else {
-			System.out.println("No se puede agregar Enfermero porque ya existe un Enfermero con esa cedula, en la sala");
+			throw new EnfermeroEnSala(CC);
 		}
 	}
 	public void addEnfermero(Enfermero eo) throws IOException,VectorNulo, EnfermeroEnSala {
 		// traer cedula de enfermero. //Verificarla en un metodo contra un arreglo de
 		// enfermeros //En caso de que la cedula no exista, agregar el enfermero
 		
-			if (verificarEnfermero(eo.getCC()) != -1) {
+			if (verificarEnfermero(eo.getCC()) == -1) {
 				enfermeros = Arrays.copyOf(enfermeros, enfermeros.length + 1);
 				enfermeros[enfermeros.length - 1] = eo;
 			}else {
@@ -209,14 +202,14 @@ public class Sala {
 		
 	}
 
-	public void addEquipo(double inventario, boolean disponibilidad, String codigo, boolean estado) throws VectorNulo{
+	public void addEquipo(double inventario, boolean disponibilidad, String codigo, boolean estado) throws VectorNulo, EquipoEnSala{
 		
-			if (verificarEquipo(codigo) != -1) {
+			if (verificarEquipo(codigo) == -1) {
 				equipos = Arrays.copyOf(equipos, equipos.length + 1);
 				equipos[equipos.length - 1] = new Equipo(inventario, disponibilidad, codigo, estado);
 			
 		} else {
-			System.out.println("No se puede agregar equipo porque ya existe un equipo con ese codigo");
+			throw new EquipoEnSala(codigo);
 		} 
 			
 		
@@ -225,7 +218,7 @@ public class Sala {
 		// traer codigo de equipo. //Verificarla en un metodo contra un arreglo de
 		// equipos //En caso de que el codigo no exista, agregar el equipo
 		
-			if (verificarEquipo(eq.getCodigo()) != -1) {
+			if (verificarEquipo(eq.getCodigo()) == -1) {
 				equipos = Arrays.copyOf(equipos, equipos.length + 1);
 				equipos[equipos.length - 1] = eq;
 			}else {
@@ -235,14 +228,14 @@ public class Sala {
 	}
 
 	public void addMedicamento(String nombre, String id, Date fechaVencimiento, Date fechaCompra,
-			boolean disponibilidad, double cantidad) throws VectorNulo {
+			boolean disponibilidad, double cantidad) throws VectorNulo, MedicamentoEnSala {
 
-			if (verificarMedicamento(id) != -1) {
+			if (verificarMedicamento(id) == -1) {
 				medicamentos = Arrays.copyOf(medicamentos, medicamentos.length + 1);
 				medicamentos[medicamentos.length - 1] = new Medicamento(nombre, id, fechaVencimiento, fechaCompra,
 						disponibilidad, cantidad);
 			}else {
-				System.out.println("No se puede agregar medicamento porque ya existe un medicamento con ese id");
+				throw new MedicamentoEnSala(id);
 			} 
 	}
 	
@@ -250,7 +243,7 @@ public class Sala {
 		// traer codigo de medicamento. //Verificarla en un metodo contra un arreglo de
 		// medicamentos //En caso de que el id no exista, agregar el medicamento
 		
-			if (verificarMedicamento(md.getId()) != -1) {
+			if (verificarMedicamento(md.getId()) == -1) {
 				medicamentos = Arrays.copyOf(medicamentos, medicamentos.length + 1);
 				medicamentos[medicamentos.length - 1] = md;
 			}else {
@@ -260,7 +253,7 @@ public class Sala {
 	}
 	// Metodos de eliminacion--------------------------------------
 
-	
+	/*
 	public void eliminarPaciente(String cedula) throws VectorNulo{
 		if(verificarPaciente(cedula) != -1) {
 			for(int i = verificarPaciente(cedula); i<pacientes.length ; i++) {
@@ -275,6 +268,18 @@ public class Sala {
 			System.out.println("No existe un Paciente con esa cedula");
 		}
 	}
+	*/
+	public void eliminarPaciente(String cedula) throws NoPacienteEnSala, VectorNulo {
+		int numTrabajador = this.verificarPaciente(cedula);
+		if(numTrabajador != -1) {
+			ArrayList<Paciente> arr = new ArrayList<>(Arrays.asList(pacientes));
+			arr.remove(numTrabajador);
+			pacientes = arr.toArray(new Paciente[pacientes.length-1]);
+		}else{
+			throw new NoPacienteEnSala(cedula);
+		}
+	}
+	/*
 	public void eliminarEquipo(String codigoEquipo) throws VectorNulo {
 		if (verificarEquipo(codigoEquipo) != -1) {
 			for (int i = verificarEquipo(codigoEquipo); i < equipos.length; i++) {
@@ -288,7 +293,20 @@ public class Sala {
 			System.out.println("No existe un Equipo con ese codigo");
 		}
 	}
-
+	 */
+	public void eliminarEquipo(String codigoEquipo) throws VectorNulo, NoEquipoEnSala {
+		int numEquipo = this.verificarEquipo(codigoEquipo);
+		if(numEquipo !=-1) {
+			ArrayList<Equipo> arr = new ArrayList<>(Arrays.asList(equipos));
+			arr.remove(numEquipo);
+			equipos = arr.toArray(new Equipo[equipos.length-1]);
+		}
+		else {
+			throw new NoEquipoEnSala();
+		}
+	}
+	
+	/*
 	public void eliminarMedicamento(String idMedicamento) throws VectorNulo {
 		if (verificarMedicamento(idMedicamento) != -1) {
 			for (int i = verificarMedicamento(idMedicamento); i < equipos.length; i++) {
@@ -302,7 +320,19 @@ public class Sala {
 		System.out.println("No existe un Medicamento con ese id");
 		}
 	}
-
+	*/
+	
+	public void eliminarMedicamento(String idMedicamento) throws VectorNulo, NoMedicamentoEnSala {
+		int numMedc = this.verificarMedicamento(idMedicamento);
+		if(numMedc !=-1) {
+			ArrayList<Medicamento> arr = new ArrayList<>(Arrays.asList(medicamentos));
+			arr.remove(numMedc);
+			medicamentos = arr.toArray(new Medicamento[medicamentos.length-1]);
+		}else {
+			throw new NoMedicamentoEnSala();
+		}
+	}
+	/*
 	public void eliminarEnfermero(String cedula) throws VectorNulo {
 		if (verificarEnfermero(cedula) != -1) {
 			for (int i = verificarEnfermero(cedula); i < equipos.length; i++) {
@@ -315,6 +345,17 @@ public class Sala {
 				//Mirar si esta bien hecho devovler el texto desde el mismo metodo, ya que no es una excepcion. Es una condicion del sistema
 				System.out.println("No existe un Enfermero con esa cedula");
 			}
+	}
+	*/
+	public void eliminarEnfermero(String cedula) throws VectorNulo, NoEnfermeroEnSala {
+		int numEnfermero = this.verificarEnfermero(cedula);
+		if(numEnfermero !=-1) {
+			ArrayList<Enfermero> arr = new ArrayList<>(Arrays.asList(enfermeros));
+			arr.remove(numEnfermero);
+			enfermeros = arr.toArray(new Enfermero[enfermeros.length-1]);
+		}else {
+			throw new NoEnfermeroEnSala();
+		}
 	}
 	
 	public boolean getDisponibilidadSala() {
