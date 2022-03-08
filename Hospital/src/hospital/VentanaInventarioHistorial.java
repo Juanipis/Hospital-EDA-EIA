@@ -40,6 +40,16 @@ public class VentanaInventarioHistorial extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public String modificarHistorial() {
+		Paciente[] pacientes = Main.getHospital().getPacientes();
+		String historial = "";
+		
+		for(int x = 0; x < pacientes.length; x++) {
+			if(txtCedulaInput.getText().equals(pacientes[x].getCC()))
+				historial = historial + pacientes[x].getHistorial().toString()+"\n";
+		}
+		return historial;
+	}
 	public VentanaInventarioHistorial() {
 		
 		String texto = "";
@@ -74,6 +84,10 @@ public class VentanaInventarioHistorial extends JFrame {
 		txtCedulaInput.setEditable(true);
 		
 		
+		
+		
+		
+		
 		txtCedula = new JTextField();
 		txtCedula.setBackground(SystemColor.menu);
 		txtCedula.setBounds(332, 68, 96, 20);
@@ -96,8 +110,8 @@ public class VentanaInventarioHistorial extends JFrame {
 		btnConsultarHistorial.setBounds(332, 139, 89, 23);
 		btnConsultarHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaInventarioHistorialPacientes historialPaciente = new VentanaInventarioHistorialPacientes();
-				dispose();
+				
+				textArea.setText(modificarHistorial());
 			}
 		});
 		contentPane.add(btnConsultarHistorial);
