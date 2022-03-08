@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -99,6 +98,7 @@ public VentanaModificarPaciente() {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				
 				try {
 					Main.hp.eliminarPaciente(txtCedula.getText());
@@ -106,6 +106,9 @@ public VentanaModificarPaciente() {
 				} catch (NoExistePersonal | IOException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
+=======
+				//borrarPaciente
+>>>>>>> f55b9a070e615c7f5c08ed44066468c001565d0f
 			}
 		});
 		btnBorrar.setBounds(377, 251, 131, 23);

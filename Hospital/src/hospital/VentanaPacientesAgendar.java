@@ -127,6 +127,7 @@ public class VentanaPacientesAgendar extends JFrame {
 				String cc2= textField_2.getText();
 				try {
 					Main.getHospital().generarCita(cc1, cc2, x, c);
+					JOptionPane.showMessageDialog(null, "szzs");
 				} catch (FormatoFechaInvalida e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 					
