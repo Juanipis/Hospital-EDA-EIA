@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 public class VentanaPersonalEnfermeros extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtCedula;
+	private JTextField txtCedulaInput;
 	
 	/**
 	 * Launch the application.
@@ -74,6 +76,36 @@ public VentanaPersonalEnfermeros() {
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		textArea.setText(texto);
+		
+		JButton btnEnfermerosEnSala = new JButton("Enfermeros con Sala");
+		btnEnfermerosEnSala.setBounds(15, 181, 142, 23);
+		contentPane.add(btnEnfermerosEnSala);
+		
+		JButton btnEnfermerosSinSala = new JButton("Enfermeros sin Sala");
+		btnEnfermerosSinSala.setBounds(15, 215, 142, 23);
+		contentPane.add(btnEnfermerosSinSala);
+		
+		JButton btnAgregarEnfermeroaSala = new JButton("Agregar Enfermero");
+		btnAgregarEnfermeroaSala.setBounds(289, 181, 130, 23);
+		contentPane.add(btnAgregarEnfermeroaSala);
+		
+		JButton btnEliminarEnfermeroSala = new JButton("Eliminar Enfermero");
+		btnEliminarEnfermeroSala.setBounds(289, 215, 130, 23);
+		contentPane.add(btnEliminarEnfermeroSala);
+		
+		txtCedula = new JTextField();
+		txtCedula.setBackground(SystemColor.menu);
+		txtCedula.setBounds(177, 191, 96, 20);
+		contentPane.add(txtCedula);
+		txtCedula.setText("CEDULA");
+		txtCedula.setColumns(10);
+		txtCedula.setBorder(null);
+		txtCedula.setEditable(false);
+		
+		txtCedulaInput = new JTextField();
+		txtCedulaInput.setColumns(10);
+		txtCedulaInput.setBounds(177, 218, 96, 20);
+		contentPane.add(txtCedulaInput);
 
 	}
 }
