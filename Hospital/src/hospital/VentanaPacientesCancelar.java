@@ -106,7 +106,8 @@ public class VentanaPacientesCancelar extends JFrame {
 
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, e1.getMessage());
+						
+
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, e1.getMessage());

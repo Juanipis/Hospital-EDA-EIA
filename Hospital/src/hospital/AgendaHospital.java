@@ -47,6 +47,7 @@ public class AgendaHospital {
 			Calendar ff = new GregorianCalendar(fechaFinal[0], fechaFinal[1], fechaFinal[2], fechaFinal[3],
 					fechaFinal[4]);
 
+			
 			String idCita = UUID.randomUUID().toString();
 			// Para añadir al fichero
 			StringBuilder cita = new StringBuilder();

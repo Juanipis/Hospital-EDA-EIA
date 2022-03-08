@@ -110,8 +110,8 @@ public class VentanaPacientesAgendar extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					if (textField.getText().length() == 0 || textField_1.getText() == "" || textField_2.getText() == ""
-							|| textField_3.getText() == "") {
+					if (textField.getText().length() == 0 || textField_1.getText().length() == 0 || textField_2.getText().length() == 0
+							|| textField_3.getText().length() == 0) {
 						JOptionPane.showMessageDialog(null, "Ingrese los datos");
 					} else {
 						String ini = textField_2.getText();
@@ -151,6 +151,9 @@ public class VentanaPacientesAgendar extends JFrame {
 				} catch (NoHayDisponibilidadCita e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 
+				} catch (NoSeEncuetraMedico e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 
 			}
