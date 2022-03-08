@@ -45,8 +45,15 @@ public class VentanaInventarioHistorial extends JFrame {
 		String historial = "";
 		
 		for(int x = 0; x < pacientes.length; x++) {
-			if(txtCedulaInput.getText().equals(pacientes[x].getCC()))
-				historial = historial + pacientes[x].getHistorial().toString()+"\n";
+			if(txtCedulaInput.getText().equals(pacientes[x].getCC())) {
+				Historial [] h = pacientes[x].getHistorial();
+				for(int i = 0; i<h.length ; i++) {
+					historial = historial + h[i].toString()+"\n";
+				}
+					//historial = historial + h.toString()+"\n";
+				
+				
+		}
 		}
 		return historial;
 	}
