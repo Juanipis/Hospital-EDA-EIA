@@ -23,7 +23,7 @@ public class Historial {
 
 	@Override
 	public String toString() {
-		return "Historial [enfermedades=" + Arrays.toString(enfermedades) + ", operaciones="
-				+ Arrays.toString(operaciones) + ", alergias=" + Arrays.toString(alergias) + ", citaId=" + citaId + "]";
+		return "Historial [Enfermedades = " + Arrays.toString(enfermedades) + ", Operaciones="
+				+ Arrays.toString(operaciones) + ", Alergias=" + Arrays.toString(alergias) + ", CitaId=" + citaId + "]";
 	}
 }
