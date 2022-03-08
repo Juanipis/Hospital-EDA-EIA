@@ -36,6 +36,8 @@ public class VentanaModificarPaciente extends JFrame {
 	private JButton btnAgregar;
 	private JTextField textField_1;
 	private JButton btnUnirse;
+	private JTextField txtSangre;
+	private JTextField textField_4;
 	
 	/**
 	 * Launch the application.
@@ -56,13 +58,13 @@ public class VentanaModificarPaciente extends JFrame {
 public VentanaModificarPaciente() {
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 545, 346);
+		setBounds(100, 100, 545, 405);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JButton btnNewButton = new JButton("Volver");
-		btnNewButton.setBounds(26, 251, 89, 23);
+		btnNewButton.setBounds(15, 310, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaInicio inicio = new VentanaInicio();
@@ -74,7 +76,7 @@ public VentanaModificarPaciente() {
 		contentPane.add(btnNewButton);
 		
 		btnAgregar = new JButton("Modificar");
-		btnAgregar.setBounds(183, 251, 131, 23);
+		btnAgregar.setBounds(183, 310, 131, 23);
 		contentPane.add(btnAgregar);
 		
 		txtPorfavorIngreseLos = new JTextField();
@@ -112,7 +114,7 @@ public VentanaModificarPaciente() {
 					}
 			}
 		});
-		btnBorrar.setBounds(377, 251, 131, 23);
+		btnBorrar.setBounds(377, 310, 131, 23);
 		contentPane.add(btnBorrar);
 		
 		textField = new JTextField();
@@ -125,6 +127,7 @@ public VentanaModificarPaciente() {
 		contentPane.add(textField);
 		
 		txtTriaje = new JTextField();
+		txtTriaje.setEditable(false);
 		txtTriaje.setColumns(10);
 		txtTriaje.setBounds(136, 196, 142, 20);
 		contentPane.add(txtTriaje);
@@ -183,15 +186,16 @@ public VentanaModificarPaciente() {
 					txtApellido.setText(p.getApellido());
 					txtPoliza.setText(p.getPoliza());
 					txtTriaje.setText(String.valueOf(p.getTriaje()));
+					textField_4.setText(p.getTipoSangre());
 					btnAgregar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							String nombre = txtNombre.getText();
 							String apellido = txtApellido.getText();
 							String poliza = txtPoliza.getText();
-//							if(txtTriaje.getText() != "") {
+//							if(txtTriaje.getText().equals("") == false) {
 //								int newTriaje = Integer.valueOf(txtPoliza.getText());
 //								if(newTriaje < 0 || newTriaje > 5) {
-//								//Exception
+//									JOptionPane.showMessageDialog(null, "Triaje no valido");
 //								}else if(newTriaje != p.getTriaje()){
 //									p.setTriaje(newTriaje);
 //								}
@@ -240,6 +244,21 @@ public VentanaModificarPaciente() {
 		});
 		btnUnirse.setBounds(330, 195, 131, 23);
 		contentPane.add(btnUnirse);
+		
+		txtSangre = new JTextField();
+		txtSangre.setText("Sangre");
+		txtSangre.setEditable(false);
+		txtSangre.setColumns(10);
+		txtSangre.setBorder(null);
+		txtSangre.setBackground(SystemColor.menu);
+		txtSangre.setBounds(15, 232, 86, 20);
+		contentPane.add(txtSangre);
+		
+		textField_4 = new JTextField();
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(136, 229, 142, 20);
+		contentPane.add(textField_4);
 		
 		
 
