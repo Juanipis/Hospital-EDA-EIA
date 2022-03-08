@@ -111,8 +111,8 @@ public class VentanaPacientesAgendar extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					if (textField.getText().length() == 0 || textField_1.getText().length() == 0 || textField_2.getText().length() == 0
-							|| textField_3.getText().length() == 0) {
+					if (textField.getText().length() == 0 || textField_1.getText().length() == 0
+							|| textField_2.getText().length() == 0 || textField_3.getText().length() == 0) {
 						JOptionPane.showMessageDialog(null, "Ingrese los datos");
 					} else {
 						String ini = textField_2.getText();
@@ -161,7 +161,7 @@ public class VentanaPacientesAgendar extends JFrame {
 		});
 		btnNewButton_1.setBounds(161, 267, 89, 23);
 		contentPane.add(btnNewButton_1);
-		
+
 		JTextArea txtrFormatoFecha = new JTextArea();
 		txtrFormatoFecha.setText("Formato fecha: 2022,6,6,11,30\r\na\u00F1o,mes,dia,hora,minuto");
 		txtrFormatoFecha.setEditable(false);

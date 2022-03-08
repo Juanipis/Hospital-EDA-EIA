@@ -185,7 +185,7 @@ public class Hospital {
 	public boolean generarCita(String CCPaciente, String CCMedico, int[] fechaInicio, int[] fechaFinal)
 			throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita, NoSeEncuetraMedico {
 		if (this.getMedico(CCMedico) != null) {
-			
+
 			return this.agendaHospital.generarCita(CCPaciente, CCMedico, fechaInicio, fechaFinal);
 		} else {
 			throw new NoSeEncuetraMedico();
@@ -252,7 +252,7 @@ public class Hospital {
 //		while(index < medicamentos.size())
 //	}
 
-	//Metodos relacionados con Equipos
+	// Metodos relacionados con Equipos
 //	public Equipo[] getEquipos() {
 //		return partesEquip.get
 //				}
@@ -292,7 +292,7 @@ public class Hospital {
 			medicos.add(new Medico(nombre, apellido, CC, disponible, esp, pres));
 			// Para el fichero
 			this.addMedicoFichero(nombre, apellido, CC, disponible, esp, pres);
-	
+
 		} else {
 			throw new ExistePersonal(CC);
 		}
@@ -327,6 +327,7 @@ public class Hospital {
 			bld.append(";");
 		} else {
 			bld.append(ccPacientes);
+
 		}
 
 		Main.escrituraFicheroUltimaLinea("personal.txt", bld.toString(), 0);
@@ -348,22 +349,25 @@ public class Hospital {
 	public Paciente[] getPacientes() {
 		return pacientes.toArray(new Paciente[pacientes.size()]);
 	}
-	
-	public String getIdCitaPacienteFecha(String CCPaciente, int[] fechaInicio) throws PersonaNoCitas, FechaInvalida, CitaNoExiste {
+
+	public String getIdCitaPacienteFecha(String CCPaciente, int[] fechaInicio)
+			throws PersonaNoCitas, FechaInvalida, CitaNoExiste {
 		Cita[] cts = this.getCitasPaciente(CCPaciente);
-		if(cts != null && cts.length>0 && fechaInicio.length == 5) {
-			Date fi = new GregorianCalendar(fechaInicio[0], fechaInicio[1], fechaInicio[2], fechaInicio[3], fechaInicio[4]).getTime();
-			for(Cita ct : cts) {
-				if(ct != null && ct.getFechaInicio().equals(fi)) {
+		if (cts != null && cts.length > 0 && fechaInicio.length == 5) {
+			Date fi = new GregorianCalendar(fechaInicio[0], fechaInicio[1], fechaInicio[2], fechaInicio[3],
+					fechaInicio[4]).getTime();
+			for (Cita ct : cts) {
+				if (ct != null && ct.getFechaInicio().equals(fi)) {
 					return ct.getIdCita();
 				}
 			}
 			throw new CitaNoExiste(CCPaciente);
-		}else {
+		} else {
 			throw new FechaInvalida();
 		}
-		
+
 	}
+
 	// Me todo ponerle el throws con las excepciones
 	public void addEnfermeroASala(String CCEnfermero, String salaId) throws IOException, VectorNulo, EnfermeroEnSala {
 		Sala s = this.getSala(salaId);
@@ -372,16 +376,13 @@ public class Hospital {
 			s.addEnfermero(eo);
 		}
 	}
-	
-	/*//Usar ingresarPacienteSala
-	public void addPacienteASala(String CCPaciente, String salaId) throws IOException, VectorNulo, PacienteEnSala {
-		Sala s = this.getSala(salaId);
-		Paciente pc = this.getPaciente(CCPaciente);
-		if (s != null && pc != null) {
-			s.addPaciente(pc);
-		}
-	}
-	*/
+
+	/*
+	 * //Usar ingresarPacienteSala public void addPacienteASala(String CCPaciente,
+	 * String salaId) throws IOException, VectorNulo, PacienteEnSala { Sala s =
+	 * this.getSala(salaId); Paciente pc = this.getPaciente(CCPaciente); if (s !=
+	 * null && pc != null) { s.addPaciente(pc); } }
+	 */
 //	public void addMedicamentoASala(String idMed, String salaId) {
 //		Sala s = this.getSala(salaId);
 //		Medicamento md = this.getme
@@ -607,7 +608,7 @@ public class Hospital {
 		Paciente pc = this.getPaciente(CCPaciente);
 		if (pc != null && pc.getAcompanantes().length < 4) {
 			pc.addAcompanantes(CCVisitante);
-		}else {
+		} else {
 			throw new CampoLleno();
 		}
 	}
@@ -704,19 +705,19 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("salas.txt", idSala, 0);
 	}
 
-	public void ingresarPacienteSala(String idSala, String ccPaciente) throws IOException, VectorNulo, PacienteEnSala, SalaLLena, NoExisteSala, NoExistePaciente {
+	public void ingresarPacienteSala(String idSala, String ccPaciente)
+			throws IOException, VectorNulo, PacienteEnSala, SalaLLena, NoExisteSala, NoExistePaciente {
 		Sala salaIngreso = this.getSala(idSala);
 		Paciente pc = this.getPaciente(ccPaciente);
-		if (salaIngreso != null && pc != null  ) {
-			if(salaIngreso.getDisponibilidadSala()) {
+		if (salaIngreso != null && pc != null) {
+			if (salaIngreso.getDisponibilidadSala()) {
 				salaIngreso.addPaciente(pc);
-			}else {
+			} else {
 				throw new SalaLLena(salaIngreso.getTipo());
 			}
-		}
-		else if(pc != null) {
+		} else if (pc != null) {
 			throw new NoExistePaciente(ccPaciente);
-		}else {
+		} else {
 			throw new NoExisteSala(idSala);
 		}
 	}
@@ -730,18 +731,22 @@ public class Hospital {
 			throw new NoPacienteEnSala(CCPaciente);
 		}
 	}
-	
+
 	public Sala buscarPacienteSala(String CCPaciente) throws NoExistePersonal, VectorNulo, NoPacienteEnNingunaSala {
 		Paciente pc = this.getPaciente(CCPaciente);
-		if(pc != null) {
-			int index=0;
-			while(index < salas.size() && salas.get(index)!=null && salas.get(index).verificarPaciente(CCPaciente) == -1) {index++;}
-			if(index < salas.size() && salas.get(index)!=null && salas.get(index).verificarPaciente(CCPaciente) != -1) {
+		if (pc != null) {
+			int index = 0;
+			while (index < salas.size() && salas.get(index) != null
+					&& salas.get(index).verificarPaciente(CCPaciente) == -1) {
+				index++;
+			}
+			if (index < salas.size() && salas.get(index) != null
+					&& salas.get(index).verificarPaciente(CCPaciente) != -1) {
 				return salas.get(index);
-			}else {
+			} else {
 				throw new NoPacienteEnNingunaSala(CCPaciente);
 			}
-		}else {
+		} else {
 			throw new NoExistePersonal(CCPaciente);
 		}
 	}
@@ -756,33 +761,33 @@ public class Hospital {
 		bld.append("," + fl.getIncapacidad());
 		Main.escrituraFicheroUltimaLinea("formulas.txt", bld.toString(), 0);
 	}
-	
+
 	public Paciente[] getPacienteSinSala() {
 		ArrayList<Paciente> pcSinSala = new ArrayList<>();
-		for(Paciente pc : pacientes) {
+		for (Paciente pc : pacientes) {
 			boolean existe = false;
-			for(Sala sl : salas) {
-				if(pc!=null && sl!=null && sl.existeEnSalaPaciente(pc.getCC())) {
+			for (Sala sl : salas) {
+				if (pc != null && sl != null && sl.existeEnSalaPaciente(pc.getCC())) {
 					existe = true;
 				}
 			}
-			if(!existe && pc!=null) {
+			if (!existe && pc != null) {
 				pcSinSala.add(pc);
 			}
 		}
 		return pcSinSala.toArray(new Paciente[pcSinSala.size()]);
 	}
-	
+
 	public Enfermero[] getEnfermerosSinSala() {
 		ArrayList<Enfermero> efSinSala = new ArrayList<>();
-		for(Enfermero ef : enfermeros) {
+		for (Enfermero ef : enfermeros) {
 			boolean existe = false;
-			for(Sala sl : salas) {
-				if(ef!=null && sl!=null && sl.existeEnSalaEnfermero(ef.getCC())) {
+			for (Sala sl : salas) {
+				if (ef != null && sl != null && sl.existeEnSalaEnfermero(ef.getCC())) {
 					existe = true;
 				}
 			}
-			if(!existe && ef!=null) {
+			if (!existe && ef != null) {
 				efSinSala.add(ef);
 			}
 		}

@@ -404,7 +404,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnM1.setBounds(473, 42, 89, 23);
+		btnM1.setBounds(463, 42, 99, 23);
 		panel_1.add(btnM1);
 		
 		JButton btnM2 = new JButton("Modificar");
@@ -415,7 +415,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnM2.setBounds(473, 126, 89, 23);
+		btnM2.setBounds(463, 126, 99, 23);
 		panel_1.add(btnM2);
 		
 		JButton btnM3 = new JButton("Modificar");
@@ -426,7 +426,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnM3.setBounds(473, 215, 89, 23);
+		btnM3.setBounds(463, 215, 99, 23);
 		panel_1.add(btnM3);
 		
 		JButton btnM4 = new JButton("Modificar");
@@ -437,7 +437,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnM4.setBounds(473, 299, 89, 23);
+		btnM4.setBounds(463, 299, 99, 23);
 		panel_1.add(btnM4);
 		
 		JButton btnNewButton_2 = new JButton("Ver citas");
@@ -450,6 +450,17 @@ public class VentanaInicio extends JFrame {
 		});
 		btnNewButton_2.setBounds(598, 42, 99, 20);
 		panel_1.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Ingresar formula a cita medica");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaSetFormula window = new VentanaSetFormula();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_3.setBounds(324, 77, 238, 27);
+		panel_1.add(btnNewButton_3);
 
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Inventario", null, panel_3, null);
@@ -635,6 +646,13 @@ public class VentanaInicio extends JFrame {
 		panel_4.add(btnEliminar);
 		setBounds(100, 100, 805, 400);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaSetFormula window = new VentanaSetFormula();
+				window.setVisible(true);
+				dispose();
+			}
+		});
 
 	}
 }
