@@ -341,7 +341,7 @@ public class VentanaPacientesModificar extends JFrame {
 		textField_8.setColumns(10);
 		textField_8.setBounds(289, 120, 86, 20);
 		contentPane.add(textField_8);
-		
+
 		JTextArea txtrFormatoFecha = new JTextArea();
 		txtrFormatoFecha.setText("Formato fecha: 2022,6,6,11,30\r\na\u00F1o,mes,dia,hora,minuto");
 		txtrFormatoFecha.setEditable(false);

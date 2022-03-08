@@ -107,7 +107,6 @@ public class VentanaPacientesCancelar extends JFrame {
 
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
-						
 
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -128,7 +127,7 @@ public class VentanaPacientesCancelar extends JFrame {
 		});
 		btnNewButton_1.setBounds(156, 163, 89, 23);
 		contentPane.add(btnNewButton_1);
-		
+
 		JTextArea txtrFormatoFecha = new JTextArea();
 		txtrFormatoFecha.setText("Formato fecha: 2022,6,6,11,30\r\na\u00F1o,mes,dia,hora,minuto");
 		txtrFormatoFecha.setEditable(false);
