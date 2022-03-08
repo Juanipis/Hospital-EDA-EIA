@@ -102,3 +102,9 @@ class FechaInvalida extends Exception{
 		super("La fecha ingresada tiene un formato incorrecto");
 	}
 }
+
+class MedicoNoPaciente extends Exception{
+	public MedicoNoPaciente(String nombreMedico, String CCPaciente) {
+		super("El medico " +  nombreMedico + " no tiene el paciente con la cedula " + CCPaciente);
+	}
+}
