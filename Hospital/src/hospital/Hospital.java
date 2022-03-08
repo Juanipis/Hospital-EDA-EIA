@@ -183,11 +183,12 @@ public class Hospital {
 
 	// Metodos relacionados con agenda de citas
 	public boolean generarCita(String CCPaciente, String CCMedico, int[] fechaInicio, int[] fechaFinal)
-			throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita {
+			throws FormatoFechaInvalida, IOException, NoHayDisponibilidadCita, NoSeEncuetraMedico {
 		if (this.getMedico(CCMedico) != null) {
+			
 			return this.agendaHospital.generarCita(CCPaciente, CCMedico, fechaInicio, fechaFinal);
 		} else {
-			return false;
+			throw new NoSeEncuetraMedico();
 		}
 	}
 
@@ -602,7 +603,7 @@ public class Hospital {
 
 	public void ingresoVisitantePaciente(String CCPaciente, String CCVisitante) {
 		Paciente pc = this.getPaciente(CCPaciente);
-		if (pc != null) {
+		if (pc != null && pc.getAcompanantes().length < 3) {
 			pc.addAcompanantes(CCVisitante);
 		}
 	}
