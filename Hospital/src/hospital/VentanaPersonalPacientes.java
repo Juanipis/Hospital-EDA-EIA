@@ -84,7 +84,7 @@ public class VentanaPersonalPacientes extends JFrame {
 						JOptionPane.showMessageDialog(null, "El paciente se ingreso correctamente a la Sala");
 					} catch (IOException | VectorNulo | PacienteEnSala | SalaLLena | NoExisteSala | NoExistePaciente e) {
 						JOptionPane.showMessageDialog(null, e.getMessage());
-						e.printStackTrace();
+					
 					}
 				}
 			}
@@ -147,11 +147,11 @@ public class VentanaPersonalPacientes extends JFrame {
 				textArea.setText(pacientesSinSalas());
 			}
 		});
-		btnPacientesSinSala.setBounds(25, 172, 127, 23);
+		btnPacientesSinSala.setBounds(15, 172, 137, 23);
 		contentPane.add(btnPacientesSinSala);
 		
 		JButton btnPacientesConSala = new JButton("Pacientes Con Sala");
-		btnPacientesConSala.setBounds(25, 220, 127, 23);
+		btnPacientesConSala.setBounds(15, 220, 137, 23);
 		contentPane.add(btnPacientesConSala);
 		
 		txtCedula = new JTextField();
@@ -173,7 +173,7 @@ public class VentanaPersonalPacientes extends JFrame {
 				agregarPacienteASala();
 			}
 		});
-		btnAgregarPacienteASala.setBounds(286, 165, 127, 23);
+		btnAgregarPacienteASala.setBounds(286, 165, 147, 23);
 		contentPane.add(btnAgregarPacienteASala);
 		
 		JButton btnEliminarPacientedeSala = new JButton("Eliminar Paciente");
@@ -182,7 +182,7 @@ public class VentanaPersonalPacientes extends JFrame {
 				salidaPacientesSala();
 			}
 		});
-		btnEliminarPacientedeSala.setBounds(286, 224, 127, 23);
+		btnEliminarPacientedeSala.setBounds(286, 224, 147, 23);
 		contentPane.add(btnEliminarPacientedeSala);
 		
 		//Codigo Sala
