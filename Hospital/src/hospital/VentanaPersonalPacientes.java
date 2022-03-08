@@ -18,10 +18,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
+import javax.swing.JTextField;
 
 public class VentanaPersonalPacientes extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtCedula;
+	private JTextField txtCedulaInput;
 
 	/**
 	 * Launch the application.
@@ -79,6 +82,34 @@ public class VentanaPersonalPacientes extends JFrame {
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		textArea.setText(texto);
+		
+		JButton btnPacientesSinSala = new JButton("Pacientes Sin Sala");
+		btnPacientesSinSala.setBounds(32, 188, 127, 23);
+		contentPane.add(btnPacientesSinSala);
+		
+		JButton btnPacientesConSala = new JButton("Pacientes Con Sala");
+		btnPacientesConSala.setBounds(32, 220, 127, 23);
+		contentPane.add(btnPacientesConSala);
+		
+		txtCedula = new JTextField();
+		txtCedula.setBounds(177, 191, 96, 20);
+		contentPane.add(txtCedula);
+		txtCedula.setText("CEDULA");
+		txtCedula.setColumns(10);
+		txtCedula.setBorder(null);
+		
+		txtCedulaInput = new JTextField();
+		txtCedulaInput.setColumns(10);
+		txtCedulaInput.setBounds(177, 221, 96, 20);
+		contentPane.add(txtCedulaInput);
+		
+		JButton btnAgregarPacienteASala = new JButton("Agregar Paciente");
+		btnAgregarPacienteASala.setBounds(283, 188, 127, 23);
+		contentPane.add(btnAgregarPacienteASala);
+		
+		JButton btnEliminarPacientedeSala = new JButton("Eliminar Paciente");
+		btnEliminarPacientedeSala.setBounds(283, 220, 127, 23);
+		contentPane.add(btnEliminarPacientedeSala);
 
 	}
 }
