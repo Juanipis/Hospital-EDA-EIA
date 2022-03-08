@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -23,6 +24,8 @@ public class VentanaPersonalEnfermeros extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCedula;
 	private JTextField txtCedulaInput;
+	private JTextField txtCodigo;
+	private JTextField txtCodigoInput;
 	
 	/**
 	 * Launch the application.
@@ -39,6 +42,57 @@ public class VentanaPersonalEnfermeros extends JFrame {
 			}
 		});
 	}
+	public String enfermerosSinSalas() {
+		String texto = "";
+		Enfermero [] e = Main.hp.getEnfermerosSinSala();
+		for(int i =0;i<e.length;i++) {
+			texto = texto + e[i].toString() + "\n";
+		}
+		return texto;
+	}
+	public boolean verificarSiSalaExiste() {
+		Sala[] s = Main.hp.getSalas();
+		for(int i = 0 ; i< s.length;i++) {
+			if(s[i].getTipo().equals(txtCodigoInput.getText())) {
+				return true;
+			}
+		} 
+		return false;
+	}
+	
+	public void salidaEnfermeroSala() {
+		Enfermero [] e = Main.hp.getEnfermeros();
+		if(verificarSiSalaExiste() == true) {
+			for(int i =0;i<e.length;i++) {
+				if(e[i].getDisponible()==false) {
+					try {
+						Main.hp.salidaEnfermerosSala(txtCodigoInput.getText(), txtCedulaInput.getText());
+					} catch (VectorNulo | NoPacienteEnSala e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
+		
+	}
+	public void agregarEnfermeroASala() {
+		Enfermero [] e = Main.hp.getEnfermeros();
+		
+		if(verificarSiSalaExiste() == true) {
+			for(int i =0;i<e.length;i++) {
+				if(txtCedulaInput.getText().equals(e[i].getCC())) {
+					try {
+						Main.hp.addEnfermeroASala(txtCodigoInput.getText(), txtCedulaInput.getText());
+						JOptionPane.showMessageDialog(null, "El enfermero ingreso se correctamente a la Sala");
+					} catch (IOException | VectorNulo | EnfermeroEnSala e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+						e1.printStackTrace();
+					}
+				}
+			}
+		}	
+	}
 
 public VentanaPersonalEnfermeros() {
 	
@@ -51,7 +105,7 @@ public VentanaPersonalEnfermeros() {
 		System.out.print(texto);
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 498, 318);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,7 +119,7 @@ public VentanaPersonalEnfermeros() {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(167, 157, 89, 23);
+		btnNewButton.setBounds(330, 250, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -82,20 +136,35 @@ public VentanaPersonalEnfermeros() {
 		contentPane.add(btnEnfermerosEnSala);
 		
 		JButton btnEnfermerosSinSala = new JButton("Enfermeros sin Sala");
+		btnEnfermerosSinSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText(enfermerosSinSalas());
+			}
+		});
 		btnEnfermerosSinSala.setBounds(15, 215, 142, 23);
 		contentPane.add(btnEnfermerosSinSala);
 		
 		JButton btnAgregarEnfermeroaSala = new JButton("Agregar Enfermero");
+		btnAgregarEnfermeroaSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				agregarEnfermeroASala();
+			}
+		});
 		btnAgregarEnfermeroaSala.setBounds(289, 181, 130, 23);
 		contentPane.add(btnAgregarEnfermeroaSala);
 		
 		JButton btnEliminarEnfermeroSala = new JButton("Eliminar Enfermero");
+		btnEliminarEnfermeroSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salidaEnfermeroSala();
+			}
+		});
 		btnEliminarEnfermeroSala.setBounds(289, 215, 130, 23);
 		contentPane.add(btnEliminarEnfermeroSala);
 		
 		txtCedula = new JTextField();
 		txtCedula.setBackground(SystemColor.menu);
-		txtCedula.setBounds(177, 191, 96, 20);
+		txtCedula.setBounds(183, 182, 96, 20);
 		contentPane.add(txtCedula);
 		txtCedula.setText("CEDULA");
 		txtCedula.setColumns(10);
@@ -104,8 +173,22 @@ public VentanaPersonalEnfermeros() {
 		
 		txtCedulaInput = new JTextField();
 		txtCedulaInput.setColumns(10);
-		txtCedulaInput.setBounds(177, 218, 96, 20);
+		txtCedulaInput.setBounds(183, 201, 96, 20);
 		contentPane.add(txtCedulaInput);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setText("CODIGO");
+		txtCodigo.setEditable(false);
+		txtCodigo.setColumns(10);
+		txtCodigo.setBorder(null);
+		txtCodigo.setBackground(SystemColor.menu);
+		txtCodigo.setBounds(183, 232, 96, 20);
+		contentPane.add(txtCodigo);
+		
+		txtCodigoInput = new JTextField();
+		txtCodigoInput.setColumns(10);
+		txtCodigoInput.setBounds(183, 251, 96, 20);
+		contentPane.add(txtCodigoInput);
 
 	}
 }

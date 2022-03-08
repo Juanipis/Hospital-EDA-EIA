@@ -27,6 +27,7 @@ public class VentanaPersonalPacientes extends JFrame {
 	private JTextField txtCedula;
 	private JTextField txtCedulaInput;
 	private JTextField txtCodigoSalaInput;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -75,19 +76,32 @@ public class VentanaPersonalPacientes extends JFrame {
 	public void agregarPacienteASala() {
 		Paciente [] p = Main.hp.getPacienteSinSala();
 		
-		
+		if( verificarSiSalaExiste() == true) {
 			for(int i =0;i<p.length;i++) {
-				if(txtCedulaInput.getText().equals(p[i].getCC()) && verificarSiSalaExiste() == true) {
+				if(txtCedulaInput.getText().equals(p[i].getCC())) {
 					try {
 						Main.hp.ingresarPacienteSala(txtCodigoSalaInput.getText(), txtCedulaInput.getText());
+						JOptionPane.showMessageDialog(null, "El paciente se ingreso correctamente a la Sala");
 					} catch (IOException | VectorNulo | PacienteEnSala | SalaLLena | NoExisteSala | NoExistePaciente e) {
-						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, e.getMessage());
 						e.printStackTrace();
-					
+					}
 				}
 			}
 		}
 	}
+	public void salidaPacientesSala() {
+		//Paciente [] p = Main.hp.getPacientes();
+		//for(int i=0 ; i<p.length;i++) {
+			try {
+				Main.hp.salidaPacienteSala(txtCodigoSalaInput.getText(), txtCedulaInput.getText());
+				JOptionPane.showMessageDialog(null, "El paciente se retiro correctamente de la Sala");
+			} catch (VectorNulo | NoPacienteEnSala e) {
+				JOptionPane.showMessageDialog(null,  e.getMessage());
+				e.printStackTrace();
+			}
+		}
+	
 	
 	public VentanaPersonalPacientes() {
 		String texto = "";
@@ -99,7 +113,7 @@ public class VentanaPersonalPacientes extends JFrame {
 		System.out.print(texto);
 	
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 477, 324);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -115,7 +129,7 @@ public class VentanaPersonalPacientes extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(167, 157, 89, 23);
+		btnNewButton.setBounds(324, 258, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -133,15 +147,15 @@ public class VentanaPersonalPacientes extends JFrame {
 				textArea.setText(pacientesSinSalas());
 			}
 		});
-		btnPacientesSinSala.setBounds(32, 188, 127, 23);
+		btnPacientesSinSala.setBounds(25, 172, 127, 23);
 		contentPane.add(btnPacientesSinSala);
 		
 		JButton btnPacientesConSala = new JButton("Pacientes Con Sala");
-		btnPacientesConSala.setBounds(32, 220, 127, 23);
+		btnPacientesConSala.setBounds(25, 220, 127, 23);
 		contentPane.add(btnPacientesConSala);
 		
 		txtCedula = new JTextField();
-		txtCedula.setBounds(177, 191, 96, 20);
+		txtCedula.setBounds(169, 173, 96, 20);
 		contentPane.add(txtCedula);
 		txtCedula.setText("CEDULA");
 		txtCedula.setEditable(false);
@@ -150,7 +164,7 @@ public class VentanaPersonalPacientes extends JFrame {
 		
 		txtCedulaInput = new JTextField();
 		txtCedulaInput.setColumns(10);
-		txtCedulaInput.setBounds(177, 221, 96, 20);
+		txtCedulaInput.setBounds(162, 190, 96, 20);
 		contentPane.add(txtCedulaInput);
 		
 		JButton btnAgregarPacienteASala = new JButton("Agregar Paciente");
@@ -159,18 +173,31 @@ public class VentanaPersonalPacientes extends JFrame {
 				agregarPacienteASala();
 			}
 		});
-		btnAgregarPacienteASala.setBounds(283, 188, 127, 23);
+		btnAgregarPacienteASala.setBounds(286, 165, 127, 23);
 		contentPane.add(btnAgregarPacienteASala);
 		
 		JButton btnEliminarPacientedeSala = new JButton("Eliminar Paciente");
-		btnEliminarPacientedeSala.setBounds(283, 220, 127, 23);
+		btnEliminarPacientedeSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salidaPacientesSala();
+			}
+		});
+		btnEliminarPacientedeSala.setBounds(286, 224, 127, 23);
 		contentPane.add(btnEliminarPacientedeSala);
 		
 		//Codigo Sala
 		txtCodigoSalaInput = new JTextField();
 		txtCodigoSalaInput.setColumns(10);
-		txtCodigoSalaInput.setBounds(177, 235, 96, 20);
+		txtCodigoSalaInput.setBounds(162, 240, 96, 20);
 		contentPane.add(txtCodigoSalaInput);
+		
+		textField = new JTextField();
+		textField.setText("CODIGO");
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBorder(null);
+		textField.setBounds(162, 221, 96, 20);
+		contentPane.add(textField);
 
 	}
 }
