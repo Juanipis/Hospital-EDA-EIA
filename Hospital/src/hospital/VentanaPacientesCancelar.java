@@ -101,6 +101,7 @@ public class VentanaPacientesCancelar extends JFrame {
 							}
 							Main.getHospital()
 									.cancelarCita(Main.getHospital().getIdCitaPacienteFecha(textField.getText(), x));
+							JOptionPane.showMessageDialog(null, "Se cancelo la cita");
 							textField.setText("");
 							textField_1.setText("");
 						}
