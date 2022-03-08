@@ -605,7 +605,7 @@ public class Hospital {
 
 	public void ingresoVisitantePaciente(String CCPaciente, String CCVisitante) throws CampoLleno {
 		Paciente pc = this.getPaciente(CCPaciente);
-		if (pc != null && pc.getAcompanantes().length < 3) {
+		if (pc != null && pc.getAcompanantes().length < 4) {
 			pc.addAcompanantes(CCVisitante);
 		}else {
 			throw new CampoLleno();

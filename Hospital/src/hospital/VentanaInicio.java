@@ -565,7 +565,7 @@ public class VentanaInicio extends JFrame {
 								JOptionPane.showMessageDialog(null, "El documento ya esta registrado");
 							}else {
 								Main.hp.ingresoVisitantePaciente(ccPaciente, ccVisitante);
-								textField_1.setText("Visitante con la cc: " + ccVisitante + " ha sido admitido");
+								JOptionPane.showMessageDialog(null, "Visitante con la cc: " + ccVisitante + " ha sido admitido");
 							}
 						}else {
 							JOptionPane.showMessageDialog(null, "Ingrese un documento del visitante");
