@@ -78,10 +78,7 @@ public class VentanaPersonalEnfermeros extends JFrame {
 	}
 	public void agregarEnfermeroASala() {
 		Enfermero [] e = Main.hp.getEnfermeros();
-		
 		if(verificarSiSalaExiste() == true) {
-			//for(int i =0;i<e.length;i++) {
-				//if(txtCedulaInput.getText().equals(e[i].getCC())) {
 					try {
 						Main.hp.addEnfermeroASala(txtCodigoInput.getText(), txtCedulaInput.getText());
 						JOptionPane.showMessageDialog(null, "El enfermero ingreso se correctamente a la Sala");
@@ -89,9 +86,12 @@ public class VentanaPersonalEnfermeros extends JFrame {
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 						e1.printStackTrace();
 					}
-				//}
-			//}
+				
+					
+					
+					
 		}	
+		
 	}
 
 public VentanaPersonalEnfermeros() {

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -51,17 +53,22 @@ public class VentanaInventarioSalas extends JFrame {
 			}
 		});
 	}
-
-	public void ingresarMedicamentoASala() {
-		Sala [] s = Main.hp.getSalas();
-		int i=0;
-		while(!(s[i].getTipo().equals(textField_17.getText()))){
-			i++;
-		}
-		if(i<s.length) {
-			//s[i].addMedicamento(textField_1, textField_2, null, null, textField_6, true);
-		}
-	}
+//
+//	public void ingresarMedicamentoASala() {
+//		Sala [] s = Main.hp.getSalas();
+//		
+//			new SimpleDateFormat("dd-MM-yyyy").parse(textField_3.getText());
+//		
+//			
+//		}
+//		int i=0;
+//		while(!(s[i].getTipo().equals(textField_17.getText()))){
+//			i++;
+//		}
+//		if(i<s.length) {
+//			//s[i].addMedicamento(textField_1, textField_2, null, null, textField_6, true);
+//		}
+//	}
 	/**
 	 * Create the frame.
 	 */
