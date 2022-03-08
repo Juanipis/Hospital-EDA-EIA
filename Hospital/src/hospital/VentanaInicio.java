@@ -299,7 +299,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnLimpieza.setBounds(20, 213, 89, 23);
+		btnLimpieza.setBounds(20, 179, 89, 23);
 		panel_1.add(btnLimpieza);
 
 		JButton btnPacientes = new JButton("Pacientes");
@@ -311,7 +311,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnPacientes.setBounds(20, 299, 99, 23);
+		btnPacientes.setBounds(20, 213, 99, 23);
 		panel_1.add(btnPacientes);
 
 		txtTodoDatoDe = new JTextField();
@@ -337,7 +337,7 @@ public class VentanaInicio extends JFrame {
 		txtTodoDatoDe_2.setBorder(null);
 		txtTodoDatoDe_2.setEditable(false);
 		txtTodoDatoDe_2.setText("Todo dato de los conserjes");
-		txtTodoDatoDe_2.setBounds(119, 214, 152, 20);
+		txtTodoDatoDe_2.setBounds(119, 180, 152, 20);
 		panel_1.add(txtTodoDatoDe_2);
 		txtTodoDatoDe_2.setColumns(10);
 
@@ -346,7 +346,7 @@ public class VentanaInicio extends JFrame {
 		txtTodoDatoDe_3.setBackground(SystemColor.menu);
 		txtTodoDatoDe_3.setEditable(false);
 		txtTodoDatoDe_3.setText("Todo dato de los pacientes");
-		txtTodoDatoDe_3.setBounds(129, 300, 152, 20);
+		txtTodoDatoDe_3.setBounds(129, 214, 152, 20);
 		panel_1.add(txtTodoDatoDe_3);
 		txtTodoDatoDe_3.setColumns(10);
 		
@@ -381,7 +381,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnA3.setBounds(325, 215, 89, 23);
+		btnA3.setBounds(325, 181, 89, 23);
 		panel_1.add(btnA3);
 		
 		JButton btnA4 = new JButton("Agregar");
@@ -392,7 +392,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnA4.setBounds(325, 299, 89, 23);
+		btnA4.setBounds(325, 213, 89, 23);
 		panel_1.add(btnA4);
 		
 		JButton btnM1 = new JButton("Modificar");
@@ -425,7 +425,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnM3.setBounds(463, 215, 99, 23);
+		btnM3.setBounds(463, 181, 99, 23);
 		panel_1.add(btnM3);
 		
 		JButton btnM4 = new JButton("Modificar");
@@ -436,7 +436,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnM4.setBounds(463, 299, 99, 23);
+		btnM4.setBounds(463, 213, 99, 23);
 		panel_1.add(btnM4);
 		
 		JButton btnNewButton_2 = new JButton("Ver citas");
@@ -623,7 +623,7 @@ public class VentanaInicio extends JFrame {
 		});
 		btnEliminar.setBounds(362, 85, 115, 29);
 		panel_4.add(btnEliminar);
-		setBounds(100, 100, 805, 359);
+		setBounds(100, 100, 805, 356);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
