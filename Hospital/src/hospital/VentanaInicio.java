@@ -40,6 +40,7 @@ public class VentanaInicio extends JFrame {
 	private JTextField txtCCPaciente;
 	private JTextField txtCCVisitante;
 	private JButton btnBuscar;
+	private JTextField txtParaVerLas;
 
 	/**
 	 * Launch the application.
@@ -54,7 +55,7 @@ public class VentanaInicio extends JFrame {
 	public VentanaInicio() {
 
 		setAlwaysOnTop(false);
-		setResizable(false);
+		setResizable(true);
 		initialize();
 	}
 
@@ -232,6 +233,25 @@ public class VentanaInicio extends JFrame {
 		txtSiCambioDe.setColumns(10);
 		txtSiCambioDe.setBounds(143, 288, 631, 20);
 		panel_2.add(txtSiCambioDe);
+		
+		JButton btnNewButton_1 = new JButton("Ver Citas");
+		btnNewButton_1.setBounds(10, 97, 123, 20);
+		panel_2.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerCitasPaciente window = new VerCitasPaciente();
+				window.setVisible(true);
+				dispose();
+
+			}
+		});
+		
+		txtParaVerLas = new JTextField();
+		txtParaVerLas.setText("Para ver las citas de un paciente");
+		txtParaVerLas.setEditable(false);
+		txtParaVerLas.setBounds(143, 97, 358, 21);
+		panel_2.add(txtParaVerLas);
+		txtParaVerLas.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Personal", null, panel_1, null);
@@ -419,6 +439,17 @@ public class VentanaInicio extends JFrame {
 		});
 		btnM4.setBounds(473, 299, 89, 23);
 		panel_1.add(btnM4);
+		
+		JButton btnNewButton_2 = new JButton("Ver citas");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerCitasMedico window = new VerCitasMedico();
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_2.setBounds(598, 42, 99, 20);
+		panel_1.add(btnNewButton_2);
 
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Inventario", null, panel_3, null);
