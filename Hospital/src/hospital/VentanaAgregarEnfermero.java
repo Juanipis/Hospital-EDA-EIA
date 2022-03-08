@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -68,6 +69,7 @@ public VentanaAgregarEnfermero() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "El enfermero se agrego con exito");
 				try {
 					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
 				} catch (IOException | ExistePersonal e1) {
