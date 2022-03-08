@@ -602,7 +602,7 @@ public class Hospital {
 
 	public void ingresoVisitantePaciente(String CCPaciente, String CCVisitante) {
 		Paciente pc = this.getPaciente(CCPaciente);
-		if (pc != null) {
+		if (pc != null && pc.getAcompanantes().length < 3) {
 			pc.addAcompanantes(CCVisitante);
 		}
 	}
