@@ -61,7 +61,6 @@ public VentanaModificarMedico() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		contentPane.setLayout(null);
@@ -70,12 +69,11 @@ public VentanaModificarMedico() {
 		btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El medico se modifico con exito");
 				try {
 					Main.hp.addPersonalLimpieza(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
+					JOptionPane.showMessageDialog(null, "El medico se modifico con exito");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
@@ -109,12 +107,11 @@ public VentanaModificarMedico() {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El medico se borro con exito");
 				try {
 					Main.hp.eliminarMedico(txtCedula.getText());
+					JOptionPane.showMessageDialog(null, "El medico se borro con exito");
 				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

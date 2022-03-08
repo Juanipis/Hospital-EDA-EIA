@@ -75,9 +75,9 @@ public VentanaAgregarMedico() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El medico se agrego con exito");
 					try {
 						Main.hp.addMedico(textField.getText(), textField_1.getText(), textField_2.getText(), true, textField_4.getText(), true);
+						JOptionPane.showMessageDialog(null, "El medico se agrego con exito");
 					} catch (IOException | ExistePersonal e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}

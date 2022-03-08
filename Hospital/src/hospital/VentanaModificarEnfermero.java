@@ -69,12 +69,12 @@ public VentanaModificarEnfermero() {
 		btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El enfermero se modifico con exito");
+				
 				try {
 					Main.hp.addEnfermeros(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
+					JOptionPane.showMessageDialog(null, "El enfermero se modifico con exito");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
@@ -108,12 +108,12 @@ public VentanaModificarEnfermero() {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El enfermero se borro con exito");
+				
 				try {
 					Main.hp.eliminarEnfermero(txtCedula.getText());
+					JOptionPane.showMessageDialog(null, "El enfermero se borro con exito");
 				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

@@ -82,23 +82,16 @@ public VentanaAgregarPaciente() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().equals(null) || textField_1.getText().equals(null) || textField_2.getText().equals(null) || textField_3.getText().equals(null) || textField_4.getText().equals(null) 
-						|| textField_5.getText().equals(null) || textField_6.getText().equals(null) || textField_7.getText().equals(null) || textField_8.getText().equals(null) || textField_9.getText().equals(null)){
-					JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos");
-				}
-					JOptionPane.showMessageDialog(null, "El paciente se agrego con exito");
 				try {
 					Main.hp.addPaciente(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), null, Integer.valueOf(textField_5.getText()), null, Integer.valueOf(textField_7.getText()), textField_8.getText(), textField_9.getText());
+					JOptionPane.showMessageDialog(null, "El paciente se agrego correctamente");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
 		btnAgregar.setBounds(12, 119, 89, 23);
 		contentPane.add(btnAgregar);
-		
-		
 		
 		textField = new JTextField();
 		textField.setBounds(15, 67, 86, 20);

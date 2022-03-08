@@ -63,7 +63,6 @@ public VentanaModificarPaciente() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		contentPane.setLayout(null);
@@ -100,12 +99,12 @@ public VentanaModificarPaciente() {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El paciente se borro con exito");
+				
 				try {
-					Main.hp.eliminarPaciente(textField_6.getText());
+					Main.hp.eliminarPaciente(txtCedula.getText());
+					JOptionPane.showMessageDialog(null, "El paciente se borro con exito");
 				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

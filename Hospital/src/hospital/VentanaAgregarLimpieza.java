@@ -77,12 +77,11 @@ public VentanaAgregarLimpieza() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El conserje se agrego con exito");
 					try {
 						Main.hp.addPersonalLimpieza(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+						JOptionPane.showMessageDialog(null, "El conserje se agrego con exito");
 					} catch (IOException | ExistePersonal e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
 			}
 		});

@@ -69,11 +69,11 @@ public VentanaAgregarEnfermero() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El enfermero se agrego con exito");
 				try {
 					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+					JOptionPane.showMessageDialog(null, "El enfermero se agrego con exito");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 					
 				}
 			}
