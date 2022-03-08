@@ -33,7 +33,6 @@ public class VentanaInicio extends JFrame {
 	private JTextField textField;
 	private JTextField txtEstadoCantidadY;
 	private JTextField txtEstadoCantidadY_1;
-	private JTextField txtId;
 	private JTextField txtEstadoIncapacidadY;
 	private JTextField txtBuenasSiEstas;
 	public  Hospital a ;
@@ -190,7 +189,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelarCita.setBounds(10, 287, 123, 23);
+		btnCancelarCita.setBounds(10, 232, 123, 23);
 		panel_2.add(btnCancelarCita);
 
 
@@ -231,7 +230,7 @@ public class VentanaInicio extends JFrame {
 		txtSiCambioDe.setText(
 				"Si cambio de opinion o no cree necesario tener una cita puede cancelarla utilizando este boton.");
 		txtSiCambioDe.setColumns(10);
-		txtSiCambioDe.setBounds(143, 288, 631, 20);
+		txtSiCambioDe.setBounds(143, 233, 631, 20);
 		panel_2.add(txtSiCambioDe);
 		
 		JButton btnNewButton_1 = new JButton("Ver Citas");
@@ -515,26 +514,6 @@ public class VentanaInicio extends JFrame {
 		txtEstadoCantidadY_1.setBounds(119, 127, 452, 20);
 		panel_3.add(txtEstadoCantidadY_1);
 
-		JButton btnFormula = new JButton("Formula");
-		btnFormula.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VentanaInventarioFormula a = new VentanaInventarioFormula();
-				a.setVisible(true);
-				dispose();
-			}
-		});
-		btnFormula.setBounds(20, 213, 89, 23);
-		panel_3.add(btnFormula);
-
-		txtId = new JTextField();
-		txtId.setText("Id, medicamentos y otros datos sobre las formulas del hospital.");
-		txtId.setEditable(false);
-		txtId.setColumns(10);
-		txtId.setBorder(null);
-		txtId.setBackground(SystemColor.menu);
-		txtId.setBounds(119, 214, 398, 20);
-		panel_3.add(txtId);
-
 		JButton btnHistorial = new JButton("Historial");
 		btnHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -543,7 +522,7 @@ public class VentanaInicio extends JFrame {
 				dispose();
 			}
 		});
-		btnHistorial.setBounds(20, 299, 89, 23);
+		btnHistorial.setBounds(10, 219, 89, 23);
 		panel_3.add(btnHistorial);
 
 		txtEstadoIncapacidadY = new JTextField();
@@ -552,7 +531,7 @@ public class VentanaInicio extends JFrame {
 		txtEstadoIncapacidadY.setColumns(10);
 		txtEstadoIncapacidadY.setBorder(null);
 		txtEstadoIncapacidadY.setBackground(SystemColor.menu);
-		txtEstadoIncapacidadY.setBounds(119, 300, 389, 20);
+		txtEstadoIncapacidadY.setBounds(109, 220, 389, 20);
 		panel_3.add(txtEstadoIncapacidadY);
 
 		JPanel panel_4 = new JPanel();
@@ -644,7 +623,7 @@ public class VentanaInicio extends JFrame {
 		});
 		btnEliminar.setBounds(362, 85, 115, 29);
 		panel_4.add(btnEliminar);
-		setBounds(100, 100, 805, 400);
+		setBounds(100, 100, 805, 359);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
