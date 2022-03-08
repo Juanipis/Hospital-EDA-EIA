@@ -95,6 +95,7 @@ public class VentanaPersonalPacientes extends JFrame {
 		txtCedula.setBounds(177, 191, 96, 20);
 		contentPane.add(txtCedula);
 		txtCedula.setText("CEDULA");
+		txtCedula.setEditable(false);
 		txtCedula.setColumns(10);
 		txtCedula.setBorder(null);
 		

@@ -100,6 +100,7 @@ public VentanaPersonalEnfermeros() {
 		txtCedula.setText("CEDULA");
 		txtCedula.setColumns(10);
 		txtCedula.setBorder(null);
+		txtCedula.setEditable(false);
 		
 		txtCedulaInput = new JTextField();
 		txtCedulaInput.setColumns(10);
