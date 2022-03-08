@@ -16,10 +16,6 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JSlider;
-import java.awt.List;
 
 public class VentanaInicio extends JFrame {
 
@@ -41,6 +37,9 @@ public class VentanaInicio extends JFrame {
 	private JTextField txtEstadoIncapacidadY;
 	private JTextField txtBuenasSiEstas;
 	public  Hospital a ;
+	private JTextField txtCCPaciente;
+	private JTextField txtCCVisitante;
+	private JButton btnBuscar;
 
 	/**
 	 * Launch the application.
@@ -526,6 +525,83 @@ public class VentanaInicio extends JFrame {
 		txtBuenasSiEstas.setBounds(10, 11, 491, 20);
 		panel_4.add(txtBuenasSiEstas);
 		txtBuenasSiEstas.setColumns(10);
+		
+		JLabel lblCcPaciente = new JLabel("CC Paciente");
+		lblCcPaciente.setBounds(20, 47, 103, 20);
+		panel_4.add(lblCcPaciente);
+		
+		txtCCPaciente = new JTextField();
+		txtCCPaciente.setBounds(146, 44, 166, 26);
+		panel_4.add(txtCCPaciente);
+		txtCCPaciente.setColumns(10);
+		
+		JLabel lblCcVisitante = new JLabel("CC Visitante");
+		lblCcVisitante.setBounds(20, 83, 103, 20);
+		panel_4.add(lblCcVisitante);
+		
+		txtCCVisitante = new JTextField();
+		txtCCVisitante.setColumns(10);
+		txtCCVisitante.setBounds(146, 86, 166, 26);
+		panel_4.add(txtCCVisitante);
+		
+		btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Agregar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ccPaciente = txtCCPaciente.getText();
+				String ccVisitante = txtCCVisitante.getText();
+				Paciente p = Main.hp.getPaciente(ccPaciente);
+				if(p == null) {
+					JOptionPane.showMessageDialog(null, "No existe el paciente");
+				}else {
+					try {
+						String[] acompanantes = p.getAcompanantes();
+						int x = 0;
+						if(ccVisitante != null && ccVisitante.equals("") == false) {
+							while(x < acompanantes.length && acompanantes[x].equals(ccVisitante) == false) {
+								x++;
+							}
+							if(x < acompanantes.length) {
+								JOptionPane.showMessageDialog(null, "El documento ya esta registrado");
+							}else {
+								Main.hp.ingresoVisitantePaciente(ccPaciente, ccVisitante);
+								JOptionPane.showMessageDialog(null, "Visitante con la cc: " + ccVisitante + " ha sido admitido");
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "Ingrese un documento del visitante");
+						}
+					}catch(CampoLleno e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
+				}
+			}
+		});
+		btnBuscar.setBounds(363, 85, 115, 29);
+		btnBuscar.setBounds(362, 43, 115, 29);
+		panel_4.add(btnBuscar);
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ccPaciente = txtCCPaciente.getText();
+				String ccVisitante = txtCCVisitante.getText();
+				Paciente p = Main.hp.getPaciente(ccPaciente);
+				if(p == null) {
+					JOptionPane.showMessageDialog(null, "No existe el paciente");
+				}else {
+					if(ccVisitante != null && ccVisitante.equals("") == false) {
+						try {
+							Main.hp.salidaVisitantePaciente(ccPaciente, ccVisitante);
+							JOptionPane.showMessageDialog(null, "El visitante ha salido con exito");
+						} catch (NoAcompanantesPaciente e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		});
+		btnEliminar.setBounds(362, 85, 115, 29);
+		panel_4.add(btnEliminar);
 		setBounds(100, 100, 805, 400);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
