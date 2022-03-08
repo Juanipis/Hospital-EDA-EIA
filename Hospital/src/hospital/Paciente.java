@@ -88,10 +88,10 @@ public class Paciente extends Persona {
 	
 	public int getIndexAcompanante(String acompanante) throws NoAcompanantesPaciente {
 		int c = 0;
-		while((c< this.acompanantes.length) && this.acompanantes[c] != null && !(this.acompanantes[c].equals(nombre)) ) {
+		while(c< this.acompanantes.length && this.acompanantes[c] != null && !(this.acompanantes[c].equals(acompanante)) ) {
 			c++;
 		}
-		if(c!=this.acompanantes.length && this.acompanantes[c].equals(nombre)) {
+		if(c!=this.acompanantes.length && this.acompanantes[c].equals(acompanante)) {
 			return c;
 		}else {
 			throw new NoAcompanantesPaciente();
