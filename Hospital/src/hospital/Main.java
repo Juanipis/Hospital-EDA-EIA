@@ -14,8 +14,6 @@ public class Main {
 	
 		try {
 			hp = new Hospital();
-			System.out.println(Arrays.toString(hp.getPaciente("100231858").getAcompanantes()));
-			System.out.println(hp.getPaciente("100231858").getIndexAcompanante("Carlos"));
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -28,7 +26,7 @@ public class Main {
 					}
 				}
 			});
-		} catch (NumberFormatException | IOException | ParseException | NoAcompanantesPaciente  e) {
+		} catch (NumberFormatException | IOException | ParseException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
