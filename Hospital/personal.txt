@@ -1,8 +1,5 @@
-0,Juanito,Perez,2190120,false,Medico general,false,100231858;123612;887272;
-0,Martin,Alonzo,43725521,false,Medico general,false,;
-0,Jhon,Connors,91299267,false,Cirujano,false,65468266;65468266;
-2,Juancho,Carnal,1292693,false
 2,Maria,Alela,1438404,false
 2,Sor Ines,Cruz,524977,false
 2,Ramiro,Bernal,58711268,false
 0,Juan,Pelaez,1001368956,true,Cirujano,true,;
+0,Pablo,Velez,1273467213,true,Medico general,true,;
