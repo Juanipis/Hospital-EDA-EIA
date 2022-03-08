@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.ScrollPane;
 import java.awt.Point;
@@ -25,6 +26,7 @@ public class VentanaPersonalPacientes extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCedula;
 	private JTextField txtCedulaInput;
+	private JTextField txtCodigoSalaInput;
 
 	/**
 	 * Launch the application.
@@ -45,6 +47,48 @@ public class VentanaPersonalPacientes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public String pacientesEnSalas() {
+		String texto = "";
+		Paciente [] p = Main.hp.getPacienteSinSala();
+		for(int i =0;i<p.length;i++) {
+			texto = texto + p[i].toString() + "\n";
+		}
+		return texto;
+	}
+	public String pacientesSinSalas() {
+		String texto = "";
+		Paciente [] p = Main.hp.getPacienteSinSala();
+		for(int i =0;i<p.length;i++) {
+			texto = texto + p[i].toString() + "\n";
+		}
+		return texto;
+	}
+	public boolean verificarSiSalaExiste() {
+		Sala[] s = Main.hp.getSalas();
+		for(int i = 0 ; i< s.length;i++) {
+			if(s[i].getTipo().equals(txtCodigoSalaInput.getText())) {
+				return true;
+			}
+		} 
+		return false;
+	}
+	public void agregarPacienteASala() {
+		Paciente [] p = Main.hp.getPacienteSinSala();
+		
+		
+			for(int i =0;i<p.length;i++) {
+				if(txtCedulaInput.getText().equals(p[i].getCC()) && verificarSiSalaExiste() == true) {
+					try {
+						Main.hp.ingresarPacienteSala(txtCodigoSalaInput.getText(), txtCedulaInput.getText());
+					} catch (IOException | VectorNulo | PacienteEnSala | SalaLLena | NoExisteSala | NoExistePaciente e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					
+				}
+			}
+		}
+	}
+	
 	public VentanaPersonalPacientes() {
 		String texto = "";
 		
@@ -84,6 +128,11 @@ public class VentanaPersonalPacientes extends JFrame {
 		textArea.setText(texto);
 		
 		JButton btnPacientesSinSala = new JButton("Pacientes Sin Sala");
+		btnPacientesSinSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText(pacientesSinSalas());
+			}
+		});
 		btnPacientesSinSala.setBounds(32, 188, 127, 23);
 		contentPane.add(btnPacientesSinSala);
 		
@@ -105,12 +154,23 @@ public class VentanaPersonalPacientes extends JFrame {
 		contentPane.add(txtCedulaInput);
 		
 		JButton btnAgregarPacienteASala = new JButton("Agregar Paciente");
+		btnAgregarPacienteASala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				agregarPacienteASala();
+			}
+		});
 		btnAgregarPacienteASala.setBounds(283, 188, 127, 23);
 		contentPane.add(btnAgregarPacienteASala);
 		
 		JButton btnEliminarPacientedeSala = new JButton("Eliminar Paciente");
 		btnEliminarPacientedeSala.setBounds(283, 220, 127, 23);
 		contentPane.add(btnEliminarPacientedeSala);
+		
+		//Codigo Sala
+		txtCodigoSalaInput = new JTextField();
+		txtCodigoSalaInput.setColumns(10);
+		txtCodigoSalaInput.setBounds(177, 235, 96, 20);
+		contentPane.add(txtCodigoSalaInput);
 
 	}
 }
