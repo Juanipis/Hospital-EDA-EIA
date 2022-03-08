@@ -107,3 +107,9 @@ class NoSeEncuetraMedico extends Exception {
 		super ("No se encuentra medico");
 	}
 }
+
+class CampoLleno extends Exception{
+	public CampoLleno() {
+		super("No se pueden agregar mas");
+	}
+}

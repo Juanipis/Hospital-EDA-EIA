@@ -601,10 +601,12 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("pacientes.txt", CC, 0);
 	}
 
-	public void ingresoVisitantePaciente(String CCPaciente, String CCVisitante) {
+	public void ingresoVisitantePaciente(String CCPaciente, String CCVisitante) throws CampoLleno {
 		Paciente pc = this.getPaciente(CCPaciente);
 		if (pc != null && pc.getAcompanantes().length < 3) {
 			pc.addAcompanantes(CCVisitante);
+		}else {
+			throw new CampoLleno();
 		}
 	}
 
