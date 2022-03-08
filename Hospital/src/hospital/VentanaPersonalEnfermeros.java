@@ -61,19 +61,25 @@ public class VentanaPersonalEnfermeros extends JFrame {
 	}
 	
 	public void salidaEnfermeroSala() {
-		Enfermero [] e = Main.hp.getEnfermeros();
-		if(verificarSiSalaExiste() == true) {
-			for(int i =0;i<e.length;i++) {
-				if(e[i].getDisponible()==false) {
-					try {
-						Main.hp.salidaEnfermerosSala(txtCodigoInput.getText(), txtCedulaInput.getText());
-					} catch (VectorNulo | NoPacienteEnSala e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+		Sala [] s = Main.hp.getSalas();
+		int i = 0;
+			try {
+				while(s[i].verificarEnfermero(txtCedulaInput.getText()) == -1 && verificarSiSalaExiste() ==true) {
+						i++;
 					}
+				try {
+					s[i].eliminarEnfermero(txtCedulaInput.getText());
+					JOptionPane.showMessageDialog(null, "El enfermero se elimino correctamente de la Sala");
+				} catch (NoEnfermeroEnSala e) {
+						JOptionPane.showMessageDialog(null, e.getMessage());
+					e.printStackTrace();
 				}
+			} catch (VectorNulo e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				e.printStackTrace();
 			}
-		}
+			
+		
 		
 	}
 	public void agregarEnfermeroASala() {
@@ -131,9 +137,9 @@ public VentanaPersonalEnfermeros() {
 		scrollPane.setViewportView(textArea);
 		textArea.setText(texto);
 		
-		JButton btnEnfermerosEnSala = new JButton("Enfermeros con Sala");
-		btnEnfermerosEnSala.setBounds(15, 181, 142, 23);
-		contentPane.add(btnEnfermerosEnSala);
+//		JButton btnEnfermerosEnSala = new JButton("Enfermeros con Sala");
+//		btnEnfermerosEnSala.setBounds(15, 181, 142, 23);
+//		contentPane.add(btnEnfermerosEnSala);
 		
 		JButton btnEnfermerosSinSala = new JButton("Enfermeros sin Sala");
 		btnEnfermerosSinSala.addActionListener(new ActionListener() {

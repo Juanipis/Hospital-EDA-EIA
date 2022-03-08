@@ -50,6 +50,10 @@ public class VentanaInventarioSalas extends JFrame {
 		});
 	}
 
+	public void ingresarMedicamentoASala() {
+		Sala [] s = Main.hp.getSalas();
+		//while(s[i].getTipo().equals(s))
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -79,7 +83,7 @@ public class VentanaInventarioSalas extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(510, 272, 89, 23);
+		btnNewButton.setBounds(475, 341, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -92,7 +96,7 @@ public class VentanaInventarioSalas extends JFrame {
 		txtSalas.setText(texto);
 		
 		JButton btnAgregarmedicamentoSala = new JButton("AgregarMedicamento");
-		btnAgregarmedicamentoSala.setBounds(345, 360, 89, 23);
+		btnAgregarmedicamentoSala.setBounds(438, 293, 159, 23);
 		contentPane.add(btnAgregarmedicamentoSala);
 		
 		
@@ -100,14 +104,14 @@ public class VentanaInventarioSalas extends JFrame {
 		textField_8 = new JTextField();
 		textField_8.setBackground(SystemColor.menu);
 		textField_8.setColumns(10);
-		textField_8.setBounds(87, 255, 96, 20);
+		textField_8.setBounds(87, 238, 132, 20);
 		contentPane.add(textField_8);
 		textField_8.setText("NOMBRE");
 		textField_8.setEditable(false);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(87, 273, 96, 20);
+		textField_1.setBounds(87, 255, 132, 20);
 		contentPane.add(textField_1);
 		
 		
@@ -115,35 +119,35 @@ public class VentanaInventarioSalas extends JFrame {
 		textField_11 = new JTextField();
 		textField_11.setBackground(SystemColor.menu);
 		textField_11.setColumns(10);
-		textField_11.setBounds(87, 294, 96, 20);
+		textField_11.setBounds(87, 294, 132, 20);
 		contentPane.add(textField_11);
 		textField_11.setText("ID");
 		textField_11.setEditable(false);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(87, 313, 96, 20);
+		textField_2.setBounds(87, 313, 132, 20);
 		contentPane.add(textField_2);
 		
 		//FechaCompra
 		textField_12 = new JTextField();
 		textField_12.setBackground(SystemColor.menu);
 		textField_12.setColumns(10);
-		textField_12.setBounds(212, 294, 96, 20);
+		textField_12.setBounds(251, 294, 121, 20);
 		contentPane.add(textField_12);
 		textField_12.setText("FECHACOMPRA");
 		textField_12.setEditable(false);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(212, 313, 96, 20);
+		textField_3.setBounds(251, 313, 121, 20);
 		contentPane.add(textField_3);
 		
 		//FechaVencimiento
 		textField_13 = new JTextField();
 		textField_13.setBackground(SystemColor.menu);
 		textField_13.setColumns(10);
-		textField_13.setBounds(212, 255, 121, 20);
+		textField_13.setBounds(251, 238, 121, 20);
 		contentPane.add(textField_13);
 		textField_13.setText("FECHAVENCIMIENTO");
 		textField_13.setEditable(false);
@@ -151,7 +155,7 @@ public class VentanaInventarioSalas extends JFrame {
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(212, 273, 121, 20);
+		textField_4.setBounds(251, 255, 121, 20);
 		contentPane.add(textField_4);
 		
 		
@@ -160,28 +164,28 @@ public class VentanaInventarioSalas extends JFrame {
 		textField_14 = new JTextField();
 		textField_14.setBackground(SystemColor.menu);
 		textField_14.setColumns(10);
-		textField_14.setBounds(87, 342, 96, 20);
+		textField_14.setBounds(87, 342, 132, 20);
 		contentPane.add(textField_14);
 		textField_14.setText("CANTIDAD");
 		textField_14.setEditable(false);
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		textField_6.setBounds(87, 361, 96, 20);
+		textField_6.setBounds(87, 361, 132, 20);
 		contentPane.add(textField_6);
 		
 		//Disponibilidad
 		textField_15 = new JTextField();
 		textField_15.setBackground(SystemColor.menu);
 		textField_15.setColumns(10);
-		textField_15.setBounds(212, 342, 96, 20);
+		textField_15.setBounds(251, 342, 121, 20);
 		contentPane.add(textField_15);
 		textField_15.setText("DISPONIBILIDAD");
 		textField_15.setEditable(false);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(212, 361, 96, 20);
+		textField_5.setBounds(251, 361, 121, 20);
 		contentPane.add(textField_5);
 	}
 }
