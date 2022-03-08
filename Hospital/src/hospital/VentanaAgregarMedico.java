@@ -66,7 +66,6 @@ public VentanaAgregarMedico() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		contentPane.setLayout(null);
@@ -75,13 +74,13 @@ public VentanaAgregarMedico() {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					try {
-						Main.hp.addMedico(textField.getText(), textField_1.getText(), textField_2.getText(), true, textField_4.getText(), true);
-						JOptionPane.showMessageDialog(null, "El medico se agrego con exito");
-					} catch (IOException | ExistePersonal e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage());
+						try {
+							Main.hp.addMedico(textField.getText(), textField_1.getText(), textField_2.getText(), true, textField_4.getText(), true);
+							JOptionPane.showMessageDialog(null, "El medico se agrego con exito");
+						} catch (IOException | ExistePersonal | campoNulo e1) {
+							JOptionPane.showMessageDialog(null, e1.getMessage());
+						}
 					}
-			}
 		});
 		btnAgregar.setBounds(58, 119, 89, 23);
 		contentPane.add(btnAgregar);

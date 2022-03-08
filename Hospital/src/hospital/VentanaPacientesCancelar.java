@@ -61,46 +61,6 @@ public class VentanaPacientesCancelar extends JFrame {
 		btnNewButton.setBounds(156, 206, 89, 23);
 		contentPane.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("Cancelar");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-
-					String ini = textField_1.getText();
-					String[] a = ini.split(",");
-
-					int[] x = new int[a.length];
-					for (int i = 0; i < a.length; i++) {
-						x[i] = Integer.parseInt(a[i]);
-
-					}
-
-					try {
-						Main.getHospital()
-								.cancelarCita(Main.getHospital().getIdCitaPacienteFecha(textField.getText(), x));
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-				} catch (PersonaNoCitas e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (FechaInvalida e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (CitaNoExiste e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_1.setBounds(156, 163, 89, 23);
-		contentPane.add(btnNewButton_1);
-
 		textField = new JTextField();
 		textField.setBounds(223, 32, 111, 20);
 		contentPane.add(textField);
@@ -118,5 +78,53 @@ public class VentanaPacientesCancelar extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Fecha");
 		lblNewLabel_1.setBounds(35, 94, 106, 14);
 		contentPane.add(lblNewLabel_1);
+
+		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+
+					try {
+
+						if (textField.getText() == "" || textField_1.getText() == "") {
+							JOptionPane.showMessageDialog(null, "Ingrese los datos");
+						} else {
+
+							String ini = textField_1.getText();
+							String[] a = ini.split(",");
+
+							int[] x = new int[a.length];
+							for (int i = 0; i < a.length; i++) {
+								x[i] = Integer.parseInt(a[i]);
+
+							}
+							Main.getHospital()
+									.cancelarCita(Main.getHospital().getIdCitaPacienteFecha(textField.getText(), x));
+							textField.setText("");
+							textField_1.setText("");
+						}
+
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
+
+				} catch (PersonaNoCitas e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				} catch (FechaInvalida e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				} catch (CitaNoExiste e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
+		btnNewButton_1.setBounds(156, 163, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }

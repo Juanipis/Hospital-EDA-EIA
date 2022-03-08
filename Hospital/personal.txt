@@ -7,5 +7,6 @@
 2,Ramiro,Bernal,58711268,false
 0,Juan,Pelaez,1001368956,true,Cirujano,true,;
 0,Camilo,Santamaria,70568943,true,Cirujano,true,;
-0,,,,true,,true,;
+
+1,,,,true
 1,Cedula,Nombre,Apellido,true
