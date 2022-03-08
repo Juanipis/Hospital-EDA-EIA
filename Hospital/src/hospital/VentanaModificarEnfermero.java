@@ -71,7 +71,6 @@ public VentanaModificarEnfermero() {
 		JButton btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
 					Main.hp.addEnfermeros(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
 					JOptionPane.showMessageDialog(null, "El enfermero se modifico con exito");

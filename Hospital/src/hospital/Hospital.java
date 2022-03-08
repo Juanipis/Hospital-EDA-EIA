@@ -286,12 +286,13 @@ public class Hospital {
 	}
 
 	public void addMedico(String nombre, String apellido, String CC, boolean disponible, String esp, boolean pres)
-			throws FileNotFoundException, IOException, ExistePersonal {
+			throws FileNotFoundException, IOException, ExistePersonal, campoNulo {
 		if (this.getMedico(CC) == null) {
 			medicos.add(new Medico(nombre, apellido, CC, disponible, esp, pres));
 			// Para el fichero
 			this.addMedicoFichero(nombre, apellido, CC, disponible, esp, pres);
-
+			
+			throw new campoNulo();
 		} else {
 			throw new ExistePersonal(CC);
 		}

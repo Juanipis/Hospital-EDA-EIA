@@ -97,6 +97,7 @@ public VentanaAgregarPaciente() {
 				inicio.setVisible(true);
 				dispose();
 				
+				
 			}
 		});
 		contentPane.setLayout(null);
