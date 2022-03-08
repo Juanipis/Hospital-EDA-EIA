@@ -80,20 +80,31 @@ public class Sala {
 	public void setLimpia(boolean limpia) {
 		this.limpia = limpia;
 	}
-
+	
+	public boolean existeEnSalaPaciente(String CC) {
+		for(Paciente pc:pacientes) {
+			if(pc!=null && pc.getCC().equals(CC)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	// Metodos de busqueda que devuelven la posicion-------------------------
-
+	
 	public int verificarPaciente(String cedula) throws VectorNulo {
 		if (pacientes == null) {
 			throw new VectorNulo();
 		} else {
-			int i = 0;
-			while (i < pacientes.length) {
-				if (cedula == pacientes[i].getCC()) {
-					return i;
-				}
+			int index = 0;
+			while(index < pacientes.length && pacientes[index] != null&& !pacientes[index].equals(cedula)) {
+				index++;
 			}
-			return -1;
+			if(index < pacientes.length && pacientes[index] != null&& pacientes[index].equals(cedula)) {
+				return index;
+			}else {
+				return -1;
+			}
 		}
 	}
 
@@ -160,7 +171,7 @@ public class Sala {
 		// traer cedula de paciente. //Verificarla en un metodo contra un arreglo de
 		// pacientes //En caso de que la cedula no exista, agregar el paciente
 		
-			if (verificarPaciente(pc.getCC()) != -1) {
+			if (verificarPaciente(pc.getCC()) == -1) {
 				pacientes = Arrays.copyOf(pacientes, pacientes.length + 1);
 				pacientes[pacientes.length - 1] = pc;
 			}else {

@@ -108,3 +108,14 @@ class MedicoNoPaciente extends Exception{
 		super("El medico " +  nombreMedico + " no tiene el paciente con la cedula " + CCPaciente);
 	}
 }
+class SalaLLena extends Exception{
+	public SalaLLena(String idSala) {
+		super("La sala " + idSala + " está llena");
+	}
+}
+
+class NoExistePaciente extends Exception{
+	public NoExistePaciente(String CCPaciente) {
+		super("El paciente con la cedula " + CCPaciente + " no existe");
+	}
+}
