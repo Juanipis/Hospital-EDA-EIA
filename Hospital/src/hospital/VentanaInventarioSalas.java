@@ -59,7 +59,7 @@ public class VentanaInventarioSalas extends JFrame {
 			i++;
 		}
 		if(i<s.length) {
-			s[i].addMedicamento(textField_1, textField_2, null, null, textField_6, true);
+			//s[i].addMedicamento(textField_1, textField_2, null, null, textField_6, true);
 		}
 	}
 	/**

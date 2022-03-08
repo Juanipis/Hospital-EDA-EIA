@@ -62,32 +62,26 @@ public class VentanaPersonalEnfermeros extends JFrame {
 	
 	public void salidaEnfermeroSala() {
 		Sala [] s = Main.hp.getSalas();
-		int i = 0;
-			try {
-				while(s[i].verificarEnfermero(txtCedulaInput.getText()) == -1 && verificarSiSalaExiste() ==true) {
-						i++;
-					}
+		int i=0;
+			while(s[i].getTipo()!=txtCodigoInput.getText())
+				i++;
+			if(i<s.length) {
 				try {
 					s[i].eliminarEnfermero(txtCedulaInput.getText());
 					JOptionPane.showMessageDialog(null, "El enfermero se elimino correctamente de la Sala");
-				} catch (NoEnfermeroEnSala e) {
-						JOptionPane.showMessageDialog(null, e.getMessage());
+				} catch (VectorNulo | NoEnfermeroEnSala e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
 					e.printStackTrace();
 				}
-			} catch (VectorNulo e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-				e.printStackTrace();
 			}
-			
-		
 		
 	}
 	public void agregarEnfermeroASala() {
 		Enfermero [] e = Main.hp.getEnfermeros();
 		
 		if(verificarSiSalaExiste() == true) {
-			for(int i =0;i<e.length;i++) {
-				if(txtCedulaInput.getText().equals(e[i].getCC())) {
+			//for(int i =0;i<e.length;i++) {
+				//if(txtCedulaInput.getText().equals(e[i].getCC())) {
 					try {
 						Main.hp.addEnfermeroASala(txtCodigoInput.getText(), txtCedulaInput.getText());
 						JOptionPane.showMessageDialog(null, "El enfermero ingreso se correctamente a la Sala");
@@ -95,8 +89,8 @@ public class VentanaPersonalEnfermeros extends JFrame {
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 						e1.printStackTrace();
 					}
-				}
-			}
+				//}
+			//}
 		}	
 	}
 
