@@ -66,6 +66,11 @@ class NoPacienteEnSala extends Exception{
 		super("El paciente con la cedula" + CC + " no se encuentra en la sala");
 	}
 }
+class NoPacienteEnNingunaSala extends Exception{
+	public NoPacienteEnNingunaSala(String cc) {
+		super("El paciente: " + cc + " no se enuentra en ninguna sala");
+	}
+}
 class NoAcompanantesPaciente extends Exception{
 	public NoAcompanantesPaciente() {
 		super("No existe el acompañante de la persona");

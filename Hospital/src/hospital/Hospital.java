@@ -716,6 +716,21 @@ public class Hospital {
 			throw new NoPacienteEnSala(CCPaciente);
 		}
 	}
+	
+	public Sala buscarPacienteSala(String CCPaciente) throws NoExistePersonal, VectorNulo, NoPacienteEnNingunaSala {
+		Paciente pc = this.getPaciente(CCPaciente);
+		if(pc != null) {
+			int index=0;
+			while(index < salas.size() && salas.get(index)!=null && salas.get(index).verificarPaciente(CCPaciente) == -1) {index++;}
+			if(index < salas.size() && salas.get(index)!=null && salas.get(index).verificarPaciente(CCPaciente) != -1) {
+				return salas.get(index);
+			}else {
+				throw new NoPacienteEnNingunaSala(CCPaciente);
+			}
+		}else {
+			throw new NoExistePersonal(CCPaciente);
+		}
+	}
 
 	// Metodos relacionados con formulas
 	private void addFormulaFichero(Formula fl) throws FileNotFoundException, IOException {
