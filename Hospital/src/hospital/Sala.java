@@ -87,11 +87,13 @@ public class Sala {
 		if (pacientes == null) {
 			throw new VectorNulo();
 		} else {
-			int index = 0;
-			while(index < pacientes.length && pacientes[index] != null && !pacientes[index].getCC().equals(cedula)) {
-				index++;
+			int i = 0;
+			while (i < pacientes.length) {
+				if (cedula == pacientes[i].getCC()) {
+					return i;
+				}
 			}
-			return (index < pacientes.length && pacientes[index] != null && pacientes[index].getCC().equals(cedula)) ? index:-1;
+			return -1;
 		}
 	}
 
@@ -99,11 +101,14 @@ public class Sala {
 		if (equipos == null) {
 			throw new VectorNulo();
 		} else {
-			int index = 0;
-			while(index < equipos.length && equipos[index] != null && !equipos[index].getCodigo().equals(codigo)) {
-				index++;
+
+			int i = 0;
+			while (i < equipos.length) {
+				if (codigo == equipos[i].getCodigo()) {
+					return i;
+				}
 			}
-			return (index < equipos.length && equipos[index] != null && equipos[index].getCodigo().equals(codigo)) ? index:-1;
+			return -1;
 		}
 	}
 
@@ -111,11 +116,13 @@ public class Sala {
 		if (medicamentos == null) {
 			throw new VectorNulo();
 		} else {
-			int index = 0;
-			while(index < medicamentos.length && medicamentos[index] != null && !medicamentos[index].getId().equals(id)) {
-				index++;
+			int i = 0;
+			while (i < medicamentos.length) {
+				if (id == medicamentos[i].getId()) {
+					return i;
+				}
 			}
-			return (index < medicamentos.length && medicamentos[index] != null && medicamentos[index].getId().equals(id)) ? index:-1;
+			return -1;
 		}
 	}
 
@@ -123,11 +130,13 @@ public class Sala {
 		if (enfermeros == null) {
 			throw new VectorNulo();
 		} else {
-			int index = 0;
-			while(index < enfermeros.length && enfermeros[index] != null && !enfermeros[index].getCC().equals(cedula)) {
-				index++;
+			int i = 0;
+			while (i < enfermeros.length) {
+				if (cedula == enfermeros[i].getCC()) {
+					return i;
+				}
 			}
-			return (index < enfermeros.length && enfermeros[index] != null && enfermeros[index].getCC().equals(cedula)) ? index:-1;
+			return -1;
 		}
 
 	}

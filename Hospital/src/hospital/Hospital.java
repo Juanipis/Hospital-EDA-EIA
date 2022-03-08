@@ -720,13 +720,13 @@ public class Hospital {
 	public Sala buscarPacienteSala(String CCPaciente) throws NoExistePersonal, VectorNulo, NoPacienteEnNingunaSala {
 		Paciente pc = this.getPaciente(CCPaciente);
 		if(pc != null) {
-			for(Sala sl: salas) {
-				System.out.println(sl.verificarPaciente(CCPaciente));
-				if(sl != null && sl.verificarPaciente(CCPaciente) != -1) {
-					return sl;
-				}
+			int index=0;
+			while(index < salas.size() && salas.get(index)!=null && salas.get(index).verificarPaciente(CCPaciente) == -1) {index++;}
+			if(index < salas.size() && salas.get(index)!=null && salas.get(index).verificarPaciente(CCPaciente) != -1) {
+				return salas.get(index);
+			}else {
+				throw new NoPacienteEnNingunaSala(CCPaciente);
 			}
-			throw new NoPacienteEnNingunaSala(CCPaciente);
 		}else {
 			throw new NoExistePersonal(CCPaciente);
 		}

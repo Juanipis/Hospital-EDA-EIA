@@ -21,16 +21,6 @@ public class Limpieza extends Personal {
 		return "Nombre: " + nombre + ", Apellido: " + apellido + ", CC: " + CC
 				+ ", Disponible: " + disponible;
 	}
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-		
-	}
 	
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-		
-	}
 	
 }

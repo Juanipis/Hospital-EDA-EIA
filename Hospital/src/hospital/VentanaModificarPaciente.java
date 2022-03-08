@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -100,13 +99,7 @@ public VentanaModificarPaciente() {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El paciente se borro con exito");
-				try {
-					Main.hp.eliminarPaciente(textField_6.getText());
-				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				//borrarPaciente
 			}
 		});
 		btnBorrar.setBounds(377, 251, 131, 23);
