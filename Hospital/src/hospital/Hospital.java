@@ -770,4 +770,20 @@ public class Hospital {
 		}
 		return pcSinSala.toArray(new Paciente[pcSinSala.size()]);
 	}
+	
+	public Enfermero[] getEnfermerosSinSala() {
+		ArrayList<Enfermero> efSinSala = new ArrayList<>();
+		for(Enfermero ef : enfermeros) {
+			boolean existe = false;
+			for(Sala sl : salas) {
+				if(ef!=null && sl!=null && sl.existeEnSalaEnfermero(ef.getCC())) {
+					existe = true;
+				}
+			}
+			if(!existe && ef!=null) {
+				efSinSala.add(ef);
+			}
+		}
+		return efSinSala.toArray(new Enfermero[efSinSala.size()]);
+	}
 }

@@ -90,6 +90,15 @@ public class Sala {
 		return false;
 	}
 	
+	public boolean existeEnSalaEnfermero(String CC) {
+		for(Enfermero ef : enfermeros) {
+			if(ef!= null && ef.getCC().equals(CC)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	// Metodos de busqueda que devuelven la posicion-------------------------
 	
 	public int verificarPaciente(String cedula) throws VectorNulo {
