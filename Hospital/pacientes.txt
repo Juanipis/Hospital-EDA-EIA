@@ -1,6 +1,6 @@
-Juan,Diaz,100231858,Sura,tos;,0,Carlos;,12,M,A+
+Juan,Diaz,100231858,Sura,tos;,0,Carlos;123;,12,M,A+
 Pepito,Perez,123612,Sura,Covid;,0,Jhoan;,23,M,A+
-Mariano,Londoño,887272,Sura,Covid;,0,Jhoan;,29,M,A+
+Mariano,Londoño,887272,Sura,Covid;,0,Jhoan;123;,29,M,A+
 Alicante,Del sur,65468266,Comeva,,5,,66,M,A+
 Luis,Arango,56136423,sura,tos; gripa;,1,manuel; manuela;,23,M,A+
 Amaranta,Perez,221199,Sura,Covid;,0,1221211;,23,F,A+

@@ -587,6 +587,8 @@ public class VentanaInicio extends JFrame {
 							}else {
 								Main.hp.ingresoVisitantePaciente(ccPaciente, ccVisitante);
 								JOptionPane.showMessageDialog(null, "Visitante con la cc: " + ccVisitante + " ha sido admitido");
+								txtCCPaciente.setText("");
+								txtCCVisitante.setText("");
 							}
 						}else {
 							JOptionPane.showMessageDialog(null, "Ingrese un documento del visitante");
