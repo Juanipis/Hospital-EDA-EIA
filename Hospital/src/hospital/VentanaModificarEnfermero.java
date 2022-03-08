@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -70,20 +71,12 @@ public VentanaModificarEnfermero() {
 		JButton btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				
+
 				try {
 					Main.hp.addEnfermeros(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
 					JOptionPane.showMessageDialog(null, "El enfermero se modifico con exito");
 				} catch (IOException | ExistePersonal e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
-=======
-				try {
-					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
-				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					
->>>>>>> f55b9a070e615c7f5c08ed44066468c001565d0f
 				}
 			}
 		});
@@ -173,15 +166,9 @@ public VentanaModificarEnfermero() {
 		btnAgregar_1 = new JButton("Borrar");
 		btnAgregar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				
 				try {
 					Main.hp.eliminarEnfermero(txtCedula.getText());
 					JOptionPane.showMessageDialog(null, "El enfermero se borro con exito");
-=======
-				try {
-					Main.hp.eliminarEnfermero(textField_7.getText());
->>>>>>> f55b9a070e615c7f5c08ed44066468c001565d0f
 				} catch (NoExistePersonal | IOException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
