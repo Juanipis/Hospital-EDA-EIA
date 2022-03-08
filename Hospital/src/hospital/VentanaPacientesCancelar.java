@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 public class VentanaPacientesCancelar extends JFrame {
 
@@ -127,5 +128,11 @@ public class VentanaPacientesCancelar extends JFrame {
 		});
 		btnNewButton_1.setBounds(156, 163, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JTextArea txtrFormatoFecha = new JTextArea();
+		txtrFormatoFecha.setText("Formato fecha: 2022,6,6,11,30\r\na\u00F1o,mes,dia,hora,minuto");
+		txtrFormatoFecha.setEditable(false);
+		txtrFormatoFecha.setBounds(115, 119, 244, 40);
+		contentPane.add(txtrFormatoFecha);
 	}
 }
