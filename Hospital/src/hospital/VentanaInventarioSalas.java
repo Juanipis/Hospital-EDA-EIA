@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -53,22 +55,29 @@ public class VentanaInventarioSalas extends JFrame {
 			}
 		});
 	}
-//
-//	public void ingresarMedicamentoASala() {
-//		Sala [] s = Main.hp.getSalas();
-//		
-//			new SimpleDateFormat("dd-MM-yyyy").parse(textField_3.getText());
-//		
-//			
-//		}
-//		int i=0;
-//		while(!(s[i].getTipo().equals(textField_17.getText()))){
-//			i++;
-//		}
-//		if(i<s.length) {
-//			//s[i].addMedicamento(textField_1, textField_2, null, null, textField_6, true);
-//		}
-//	}
+
+	public void ingresarMedicamentoASala() throws ParseException {
+		Sala [] s = Main.hp.getSalas();
+		
+			Date FCompra = new SimpleDateFormat("dd-MM-yyyy").parse(textField_3.getText());
+			Date FVenci = new SimpleDateFormat("dd-MM-yyyy").parse(textField_4.getText());
+			
+			int cant = Integer.parseInt(textField_6.getText());
+			
+		int i=0;
+		while(!(s[i].getTipo().equals(textField_17.getText()))){
+			i++;
+		}
+		if(i<s.length) {
+			try {
+				s[i].addMedicamento(textField_1.getText(), textField_2.getText(), FVenci, FCompra,true, cant );
+				JOptionPane.showMessageDialog(null, "Se ingreso medicamento correctamente");
+			} catch (VectorNulo | MedicamentoEnSala e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				e.printStackTrace();
+			}
+		}
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -111,6 +120,16 @@ public class VentanaInventarioSalas extends JFrame {
 		txtSalas.setText(texto);
 		
 		JButton btnAgregarmedicamentoSala = new JButton("AgregarMedicamento");
+		btnAgregarmedicamentoSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ingresarMedicamentoASala();
+				} catch (ParseException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnAgregarmedicamentoSala.setBounds(438, 293, 159, 23);
 		contentPane.add(btnAgregarmedicamentoSala);
 		
