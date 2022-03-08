@@ -47,4 +47,8 @@ public class Equipo {
 		this.estado = estado;
 	}
 
+	@Override
+	public String toString() {
+		return "Codigo: " + codigo + ", Estado: " + estado;
+	}
 }

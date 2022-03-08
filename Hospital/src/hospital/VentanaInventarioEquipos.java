@@ -36,9 +36,14 @@ public VentanaInventarioEquipos() {
 	
 		String texto = "";
 		
-		Equipo[] equipos = Main.getHospital().getEquipo();
-		for(int x = 0; x < equipos.length; x++) {
-			texto = texto + equipos[x].toString() + "\n";
+		Sala[] s = Main.getHospital().getSalas();
+		for(int x = 0; x < s.length; x++) {
+			Equipo [] e = s[x].getEquipos();
+			for(int i = 0; i<e.length;i++) {
+				
+			
+			texto = texto + e[i].toString() + "\n";
+			}
 		}
 		System.out.print(texto);
 	
