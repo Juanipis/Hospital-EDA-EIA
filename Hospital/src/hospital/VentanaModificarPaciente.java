@@ -197,15 +197,15 @@ public VentanaModificarPaciente() {
 //								}
 //							}
 							
-							if(txtNombre.getText() != "" && txtNombre.getText() != p.getNombre()) {
+							if(txtNombre.getText().equals("") == false && txtNombre.getText() != p.getNombre()) {
 								p.setNombre(nombre);
 							}
 							
-							if(txtApellido.getText() != "" && txtApellido.getText() != p.getApellido()) {
+							if(txtApellido.getText().equals("") == false && txtApellido.getText() != p.getApellido()) {
 								p.setApellido(apellido);
 							}
 							
-							if(txtPoliza.getText() != "" && txtPoliza.getText() != p.getPoliza()) {
+							if(txtPoliza.getText().equals("") && txtPoliza.getText() != p.getPoliza()) {
 								p.setPoliza(poliza);
 							}
 						}
