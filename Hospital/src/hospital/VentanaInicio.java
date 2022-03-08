@@ -39,7 +39,6 @@ public class VentanaInicio extends JFrame {
 	public  Hospital a ;
 	private JTextField txtCCPaciente;
 	private JTextField txtCCVisitante;
-	private JTextField textField_1;
 	private JButton btnBuscar;
 
 	/**
@@ -545,7 +544,7 @@ public class VentanaInicio extends JFrame {
 		txtCCVisitante.setBounds(146, 86, 166, 26);
 		panel_4.add(txtCCVisitante);
 		
-		btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Agregar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ccPaciente = txtCCPaciente.getText();
@@ -576,14 +575,31 @@ public class VentanaInicio extends JFrame {
 				}
 			}
 		});
-		btnBuscar.setBounds(363, 85, 115, 29);
+		btnBuscar.setBounds(362, 43, 115, 29);
 		panel_4.add(btnBuscar);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setBounds(10, 128, 302, 26);
-		panel_4.add(textField_1);
-		textField_1.setColumns(10);
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ccPaciente = txtCCPaciente.getText();
+				String ccVisitante = txtCCVisitante.getText();
+				Paciente p = Main.hp.getPaciente(ccPaciente);
+				if(p == null) {
+					JOptionPane.showMessageDialog(null, "No existe el paciente");
+				}else {
+					if(ccVisitante != null && ccVisitante.equals("") == false) {
+						try {
+							Main.hp.salidaVisitantePaciente(ccPaciente, ccVisitante);
+						} catch (NoAcompanantesPaciente e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		});
+		btnEliminar.setBounds(362, 85, 115, 29);
+		panel_4.add(btnEliminar);
 		setBounds(100, 100, 805, 400);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
