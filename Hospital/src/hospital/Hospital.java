@@ -291,8 +291,7 @@ public class Hospital {
 			medicos.add(new Medico(nombre, apellido, CC, disponible, esp, pres));
 			// Para el fichero
 			this.addMedicoFichero(nombre, apellido, CC, disponible, esp, pres);
-			
-			throw new campoNulo();
+	
 		} else {
 			throw new ExistePersonal(CC);
 		}

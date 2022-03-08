@@ -36,12 +36,6 @@ class ExistePersonal extends Exception {
 	}
 }
 
-class campoNulo extends Exception {
-	public campoNulo() {
-		super("Algun campo esta vacio");
-	}
-}
-
 class NoExistePersonal extends Exception {
 	public NoExistePersonal(String CC) {
 		super("Esta " + CC+ " persona no existe en el hospital");
