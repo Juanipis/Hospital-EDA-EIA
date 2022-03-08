@@ -94,7 +94,7 @@ public class Medico extends Personal {
 		
 	}
 	
-	public void setApellido(String apellido) {
+	public void setpellido(String apellido) {
 		this.apellido = apellido;
 		
 	}
