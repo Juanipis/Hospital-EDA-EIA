@@ -1,1 +1,5 @@
-0,,,,true,,true,;
+2,Maria,Alela,1438404,false
+2,Sor Ines,Cruz,524977,false
+2,Ramiro,Bernal,58711268,false
+0,Juan,Pelaez,1001368956,true,Cirujano,true,;
+0,Pablo,Velez,1273467213,true,Medico general,true,;

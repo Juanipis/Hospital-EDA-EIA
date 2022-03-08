@@ -163,14 +163,6 @@ public VentanaModificarMedico() {
 						public void actionPerformed(ActionEvent e) {
 							String nombre = txtNombre.getText();
 							String apellido = txtApellido.getText();
-//							if(txtTriaje.getText() != "") {
-//								int newTriaje = Integer.valueOf(txtPoliza.getText());
-//								if(newTriaje < 0 || newTriaje > 5) {
-//								//Exception
-//								}else if(newTriaje != p.getTriaje()){
-//									p.setTriaje(newTriaje);
-//								}
-//							}
 							
 							if(txtNombre.getText() != "" && txtNombre.getText() != p.getNombre()) {
 								p.setNombre(nombre);
