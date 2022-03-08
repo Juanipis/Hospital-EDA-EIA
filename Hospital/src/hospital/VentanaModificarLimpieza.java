@@ -191,8 +191,8 @@ public VentanaModificarLimpieza() {
 				Sala[] sala = Main.getHospital().getSalas();
 				
 				int i = 0;
-				while(i < sala.length && sala[i].getTipo().toLowerCase().equals(textField.getText().toLowerCase()) == false)
-					i++;
+				while(i < sala.length && sala[i].getTipo().toLowerCase().equals(textField.getText().toLowerCase()) == false) {
+					
 				if(i < sala.length) {
 					if(sala[i].getLimpia() == false) {
 					sala[i].setLimpia(true);
@@ -202,6 +202,8 @@ public VentanaModificarLimpieza() {
 				}
 				if(i >= sala.length) {
 					JOptionPane.showMessageDialog(null, "No se encontro la sala");
+				}
+					i++;
 				}
 			}
 		});

@@ -372,7 +372,8 @@ public class Hospital {
 			s.addEnfermero(eo);
 		}
 	}
-
+	
+	/*//Usar ingresarPacienteSala
 	public void addPacienteASala(String CCPaciente, String salaId) throws IOException, VectorNulo, PacienteEnSala {
 		Sala s = this.getSala(salaId);
 		Paciente pc = this.getPaciente(CCPaciente);
@@ -380,6 +381,7 @@ public class Hospital {
 			s.addPaciente(pc);
 		}
 	}
+	*/
 //	public void addMedicamentoASala(String idMed, String salaId) {
 //		Sala s = this.getSala(salaId);
 //		Medicamento md = this.getme
@@ -702,11 +704,20 @@ public class Hospital {
 		Main.eliminarAlgoFicheroId("salas.txt", idSala, 0);
 	}
 
-	public void ingresarPacienteSala(String idSala, String ccPaciente) throws IOException, VectorNulo, PacienteEnSala {
+	public void ingresarPacienteSala(String idSala, String ccPaciente) throws IOException, VectorNulo, PacienteEnSala, SalaLLena, NoExisteSala, NoExistePaciente {
 		Sala salaIngreso = this.getSala(idSala);
 		Paciente pc = this.getPaciente(ccPaciente);
-		if (salaIngreso != null && pc != null && salaIngreso.getDisponibilidadSala()) {
-			salaIngreso.addPaciente(pc);
+		if (salaIngreso != null && pc != null  ) {
+			if(salaIngreso.getDisponibilidadSala()) {
+				salaIngreso.addPaciente(pc);
+			}else {
+				throw new SalaLLena(salaIngreso.getTipo());
+			}
+		}
+		else if(pc != null) {
+			throw new NoExistePaciente(ccPaciente);
+		}else {
+			throw new NoExisteSala(idSala);
 		}
 	}
 
@@ -745,5 +756,36 @@ public class Hospital {
 		bld.append("," + fl.getIncapacidad());
 		Main.escrituraFicheroUltimaLinea("formulas.txt", bld.toString(), 0);
 	}
-
+	
+	public Paciente[] getPacienteSinSala() {
+		ArrayList<Paciente> pcSinSala = new ArrayList<>();
+		for(Paciente pc : pacientes) {
+			boolean existe = false;
+			for(Sala sl : salas) {
+				if(pc!=null && sl!=null && sl.existeEnSalaPaciente(pc.getCC())) {
+					existe = true;
+				}
+			}
+			if(!existe && pc!=null) {
+				pcSinSala.add(pc);
+			}
+		}
+		return pcSinSala.toArray(new Paciente[pcSinSala.size()]);
+	}
+	
+	public Enfermero[] getEnfermerosSinSala() {
+		ArrayList<Enfermero> efSinSala = new ArrayList<>();
+		for(Enfermero ef : enfermeros) {
+			boolean existe = false;
+			for(Sala sl : salas) {
+				if(ef!=null && sl!=null && sl.existeEnSalaEnfermero(ef.getCC())) {
+					existe = true;
+				}
+			}
+			if(!existe && ef!=null) {
+				efSinSala.add(ef);
+			}
+		}
+		return efSinSala.toArray(new Enfermero[efSinSala.size()]);
+	}
 }
