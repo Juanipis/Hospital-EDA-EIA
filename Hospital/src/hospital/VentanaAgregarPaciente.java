@@ -83,9 +83,9 @@ public VentanaAgregarPaciente() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Main.hp.addPaciente(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), null, Integer.valueOf(textField_5.getText()), null, Integer.valueOf(textField_7.getText()), textField_8.getText(), textField_9.getText());
+					JOptionPane.showMessageDialog(null, "El paciente se agrego correctamente");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

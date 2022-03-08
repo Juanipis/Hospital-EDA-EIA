@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -61,7 +62,6 @@ public VentanaModificarLimpieza() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		contentPane.setLayout(null);
@@ -71,16 +71,10 @@ public VentanaModificarLimpieza() {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.hp.addPersonalLimpieza(textField.getText(), textField_1.getText(), textField_2.getText(), true);
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Main.hp.addPersonalLimpieza(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
+					JOptionPane.showMessageDialog(null, "El conserje se modifico con exito");
+				} catch (IOException | ExistePersonal e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
@@ -171,10 +165,10 @@ public VentanaModificarLimpieza() {
 		btnAgregar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.hp.eliminarPersonalLimpieza(textField_7.getText());
+					Main.hp.eliminarPersonalLimpieza(txtCedula.getText());
+					JOptionPane.showMessageDialog(null, "El conserje se borro con exito");
 				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

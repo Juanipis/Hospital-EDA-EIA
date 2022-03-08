@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -62,7 +63,6 @@ public VentanaModificarPaciente() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		contentPane.setLayout(null);
@@ -95,11 +95,16 @@ public VentanaModificarPaciente() {
 		txtCedula.setColumns(10);
 		txtCedula.setBounds(136, 52, 142, 20);
 		contentPane.add(txtCedula);
-		
+
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//borrarPaciente
+					try {
+						Main.hp.eliminarPaciente(txtCedula.getText());
+						JOptionPane.showMessageDialog(null, "El paciente se borro con exito");
+					} catch (NoExistePersonal | IOException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
 			}
 		});
 		btnBorrar.setBounds(377, 251, 131, 23);

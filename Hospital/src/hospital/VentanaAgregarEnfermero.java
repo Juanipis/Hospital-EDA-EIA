@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -70,8 +71,9 @@ public VentanaAgregarEnfermero() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+					JOptionPane.showMessageDialog(null, "El enfermero se agrego con exito");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 					
 				}
 			}

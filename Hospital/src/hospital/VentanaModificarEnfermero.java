@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -70,11 +71,12 @@ public VentanaModificarEnfermero() {
 		JButton btnAgregar = new JButton("Modificar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				try {
-					Main.hp.addEnfermeros(textField.getText(), textField_1.getText(), textField_2.getText(), true);
+					Main.hp.addEnfermeros(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
+					JOptionPane.showMessageDialog(null, "El enfermero se modifico con exito");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
@@ -165,10 +167,10 @@ public VentanaModificarEnfermero() {
 		btnAgregar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.hp.eliminarEnfermero(textField_7.getText());
+					Main.hp.eliminarEnfermero(txtCedula.getText());
+					JOptionPane.showMessageDialog(null, "El enfermero se borro con exito");
 				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

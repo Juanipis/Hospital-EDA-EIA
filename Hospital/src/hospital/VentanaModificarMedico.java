@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -64,7 +65,6 @@ public VentanaModificarMedico() {
 				VentanaInicio inicio = new VentanaInicio();
 				inicio.setVisible(true);
 				dispose();
-				
 			}
 		});
 		contentPane.setLayout(null);
@@ -74,10 +74,10 @@ public VentanaModificarMedico() {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.hp.addMedico(textField.getText(), textField_1.getText(), textField_2.getText(), true, textField_4.getText(), true);
+					Main.hp.addPersonalLimpieza(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), true);
+					JOptionPane.showMessageDialog(null, "El medico se modifico con exito");
 				} catch (IOException | ExistePersonal e1) {
-					// TODO Auto-generated catch block
-					
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
@@ -196,10 +196,11 @@ public VentanaModificarMedico() {
 		btnAgregar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.hp.eliminarMedico(textField_7.getText());
+					Main.hp.eliminarMedico(txtCedula.getText());
+					JOptionPane.showMessageDialog(null, "El medico se borro con exito");
+
 				} catch (NoExistePersonal | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
