@@ -108,3 +108,8 @@ class MedicoNoPaciente extends Exception{
 		super("El medico " +  nombreMedico + " no tiene el paciente con la cedula " + CCPaciente);
 	}
 }
+class NoSeEncuetraMedico extends Exception {
+	public NoSeEncuetraMedico() {
+		super ("No se encuentra medico");
+	}
+}
