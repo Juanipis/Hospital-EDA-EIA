@@ -141,3 +141,8 @@ class NoEnfermeroEnSala extends Exception{
 		super("El enfermero no se encuentra en la sala");
 	}
 }
+class campoNulo extends Exception{
+	public campoNulo() {
+		super("Revisa los campos, algunos pueden estar nulos");
+	}
+}
