@@ -181,7 +181,7 @@ public class VentanaInventarioSalas extends JFrame {
 		textField_13 = new JTextField();
 		textField_13.setBackground(SystemColor.menu);
 		textField_13.setColumns(10);
-		textField_13.setBounds(251, 238, 121, 20);
+		textField_13.setBounds(251, 238, 140, 20);
 		contentPane.add(textField_13);
 		textField_13.setText("FECHAVENCIMIENTO");
 		textField_13.setEditable(false);
