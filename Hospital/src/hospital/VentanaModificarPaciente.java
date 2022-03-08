@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import java.awt.ComponentOrientation;
 
 public class VentanaModificarPaciente extends JFrame {
 
@@ -31,6 +34,8 @@ public class VentanaModificarPaciente extends JFrame {
 	private JTextField txtApellido;
 	private JButton btnBuscar;
 	private JButton btnAgregar;
+	private JTextField textField_1;
+	private JButton btnUnirse;
 	
 	/**
 	 * Launch the application.
@@ -192,15 +197,15 @@ public VentanaModificarPaciente() {
 //								}
 //							}
 							
-							if(txtNombre.getText() != "" && txtNombre.getText() != p.getNombre()) {
+							if(txtNombre.getText().equals("") == false && txtNombre.getText() != p.getNombre()) {
 								p.setNombre(nombre);
 							}
 							
-							if(txtApellido.getText() != "" && txtApellido.getText() != p.getApellido()) {
+							if(txtApellido.getText().equals("") == false && txtApellido.getText() != p.getApellido()) {
 								p.setApellido(apellido);
 							}
 							
-							if(txtPoliza.getText() != "" && txtPoliza.getText() != p.getPoliza()) {
+							if(txtPoliza.getText().equals("") && txtPoliza.getText() != p.getPoliza()) {
 								p.setPoliza(poliza);
 							}
 						}
@@ -211,6 +216,32 @@ public VentanaModificarPaciente() {
 		});
 		btnBuscar.setBounds(330, 55, 131, 23);
 		contentPane.add(btnBuscar);
+		
+		JTextArea txtrIntroduzcaLaCedula = new JTextArea();
+		txtrIntroduzcaLaCedula.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		txtrIntroduzcaLaCedula.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtrIntroduzcaLaCedula.setBorder(null);
+		txtrIntroduzcaLaCedula.setBackground(SystemColor.menu);
+		txtrIntroduzcaLaCedula.setEditable(false);
+		txtrIntroduzcaLaCedula.setText("Introduzca la cedula del doctor \n al cual se desea unir");
+		txtrIntroduzcaLaCedula.setBounds(330, 111, 195, 36);
+		contentPane.add(txtrIntroduzcaLaCedula);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(330, 161, 142, 19);
+		contentPane.add(textField_1);
+		btnUnirse = new JButton("Unirse");
+		btnUnirse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.hp.addPacienteAMedico(txtCedula.getText(), textField_1.getText());
+				JOptionPane.showMessageDialog(null, "El paciente se agrego con exito");
+			}
+		});
+		btnUnirse.setBounds(330, 195, 131, 23);
+		contentPane.add(btnUnirse);
+		
+		
 
 	}
 }
