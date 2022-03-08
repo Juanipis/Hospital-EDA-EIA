@@ -26,7 +26,34 @@ public class Medico extends Personal {
 	public String getEsp() {
 		return this.esp;
 	}
-	
+	public int buscarPacienteIndex(String CCPaciente) throws MedicoNoPaciente {
+		int index = 0;
+		while(index < pacientes.length && pacientes[index]!=null && !pacientes[index].getCC().equals(CCPaciente)) {
+			index++;
+		}
+		if(index < pacientes.length && pacientes[index]!=null && pacientes[index].getCC().equals(CCPaciente)) {
+			return index;
+		}
+		else {
+			throw new MedicoNoPaciente(this.getNombre(), CCPaciente);
+		}
+	}
+	public void eliminarPaciente(String CCPaciente) throws MedicoNoPaciente {
+		int index = this.buscarPacienteIndex(CCPaciente);
+		Paciente[] temp = new Paciente[this.pacientes.length-1];
+		int arT = 0;
+		int arO = 0;
+		
+		while(arT < temp.length) {
+			if(arT == index) {
+				arO++;
+			}
+			temp[arT] = this.pacientes[arO];
+			arT++;
+			arO++;
+		}
+		this.pacientes = temp;	
+	}
 	public Paciente[] getPacientes() {
 		return pacientes;
 	}
