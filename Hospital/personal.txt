@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 0,Juanito,Perez,2190120,false,Medico general,false,100231858;123612;887272;
 0,Martin,Alonzo,43725521,false,Medico general,false,;
 0,Jhon,Connors,91299267,false,Cirujano,false,65468266;65468266;
@@ -9,4 +7,3 @@
 2,Maria,Alela,1438404,false
 2,Sor Ines,Cruz,524977,false
 2,Ramiro,Bernal,58711268,false
->>>>>>> 00c35a61d2e37eb807cc04b0c661600a23bd450e
