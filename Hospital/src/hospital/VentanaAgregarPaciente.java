@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -56,6 +57,29 @@ public class VentanaAgregarPaciente  extends JFrame {
 			}
 		});
 	}
+	public String[] conversionStringArray() {
+		String s = textField_4.getText();
+		while(s != null){
+			String [] sintomas = s.split(",");
+//			for(int i=0;i<sintomas.length;i++) {
+//				
+//			}
+			return sintomas;
+		}
+		return null;
+	}
+	public String[] conversionConocidos() {
+		String s = textField_6.getText();
+		while(s != null){
+			String [] conocidos = s.split(",");
+//			for(int i=0;i<sintomas.length;i++) {
+//				
+//			}
+			return conocidos;
+		}
+		return null;
+	}
+	
 
 public VentanaAgregarPaciente() {
 	
@@ -82,7 +106,7 @@ public VentanaAgregarPaciente() {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.hp.addPaciente(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), null, Integer.valueOf(textField_5.getText()), null, Integer.valueOf(textField_7.getText()), textField_8.getText(), textField_9.getText());
+					Main.hp.addPaciente(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), conversionStringArray(), Integer.valueOf(textField_5.getText()), conversionConocidos(), Integer.valueOf(textField_7.getText()), textField_8.getText(), textField_9.getText());
 					JOptionPane.showMessageDialog(null, "El paciente se agrego correctamente");
 				} catch (IOException | ExistePersonal e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -112,10 +136,12 @@ public VentanaAgregarPaciente() {
 		textField_3.setBounds(303, 67, 86, 20);
 		contentPane.add(textField_3);
 		
+		//Sintomas
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(399, 67, 86, 20);
 		contentPane.add(textField_4);
+		
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
@@ -186,6 +212,7 @@ public VentanaAgregarPaciente() {
 		txtPrescripciones.setBounds(495, 42, 86, 20);
 		contentPane.add(txtPrescripciones);
 		
+		//Conocidos
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(591, 67, 86, 20);
